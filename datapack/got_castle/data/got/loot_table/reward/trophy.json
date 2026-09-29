@@ -1,0 +1,67 @@
+{
+ "type": "minecraft:chest",
+ "pools": [
+  {
+   "rolls": 1,
+   "entries": [
+    {
+     "type": "minecraft:item",
+     "name": "minecraft:golden_helmet",
+     "functions": [
+      {
+       "function": "minecraft:set_name",
+       "name": {
+        "text": "Crown of the Seven Kingdoms",
+        "color": "yellow",
+        "italic": false
+       }
+      },
+      {
+       "function": "minecraft:set_enchantments",
+       "enchantments": {
+        "minecraft:protection": 4,
+        "minecraft:unbreaking": 3
+       }
+      },
+      {
+       "function": "minecraft:set_components",
+       "components": {
+        "minecraft:unbreakable": {}
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "rolls": 1,
+   "entries": [
+    {
+     "type": "minecraft:item",
+     "name": "minecraft:enchanted_golden_apple",
+     "functions": [
+      {
+       "function": "minecraft:set_count",
+       "count": 4
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "rolls": 1,
+   "entries": [
+    {
+     "type": "minecraft:item",
+     "name": "minecraft:diamond",
+     "functions": [
+      {
+       "function": "minecraft:set_count",
+       "count": 16
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

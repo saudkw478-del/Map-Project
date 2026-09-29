@@ -1,0 +1,133 @@
+{
+ "type": "minecraft:chest",
+ "pools": [
+  {
+   "rolls": 1,
+   "entries": [
+    {
+     "type": "minecraft:item",
+     "name": "minecraft:netherite_helmet",
+     "functions": [
+      {
+       "function": "minecraft:set_name",
+       "name": {
+        "text": "Targaryen Helm",
+        "color": "dark_red",
+        "italic": false
+       }
+      },
+      {
+       "function": "minecraft:set_enchantments",
+       "enchantments": {
+        "minecraft:protection": 4,
+        "minecraft:unbreaking": 3
+       }
+      },
+      {
+       "function": "minecraft:set_components",
+       "components": {
+        "minecraft:unbreakable": {}
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "rolls": 1,
+   "entries": [
+    {
+     "type": "minecraft:item",
+     "name": "minecraft:netherite_chestplate",
+     "functions": [
+      {
+       "function": "minecraft:set_name",
+       "name": {
+        "text": "Targaryen Plate",
+        "color": "dark_red",
+        "italic": false
+       }
+      },
+      {
+       "function": "minecraft:set_enchantments",
+       "enchantments": {
+        "minecraft:protection": 4,
+        "minecraft:unbreaking": 3
+       }
+      },
+      {
+       "function": "minecraft:set_components",
+       "components": {
+        "minecraft:unbreakable": {}
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "rolls": 1,
+   "entries": [
+    {
+     "type": "minecraft:item",
+     "name": "minecraft:netherite_leggings",
+     "functions": [
+      {
+       "function": "minecraft:set_name",
+       "name": {
+        "text": "Targaryen Greaves",
+        "color": "dark_red",
+        "italic": false
+       }
+      },
+      {
+       "function": "minecraft:set_enchantments",
+       "enchantments": {
+        "minecraft:protection": 4,
+        "minecraft:unbreaking": 3
+       }
+      },
+      {
+       "function": "minecraft:set_components",
+       "components": {
+        "minecraft:unbreakable": {}
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "rolls": 1,
+   "entries": [
+    {
+     "type": "minecraft:item",
+     "name": "minecraft:netherite_boots",
+     "functions": [
+      {
+       "function": "minecraft:set_name",
+       "name": {
+        "text": "Targaryen Boots",
+        "color": "dark_red",
+        "italic": false
+       }
+      },
+      {
+       "function": "minecraft:set_enchantments",
+       "enchantments": {
+        "minecraft:protection": 4,
+        "minecraft:unbreaking": 3
+       }
+      },
+      {
+       "function": "minecraft:set_components",
+       "components": {
+        "minecraft:unbreakable": {}
+       }
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,36 @@
+{
+ "type": "minecraft:chest",
+ "pools": [
+  {
+   "rolls": 1,
+   "entries": [
+    {
+     "type": "minecraft:item",
+     "name": "minecraft:shield",
+     "functions": [
+      {
+       "function": "minecraft:set_name",
+       "name": {
+        "text": "House Shield",
+        "color": "red",
+        "italic": false
+       }
+      },
+      {
+       "function": "minecraft:set_enchantments",
+       "enchantments": {
+        "minecraft:unbreaking": 3
+       }
+      },
+      {
+       "function": "minecraft:set_components",
+       "components": {
+        "minecraft:unbreakable": {}
+       }
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

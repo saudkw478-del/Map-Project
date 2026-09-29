@@ -1,0 +1,133 @@
+{
+ "type": "minecraft:chest",
+ "pools": [
+  {
+   "rolls": 1,
+   "entries": [
+    {
+     "type": "minecraft:item",
+     "name": "minecraft:golden_helmet",
+     "functions": [
+      {
+       "function": "minecraft:set_name",
+       "name": {
+        "text": "Lannister Helm",
+        "color": "gold",
+        "italic": false
+       }
+      },
+      {
+       "function": "minecraft:set_enchantments",
+       "enchantments": {
+        "minecraft:protection": 4,
+        "minecraft:unbreaking": 3
+       }
+      },
+      {
+       "function": "minecraft:set_components",
+       "components": {
+        "minecraft:unbreakable": {}
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "rolls": 1,
+   "entries": [
+    {
+     "type": "minecraft:item",
+     "name": "minecraft:golden_chestplate",
+     "functions": [
+      {
+       "function": "minecraft:set_name",
+       "name": {
+        "text": "Lannister Plate",
+        "color": "gold",
+        "italic": false
+       }
+      },
+      {
+       "function": "minecraft:set_enchantments",
+       "enchantments": {
+        "minecraft:protection": 4,
+        "minecraft:unbreaking": 3
+       }
+      },
+      {
+       "function": "minecraft:set_components",
+       "components": {
+        "minecraft:unbreakable": {}
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "rolls": 1,
+   "entries": [
+    {
+     "type": "minecraft:item",
+     "name": "minecraft:golden_leggings",
+     "functions": [
+      {
+       "function": "minecraft:set_name",
+       "name": {
+        "text": "Lannister Greaves",
+        "color": "gold",
+        "italic": false
+       }
+      },
+      {
+       "function": "minecraft:set_enchantments",
+       "enchantments": {
+        "minecraft:protection": 4,
+        "minecraft:unbreaking": 3
+       }
+      },
+      {
+       "function": "minecraft:set_components",
+       "components": {
+        "minecraft:unbreakable": {}
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "rolls": 1,
+   "entries": [
+    {
+     "type": "minecraft:item",
+     "name": "minecraft:golden_boots",
+     "functions": [
+      {
+       "function": "minecraft:set_name",
+       "name": {
+        "text": "Lannister Boots",
+        "color": "gold",
+        "italic": false
+       }
+      },
+      {
+       "function": "minecraft:set_enchantments",
+       "enchantments": {
+        "minecraft:protection": 4,
+        "minecraft:unbreaking": 3
+       }
+      },
+      {
+       "function": "minecraft:set_components",
+       "components": {
+        "minecraft:unbreakable": {}
+       }
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}
