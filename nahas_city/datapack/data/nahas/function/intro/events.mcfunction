@@ -1,5 +1,5 @@
 # جدول أحداث الافتتاحية (المنفّذ: اللاعب؛ nh_intro = رقم الـ tick)
-execute if score @s nh_intro matches 1 run tellraw @s [{"text":"للتخطي اكتب ","color":"gray"},{"text":"/trigger nh_start set 9","color":"yellow","clickEvent":{"action":"run_command","value":"/trigger nh_start set 9"},"click_event":{"action":"run_command","command":"/trigger nh_start set 9"}},{"text":" (أو اضغط هنا)","color":"gray"}]
+execute if score @s nh_intro matches 1 run tellraw @s [{"text":"للتخطي اكتب ","color":"gray"},{"text":"/trigger nh_start set 1","color":"yellow","clickEvent":{"action":"run_command","value":"/trigger nh_start set 1"},"click_event":{"action":"run_command","command":"/trigger nh_start set 1"}},{"text":" (أو اضغط هنا)","color":"gray"}]
 execute if score @s nh_intro matches 1 run function nahas:fx/wind
 execute if score @s nh_intro matches 8 run title @s times 10 50 10
 execute if score @s nh_intro matches 8 run title @s subtitle {"text":"في ليالي ألف ليلةٍ وليلة...","color":"yellow"}

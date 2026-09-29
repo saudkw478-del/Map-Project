@@ -8,4 +8,4 @@ execute as @a[scores={nh_intro=0..,nh_scene=2}] at @s run function nahas:intro/e
 # مؤقّت الأمان: أي مشهد يتجاوز 1500 tick يُنهى قسرًا ويُعاد وضع اللعب
 execute as @a[scores={nh_intro=1500..}] run function nahas:intro/end
 scoreboard players remove @a[scores={nh_askcd=1..}] nh_askcd 1
-execute as @a[scores={nh_ask=1..}] run function nahas:npc/ask_request
+execute as @a[tag=nh_asking] run function nahas:npc/ask_request
