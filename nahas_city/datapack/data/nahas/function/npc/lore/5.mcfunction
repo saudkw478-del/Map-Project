@@ -1,4 +1,4 @@
-scoreboard players set @s nh_npccd 10
+scoreboard players set @s nh_npccd 120
 tellraw @s {"text":"— حجر المكتبة —","color":"gold","bold":true}
 tellraw @s {"text":"«غرقت المكتبة لأنّ أهلها حفظوا العلم ولم يشاركوه أحدًا».","color":"white"}
 tellraw @s {"text":"الكتب تحت الماء تنتظر من يقرؤها.","color":"gray","italic":true}

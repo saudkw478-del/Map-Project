@@ -1,4 +1,4 @@
-scoreboard players set @s nh_npccd 10
+scoreboard players set @s nh_npccd 120
 tellraw @s {"text":"— حجر العقرب —","color":"gold","bold":true}
 tellraw @s {"text":"«ملكة العقارب لا تكره أحدًا... هي فقط تحمي عرشها».","color":"white"}
 tellraw @s {"text":"الصبر والحيلة يغلبان القوّة في هذا الوادي.","color":"gray","italic":true}

@@ -1,4 +1,4 @@
-scoreboard players set @s nh_npccd 10
+scoreboard players set @s nh_npccd 120
 tellraw @s {"text":"— حجر المعبد —","color":"gold","bold":true}
 tellraw @s {"text":"«الختم الأول يُنال بالحكمة لا بالسيف».","color":"white"}
 tellraw @s {"text":"حلّوا الألغاز بهدوء، وستنفتح الأبواب.","color":"gray","italic":true}

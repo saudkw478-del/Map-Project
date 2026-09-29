@@ -1,4 +1,4 @@
-scoreboard players set @s nh_npccd 10
+scoreboard players set @s nh_npccd 120
 tellraw @s {"text":"— حجر الواحة —","color":"gold","bold":true}
 tellraw @s {"text":"«الماء أثمن من الذهب، والصديق أثمن من الماء».","color":"white"}
 tellraw @s {"text":"قيل إنّ نبع الواحة لا ينضب ما دام أهلها كرماء.","color":"gray","italic":true}

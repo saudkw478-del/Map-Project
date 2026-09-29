@@ -1,4 +1,4 @@
-scoreboard players set @s nh_npccd 10
+scoreboard players set @s nh_npccd 120
 tellraw @s {"text":"— حجر الريح —","color":"gold","bold":true}
 tellraw @s {"text":"«من يصعد بلا خوف تحمله الريح».","color":"white"}
 tellraw @s {"text":"لا تنظروا إلى الأسفل، انظروا إلى القفزة التالية.","color":"gray","italic":true}

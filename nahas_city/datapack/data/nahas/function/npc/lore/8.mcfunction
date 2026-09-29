@@ -1,4 +1,4 @@
-scoreboard players set @s nh_npccd 10
+scoreboard players set @s nh_npccd 120
 tellraw @s {"text":"— حجر الجمر —","color":"gold","bold":true}
 tellraw @s {"text":"«النار تحرق من يعاديها وتدفّئ من يحترمها».","color":"white"}
 tellraw @s {"text":"الجمر يخفي أعمق أسرار المدينة.","color":"gray","italic":true}

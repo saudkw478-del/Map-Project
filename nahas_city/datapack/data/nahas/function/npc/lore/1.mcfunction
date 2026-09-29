@@ -1,4 +1,4 @@
-scoreboard players set @s nh_npccd 10
+scoreboard players set @s nh_npccd 120
 tellraw @s {"text":"— حجر القافلة —","color":"gold","bold":true}
 tellraw @s {"text":"نُقش على الحجر: «مرّت من هنا قافلةٌ بلا دليل، فوجدت فانوسًا يعرف الطريق».","color":"white"}
 tellraw @s {"text":"وتحتها كلمة صغيرة: ابقوا معًا.","color":"gray","italic":true}

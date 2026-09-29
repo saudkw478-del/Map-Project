@@ -1,4 +1,4 @@
-scoreboard players set @s nh_npccd 10
+scoreboard players set @s nh_npccd 120
 tellraw @s {"text":"— حجر النجوم —","color":"gold","bold":true}
 tellraw @s {"text":"«لكل نجمة حكاية، ولكل حكاية نهاية جميلة».","color":"white"}
 tellraw @s {"text":"بحر النجوم يحفظ أسماء كل من عبر إليه.","color":"gray","italic":true}
