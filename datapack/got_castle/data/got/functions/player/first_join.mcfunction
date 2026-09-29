@@ -1,4 +1,5 @@
 tag @s add got_seen
+tp @s 270.5 64 378.5
 tellraw @s {"text": "Winter is coming.", "color": "aqua", "bold": true}
 tellraw @s {"text": "You stand in Winterfell, seat of House Stark. The realm of Westeros lies before you:", "color": "white"}
 tellraw @s {"text": "the Wall in the north, the Iron Throne in King's Landing, and the sun-scorched land of Dorne far in the south.", "color": "white"}

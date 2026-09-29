@@ -269,6 +269,7 @@ def game_functions():
         "team modify got_enemies color red",
         f"execute unless score #state {SB} matches 0.. run scoreboard players set #state {SB} 0",
         f"function {NS}:util/rules",
+        "setworldspawn 270 64 378",
         f'tellraw @a {json.dumps([{"text": "[Game of Thrones] ", "color": "gold"}, {"text": "Westeros is ready. Type /trigger got_go to travel.", "color": "white"}])}',
     ]
     F["tick"] = [
@@ -296,6 +297,7 @@ def game_functions():
     # ---- first join
     F["player/first_join"] = [
         "tag @s add got_seen",
+        "tp @s 270.5 64 378.5",
         tell("Winter is coming.", "aqua", True),
         tell("You stand in Winterfell, seat of House Stark. The realm of Westeros lies before you:", "white"),
         tell("the Wall in the north, the Iron Throne in King's Landing, and the sun-scorched land of Dorne far in the south.", "white"),

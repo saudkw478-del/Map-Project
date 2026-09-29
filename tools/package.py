@@ -32,4 +32,9 @@ with zipfile.ZipFile(os.path.join(dist, "GoT_Westeros_Install.zip"), "w", zipfil
     z.write(os.path.join(ROOT, "README.md"), "README.md")
 with zipfile.ZipFile(os.path.join(dist, "GoT_Westeros_Server_World.zip"), "w", zipfile.ZIP_DEFLATED) as z:
     add_tree(z, world, "world")   # for hosts / Aternos: upload as the server's "world" folder
+with zipfile.ZipFile(os.path.join(dist, "GoT_Westeros_Fallback.zip"), "w", zipfile.ZIP_DEFLATED) as z:
+    # for a normal Superflat world created in the game: replace its region folder + add datapack and resources
+    add_tree(z, os.path.join(world, "region"), "region")
+    add_tree(z, os.path.join(world, "datapacks"), "datapacks")
+    z.write(os.path.join(world, "resources.zip"), "resources.zip")
 print("dist:", {f: round(os.path.getsize(os.path.join(dist, f)) / 1048576, 1) for f in os.listdir(dist)}, "MB")
