@@ -1,0 +1,12 @@
+{
+  "pack": {
+    "pack_format": 46,
+    "supported_formats": {
+      "min_inclusive": 46,
+      "max_inclusive": 90
+    },
+    "min_format": 46,
+    "max_format": 90,
+    "description": "مدينة النحاس - City of Brass"
+  }
+}
