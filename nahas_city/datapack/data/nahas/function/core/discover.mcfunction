@@ -8,4 +8,4 @@ execute in minecraft:overworld positioned 1000 70 350 as @a[distance=..60,tag=!n
 execute in minecraft:overworld positioned 300 70 900 as @a[distance=..60,tag=!nh_d_ember] at @s run function nahas:core/found_ember
 execute in minecraft:overworld positioned 1200 70 1200 as @a[distance=..200,tag=!nh_d_city] at @s run function nahas:core/found_city
 execute in nahas:star_sea positioned 600 100 600 as @a[distance=..700,tag=!nh_d_starsea] at @s run function nahas:core/found_starsea
-execute in nahas:ember positioned 500 64 500 as @a[distance=..400,tag=!nh_d_embersea] at @s run function nahas:core/found_embersea
+execute in nahas:ember positioned 500 64 500 as @a[distance=..900,tag=!nh_d_embersea] at @s run function nahas:core/found_embersea

@@ -5,8 +5,8 @@ scoreboard players set #b2_t nh_g 0
 scoreboard players set #b2_miss nh_g 0
 scoreboard players set #bmax2 nh_g 300
 execute if score #kids nh_g matches 1 run scoreboard players set #bmax2 nh_g 150
-execute in minecraft:overworld run summon minecraft:breeze 1700 121 450 {Tags:["nh_boss","nh_b2"],PersistenceRequired:1b}
-execute in minecraft:overworld positioned 1700 121 450 as @e[tag=nh_b2,distance=..6,limit=1] run function nahas:boss/b2/init
+execute in minecraft:overworld run summon minecraft:breeze 1700 152 436 {Tags:["nh_boss","nh_b2"],PersistenceRequired:1b}
+execute in minecraft:overworld positioned 1700 152 436 as @e[tag=nh_b2,distance=..6,limit=1] run function nahas:boss/b2/init
 bossbar set nahas:boss2 name {"text":"قائد الرياح","color":"white"}
 bossbar set nahas:boss2 color purple
 bossbar set nahas:boss2 style notched_10

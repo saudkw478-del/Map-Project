@@ -5,8 +5,8 @@ scoreboard players set #b3_t nh_g 0
 scoreboard players set #b3_miss nh_g 0
 scoreboard players set #bmax3 nh_g 350
 execute if score #kids nh_g matches 1 run scoreboard players set #bmax3 nh_g 175
-execute in nahas:star_sea run summon minecraft:evoker 600 101 600 {Tags:["nh_boss","nh_b3"],PersistenceRequired:1b}
-execute in nahas:star_sea positioned 600 101 600 as @e[tag=nh_b3,distance=..6,limit=1] run function nahas:boss/b3/init
+execute in nahas:star_sea run summon minecraft:evoker 560 97 921 {Tags:["nh_boss","nh_b3"],PersistenceRequired:1b}
+execute in nahas:star_sea positioned 560 97 921 as @e[tag=nh_b3,distance=..6,limit=1] run function nahas:boss/b3/init
 bossbar set nahas:boss3 name {"text":"ملكة النجوم","color":"light_purple"}
 bossbar set nahas:boss3 color purple
 bossbar set nahas:boss3 style notched_10
