@@ -1,0 +1,11 @@
+# حوار: الكشّاف بارق
+execute if entity @s[tag=nh_met_barq] if score #seals nh_story matches 0 if score @s nh_npcline matches 0 run tellraw @s [{"text":"الكشّاف بارق: ","color":"dark_green","bold":true},{"text":"اتّبعوا الطريق المرصوف شرقًا من الواحة، ففيه محطات استراحة على طول الدرب.","color":"white"}]
+execute if entity @s[tag=nh_met_barq] if score #seals nh_story matches 0 if score @s nh_npcline matches 1 run tellraw @s [{"text":"الكشّاف بارق: ","color":"dark_green","bold":true},{"text":"أخطر ما في الرحلة أن تسيروا وحدكم. ابقوا معًا.","color":"white"}]
+execute if entity @s[tag=nh_met_barq] if score #seals nh_story matches 1..3 if score @s nh_npcline matches 0 run tellraw @s [{"text":"الكشّاف بارق: ","color":"dark_green","bold":true},{"text":"دروب جديدة انفتحت لكم! انظروا إلى الحجارة المنقوشة على الطريق.","color":"white"}]
+execute if entity @s[tag=nh_met_barq] if score #seals nh_story matches 1..3 if score @s nh_npcline matches 1 run tellraw @s [{"text":"الكشّاف بارق: ","color":"dark_green","bold":true},{"text":"الكنوز مخبّأة في الأطلال والمقابر، فابحثوا جيدًا.","color":"white"}]
+execute if entity @s[tag=nh_met_barq] if score #seals nh_story matches 4..6 if score @s nh_npcline matches 0 run tellraw @s [{"text":"الكشّاف بارق: ","color":"dark_green","bold":true},{"text":"مدينة النحاس في الشمال الشرقي من الواحة، خلف الجبال والكثبان.","color":"white"}]
+execute if entity @s[tag=nh_met_barq] if score #seals nh_story matches 4..6 if score @s nh_npcline matches 1 run tellraw @s [{"text":"الكشّاف بارق: ","color":"dark_green","bold":true},{"text":"خذوا طعامًا وماءً، فالطريق طويل.","color":"white"}]
+execute if entity @s[tag=nh_met_barq] if score #seals nh_story matches 7 if score @s nh_npcline matches 0 run tellraw @s [{"text":"الكشّاف بارق: ","color":"dark_green","bold":true},{"text":"كل الدروب صارت آمنة بفضلكم!","color":"white"}]
+execute if entity @s[tag=nh_met_barq] if score #seals nh_story matches 7 if score @s nh_npcline matches 1 run tellraw @s [{"text":"الكشّاف بارق: ","color":"dark_green","bold":true},{"text":"سأرسم لكم خريطةً بكل الأسرار.","color":"white"}]
+execute unless entity @s[tag=nh_met_barq] run tellraw @s [{"text":"الكشّاف بارق: ","color":"dark_green","bold":true},{"text":"يا هلا! أنا بارق الكشّاف. أعرف كل دروب القوافل.","color":"white"}]
+tag @s add nh_met_barq

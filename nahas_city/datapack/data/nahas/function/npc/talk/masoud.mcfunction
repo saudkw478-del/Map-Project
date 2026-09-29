@@ -1,0 +1,11 @@
+# حوار: العجوز مسعود
+execute if entity @s[tag=nh_met_masoud] if score #seals nh_story matches 0 if score @s nh_npcline matches 0 run tellraw @s [{"text":"العجوز مسعود: ","color":"gray","bold":true},{"text":"افتحوا صندوق الفانوس في المعسكر، فهو دليلكم الأول.","color":"white"}]
+execute if entity @s[tag=nh_met_masoud] if score #seals nh_story matches 0 if score @s nh_npcline matches 1 run tellraw @s [{"text":"العجوز مسعود: ","color":"gray","bold":true},{"text":"اتّجهوا إلى الشمال الشرقي نحو واحة الدلال، فهناك ناسٌ طيّبون.","color":"white"}]
+execute if entity @s[tag=nh_met_masoud] if score #seals nh_story matches 1..3 if score @s nh_npcline matches 0 run tellraw @s [{"text":"العجوز مسعود: ","color":"gray","bold":true},{"text":"أراكم قد ابتعدتم عن المعسكر! أنا بخير، لا تقلقوا عليّ.","color":"white"}]
+execute if entity @s[tag=nh_met_masoud] if score #seals nh_story matches 1..3 if score @s nh_npcline matches 1 run tellraw @s [{"text":"العجوز مسعود: ","color":"gray","bold":true},{"text":"الطريق إلى الواحة مرصوف بالحصى.","color":"white"}]
+execute if entity @s[tag=nh_met_masoud] if score #seals nh_story matches 4..6 if score @s nh_npcline matches 0 run tellraw @s [{"text":"العجوز مسعود: ","color":"gray","bold":true},{"text":"دعوتُ لكم كل ليلة عند الفانوس القديم.","color":"white"}]
+execute if entity @s[tag=nh_met_masoud] if score #seals nh_story matches 4..6 if score @s nh_npcline matches 1 run tellraw @s [{"text":"العجوز مسعود: ","color":"gray","bold":true},{"text":"لا تعودوا إلى المعسكر قبل أن تنقذوا المدينة.","color":"white"}]
+execute if entity @s[tag=nh_met_masoud] if score #seals nh_story matches 7 if score @s nh_npcline matches 0 run tellraw @s [{"text":"العجوز مسعود: ","color":"gray","bold":true},{"text":"الحمد لله! رأيتُ النور من بعيد.","color":"white"}]
+execute if entity @s[tag=nh_met_masoud] if score #seals nh_story matches 7 if score @s nh_npcline matches 1 run tellraw @s [{"text":"العجوز مسعود: ","color":"gray","bold":true},{"text":"سأبني خيمتي من جديد وأنتظر أن تحكوا لي كل شيء.","color":"white"}]
+execute unless entity @s[tag=nh_met_masoud] run tellraw @s [{"text":"العجوز مسعود: ","color":"gray","bold":true},{"text":"الحمد لله أنكم استيقظتم! أنا مسعود، أضعتُ قافلتي في العاصفة.","color":"white"}]
+tag @s add nh_met_masoud

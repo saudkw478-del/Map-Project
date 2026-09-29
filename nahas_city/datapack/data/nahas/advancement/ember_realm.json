@@ -1,0 +1,25 @@
+{
+ "display": {
+  "icon": {
+   "id": "minecraft:blaze_powder"
+  },
+  "title": {
+   "text": "أرض الجمر",
+   "color": "gold"
+  },
+  "description": {
+   "text": "وصلت إلى أرض الجمر",
+   "color": "gray"
+  },
+  "frame": "task",
+  "show_toast": true,
+  "announce_to_chat": true,
+  "hidden": false
+ },
+ "criteria": {
+  "done": {
+   "trigger": "minecraft:impossible"
+  }
+ },
+ "parent": "nahas:portal"
+}

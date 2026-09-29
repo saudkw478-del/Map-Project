@@ -1,0 +1,4 @@
+execute unless items entity @s hotbar.* minecraft:lantern[minecraft:custom_data={nh:"lantern"}] unless items entity @s weapon.offhand minecraft:lantern[minecraft:custom_data={nh:"lantern"}] run tellraw @s {"text":"تحتاج إلى فانوس الجني في شريط الأدوات.","color":"red"}
+execute if score @s nh_cd2 matches 1.. run tellraw @s ["",{"text":"الفانوس يحتاج إلى راحة: ","color":"red"},{"score":{"name":"@s","objective":"nh_cd2"},"color":"yellow"},{"text":" ثانية","color":"red"}]
+execute if score @s nh_cd2 matches ..0 if items entity @s hotbar.* minecraft:lantern[minecraft:custom_data={nh:"lantern"}] run function nahas:role/flare_do
+execute if score @s nh_cd2 matches ..0 unless items entity @s hotbar.* minecraft:lantern[minecraft:custom_data={nh:"lantern"}] if items entity @s weapon.offhand minecraft:lantern[minecraft:custom_data={nh:"lantern"}] run function nahas:role/flare_do

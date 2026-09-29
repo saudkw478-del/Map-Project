@@ -1,0 +1,11 @@
+# حوار: زهرة الفلكية
+execute if entity @s[tag=nh_met_zahra] if score #seals nh_story matches 0 if score @s nh_npcline matches 0 run tellraw @s [{"text":"زهرة الفلكية: ","color":"dark_purple","bold":true},{"text":"النجوم تحكي لي عن بوّابة تلمع في الشمال، تقود إلى بحر النجوم.","color":"white"}]
+execute if entity @s[tag=nh_met_zahra] if score #seals nh_story matches 0 if score @s nh_npcline matches 1 run tellraw @s [{"text":"زهرة الفلكية: ","color":"dark_purple","bold":true},{"text":"الإسطرلاب يدلّك على الاتجاه، والليل أوضح من النهار عند الفلكيين.","color":"white"}]
+execute if entity @s[tag=nh_met_zahra] if score #seals nh_story matches 1..3 if score @s nh_npcline matches 0 run tellraw @s [{"text":"زهرة الفلكية: ","color":"dark_purple","bold":true},{"text":"بوّابة النجوم وبوّابة الجمر بابان إلى عالمين آخرين. لا تخافوهما.","color":"white"}]
+execute if entity @s[tag=nh_met_zahra] if score #seals nh_story matches 1..3 if score @s nh_npcline matches 1 run tellraw @s [{"text":"زهرة الفلكية: ","color":"dark_purple","bold":true},{"text":"حين تقفزون بين جزر النجوم انظروا أين تضعون أقدامكم.","color":"white"}]
+execute if entity @s[tag=nh_met_zahra] if score #seals nh_story matches 4..6 if score @s nh_npcline matches 0 run tellraw @s [{"text":"زهرة الفلكية: ","color":"dark_purple","bold":true},{"text":"أرى القمر يقترب من قلب المدينة. ساعتكم قريبة.","color":"white"}]
+execute if entity @s[tag=nh_met_zahra] if score #seals nh_story matches 4..6 if score @s nh_npcline matches 1 run tellraw @s [{"text":"زهرة الفلكية: ","color":"dark_purple","bold":true},{"text":"الحارس النحاسي لا يخشى إلا الأختام مجتمعة.","color":"white"}]
+execute if entity @s[tag=nh_met_zahra] if score #seals nh_story matches 7 if score @s nh_npcline matches 0 run tellraw @s [{"text":"زهرة الفلكية: ","color":"dark_purple","bold":true},{"text":"أضاءت السماء أكثر من أي وقت! أشكركم.","color":"white"}]
+execute if entity @s[tag=nh_met_zahra] if score #seals nh_story matches 7 if score @s nh_npcline matches 1 run tellraw @s [{"text":"زهرة الفلكية: ","color":"dark_purple","bold":true},{"text":"سأسمّي نجمةً جديدة على أسمائكم.","color":"white"}]
+execute unless entity @s[tag=nh_met_zahra] run tellraw @s [{"text":"زهرة الفلكية: ","color":"dark_purple","bold":true},{"text":"أهلًا بك تحت النجوم! أنا زهرة الفلكية.","color":"white"}]
+tag @s add nh_met_zahra

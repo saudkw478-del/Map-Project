@@ -1,0 +1,11 @@
+# حوار: الحدّاد فهد
+execute if entity @s[tag=nh_met_fahd] if score #seals nh_story matches 0 if score @s nh_npcline matches 0 run tellraw @s [{"text":"الحدّاد فهد: ","color":"red","bold":true},{"text":"السيف الجيّد يغيّر الرحلة، لكن الشجاعة أهمّ من السيف.","color":"white"}]
+execute if entity @s[tag=nh_met_fahd] if score #seals nh_story matches 0 if score @s nh_npcline matches 1 run tellraw @s [{"text":"الحدّاد فهد: ","color":"red","bold":true},{"text":"عقارب الوادي الأحمر تخاف من الدروع الجيدة، فلا تنسوها.","color":"white"}]
+execute if entity @s[tag=nh_met_fahd] if score #seals nh_story matches 1..3 if score @s nh_npcline matches 0 run tellraw @s [{"text":"الحدّاد فهد: ","color":"red","bold":true},{"text":"أراكم تكبرون! سيوفكم لمعت من كثرة القتال.","color":"white"}]
+execute if entity @s[tag=nh_met_fahd] if score #seals nh_story matches 1..3 if score @s nh_npcline matches 1 run tellraw @s [{"text":"الحدّاد فهد: ","color":"red","bold":true},{"text":"أصلحوا أدواتكم قبل كل تجربة كبيرة.","color":"white"}]
+execute if entity @s[tag=nh_met_fahd] if score #seals nh_story matches 4..6 if score @s nh_npcline matches 0 run tellraw @s [{"text":"الحدّاد فهد: ","color":"red","bold":true},{"text":"الحارس من نحاس، والنحاس يخاف من الصبر والعمل الجماعي.","color":"white"}]
+execute if entity @s[tag=nh_met_fahd] if score #seals nh_story matches 4..6 if score @s nh_npcline matches 1 run tellraw @s [{"text":"الحدّاد فهد: ","color":"red","bold":true},{"text":"خذوا أفضل ما لديكم، ولا تنسوا القوس.","color":"white"}]
+execute if entity @s[tag=nh_met_fahd] if score #seals nh_story matches 7 if score @s nh_npcline matches 0 run tellraw @s [{"text":"الحدّاد فهد: ","color":"red","bold":true},{"text":"ما أجمل أن يُستعمل الحديد في البناء بدل القتال! سأصنع لكم هدية.","color":"white"}]
+execute if entity @s[tag=nh_met_fahd] if score #seals nh_story matches 7 if score @s nh_npcline matches 1 run tellraw @s [{"text":"الحدّاد فهد: ","color":"red","bold":true},{"text":"أنتم أشجع من رأيتُ يا أبطال.","color":"white"}]
+execute unless entity @s[tag=nh_met_fahd] run tellraw @s [{"text":"الحدّاد فهد: ","color":"red","bold":true},{"text":"أهلًا يا محارب! أنا فهد الحدّاد. الحديد صديقي والنار رفيقتي.","color":"white"}]
+tag @s add nh_met_fahd

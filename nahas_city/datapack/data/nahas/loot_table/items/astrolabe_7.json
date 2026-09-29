@@ -1,0 +1,59 @@
+{
+ "type": "minecraft:generic",
+ "pools": [
+  {
+   "rolls": 1,
+   "entries": [
+    {
+     "type": "minecraft:item",
+     "name": "minecraft:compass",
+     "functions": [
+      {
+       "function": "minecraft:set_components",
+       "components": {
+        "minecraft:item_model": "nahas:astrolabe",
+        "minecraft:custom_name": {
+         "text": "الإسطرلاب",
+         "color": "aqua",
+         "italic": false
+        },
+        "minecraft:lore": [
+         {
+          "text": "يشير إلى وجهتك التالية:",
+          "color": "gray",
+          "italic": false
+         },
+         {
+          "text": "مدينة النحاس",
+          "color": "gray",
+          "italic": false
+         },
+         {
+          "text": "اكتب /trigger nh_map set 1 لتحديثه",
+          "color": "gray",
+          "italic": false
+         }
+        ],
+        "minecraft:custom_data": {
+         "nh": "astrolabe"
+        },
+        "minecraft:enchantment_glint_override": true,
+        "minecraft:lodestone_tracker": {
+         "target": {
+          "pos": [
+           1200,
+           70,
+           1200
+          ],
+          "dimension": "minecraft:overworld"
+         },
+         "tracked": false
+        }
+       }
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

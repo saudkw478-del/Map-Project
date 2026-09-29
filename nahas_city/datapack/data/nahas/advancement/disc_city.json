@@ -1,0 +1,25 @@
+{
+ "display": {
+  "icon": {
+   "id": "minecraft:gold_block"
+  },
+  "title": {
+   "text": "أمام المدينة",
+   "color": "gold"
+  },
+  "description": {
+   "text": "رأيت أسوار مدينة النحاس",
+   "color": "gray"
+  },
+  "frame": "goal",
+  "show_toast": true,
+  "announce_to_chat": true,
+  "hidden": false
+ },
+ "criteria": {
+  "done": {
+   "trigger": "minecraft:impossible"
+  }
+ },
+ "parent": "nahas:disc_hub"
+}

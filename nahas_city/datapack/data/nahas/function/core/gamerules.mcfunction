@@ -1,0 +1,14 @@
+function nahas:core/gr/mobgriefing_old {v:"false"}
+function nahas:core/gr/mobgriefing_new {v:"false"}
+function nahas:core/gr/keepinventory_old {v:"true"}
+function nahas:core/gr/keepinventory_new {v:"true"}
+function nahas:core/gr/doinsomnia_old {v:"false"}
+function nahas:core/gr/doinsomnia_new {v:"false"}
+function nahas:core/gr/dopatrolspawning_old {v:"false"}
+function nahas:core/gr/dopatrolspawning_new {v:"false"}
+function nahas:core/gr/dotraderspawning_old {v:"false"}
+function nahas:core/gr/dotraderspawning_new {v:"false"}
+function nahas:core/gr/dowardenspawning_old {v:"false"}
+function nahas:core/gr/dowardenspawning_new {v:"false"}
+function nahas:core/gr/playerssleepingpercentage_old {v:"1"}
+function nahas:core/gr/playerssleepingpercentage_new {v:"1"}

@@ -1,0 +1,1 @@
+tellraw @s ["",{"text":"مكانك: س=","color":"yellow"},{"nbt":"Pos[0]","entity":"@s","color":"gold"},{"text":" ، ع=","color":"yellow"},{"nbt":"Pos[1]","entity":"@s","color":"gold"},{"text":" ، ص=","color":"yellow"},{"nbt":"Pos[2]","entity":"@s","color":"gold"}]

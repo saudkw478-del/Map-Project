@@ -1,0 +1,16 @@
+loot give @s loot nahas:items/lantern
+loot give @s loot nahas:items/scimitar
+loot give @s loot nahas:items/carpet
+loot give @s loot nahas:items/bottle
+loot give @s loot nahas:items/bow
+loot give @s loot nahas:items/dagger
+loot give @s loot nahas:items/amulet
+loot give @s loot nahas:items/key
+loot give @s loot nahas:items/seal_1
+loot give @s loot nahas:items/seal_2
+loot give @s loot nahas:items/seal_3
+loot give @s loot nahas:items/seal_4
+loot give @s loot nahas:items/seal_5
+loot give @s loot nahas:items/seal_6
+loot give @s loot nahas:items/seal_7
+loot give @s loot nahas:trial/page

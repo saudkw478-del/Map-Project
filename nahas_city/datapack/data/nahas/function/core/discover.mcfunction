@@ -1,0 +1,11 @@
+execute in minecraft:overworld positioned 300 70 2050 as @a[distance=..70,tag=!nh_d_spawn] at @s run function nahas:core/found_spawn
+execute in minecraft:overworld positioned 600 70 1650 as @a[distance=..70,tag=!nh_d_hub] at @s run function nahas:core/found_hub
+execute in minecraft:overworld positioned 1000 70 1900 as @a[distance=..70,tag=!nh_d_t1] at @s run function nahas:core/found_t1
+execute in minecraft:overworld positioned 1800 70 1850 as @a[distance=..70,tag=!nh_d_t2] at @s run function nahas:core/found_t2
+execute in minecraft:overworld positioned 2100 70 1300 as @a[distance=..70,tag=!nh_d_t3] at @s run function nahas:core/found_t3
+execute in minecraft:overworld positioned 1700 120 450 as @a[distance=..70,tag=!nh_d_t4] at @s run function nahas:core/found_t4
+execute in minecraft:overworld positioned 1000 70 350 as @a[distance=..60,tag=!nh_d_star] at @s run function nahas:core/found_star
+execute in minecraft:overworld positioned 300 70 900 as @a[distance=..60,tag=!nh_d_ember] at @s run function nahas:core/found_ember
+execute in minecraft:overworld positioned 1200 70 1200 as @a[distance=..200,tag=!nh_d_city] at @s run function nahas:core/found_city
+execute in nahas:star_sea positioned 600 100 600 as @a[distance=..700,tag=!nh_d_starsea] at @s run function nahas:core/found_starsea
+execute in nahas:ember positioned 500 64 500 as @a[distance=..400,tag=!nh_d_embersea] at @s run function nahas:core/found_embersea

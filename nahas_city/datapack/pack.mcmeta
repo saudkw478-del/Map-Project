@@ -1,0 +1,12 @@
+{
+ "pack": {
+  "pack_format": 61,
+  "supported_formats": {
+   "min_inclusive": 61,
+   "max_inclusive": 121
+  },
+  "min_format": 61,
+  "max_format": 121,
+  "description": "مدينة النحاس: ليلة الفانوس"
+ }
+}

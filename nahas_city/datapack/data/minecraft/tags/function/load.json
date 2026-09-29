@@ -1,0 +1,9 @@
+{
+ "values": [
+  "nahas:core/load",
+  {
+   "id": "nahas:story/load",
+   "required": false
+  }
+ ]
+}

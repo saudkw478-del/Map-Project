@@ -1,0 +1,52 @@
+{
+ "type": "minecraft:generic",
+ "pools": [
+  {
+   "rolls": 1,
+   "entries": [
+    {
+     "type": "minecraft:item",
+     "name": "minecraft:netherite_sword",
+     "functions": [
+      {
+       "function": "minecraft:set_components",
+       "components": {
+        "minecraft:item_model": "nahas:scimitar",
+        "minecraft:custom_name": {
+         "text": "سيف الجن",
+         "color": "red",
+         "italic": false
+        },
+        "minecraft:lore": [
+         {
+          "text": "سيف مصنوع من نار الجن",
+          "color": "gray",
+          "italic": false
+         },
+         {
+          "text": "يمنح حامله خفة في الحركة",
+          "color": "gray",
+          "italic": false
+         }
+        ],
+        "minecraft:custom_data": {
+         "nh": "scimitar"
+        },
+        "minecraft:enchantment_glint_override": true
+       }
+      },
+      {
+       "function": "minecraft:set_enchantments",
+       "enchantments": {
+        "minecraft:sharpness": 5,
+        "minecraft:fire_aspect": 1,
+        "minecraft:sweeping_edge": 3,
+        "minecraft:unbreaking": 3
+       }
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

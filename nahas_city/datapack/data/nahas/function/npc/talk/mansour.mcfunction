@@ -1,0 +1,11 @@
+# حوار: التاجر منصور
+execute if entity @s[tag=nh_met_mansour] if score #seals nh_story matches 0 if score @s nh_npcline matches 0 run tellraw @s [{"text":"التاجر منصور: ","color":"yellow","bold":true},{"text":"عندي سيوف وبُسُط ومؤونة. اكتب /trigger nh_shop لتفتح دكاني.","color":"white"}]
+execute if entity @s[tag=nh_met_mansour] if score #seals nh_story matches 0 if score @s nh_npcline matches 1 run tellraw @s [{"text":"التاجر منصور: ","color":"yellow","bold":true},{"text":"اجمع الذهب من الكنوز والوحوش، وسأعطيك بضاعة تسرّك.","color":"white"}]
+execute if entity @s[tag=nh_met_mansour] if score #seals nh_story matches 1..3 if score @s nh_npcline matches 0 run tellraw @s [{"text":"التاجر منصور: ","color":"yellow","bold":true},{"text":"سمعتُ أنكم نلتم أختامًا! هذا يستحقّ خصمًا... صغيرًا جدًا!","color":"white"}]
+execute if entity @s[tag=nh_met_mansour] if score #seals nh_story matches 1..3 if score @s nh_npcline matches 1 run tellraw @s [{"text":"التاجر منصور: ","color":"yellow","bold":true},{"text":"اشتروا أدوات جديدة قبل المرحلة التالية: /trigger nh_shop.","color":"white"}]
+execute if entity @s[tag=nh_met_mansour] if score #seals nh_story matches 4..6 if score @s nh_npcline matches 0 run tellraw @s [{"text":"التاجر منصور: ","color":"yellow","bold":true},{"text":"الحارس النحاسي شديد البأس. لا تدخلوا عليه دون طعام ودواء.","color":"white"}]
+execute if entity @s[tag=nh_met_mansour] if score #seals nh_story matches 4..6 if score @s nh_npcline matches 1 run tellraw @s [{"text":"التاجر منصور: ","color":"yellow","bold":true},{"text":"أنتم أفضل زبائني! سأحتفظ لكم بأجود ما عندي.","color":"white"}]
+execute if entity @s[tag=nh_met_mansour] if score #seals nh_story matches 7 if score @s nh_npcline matches 0 run tellraw @s [{"text":"التاجر منصور: ","color":"yellow","bold":true},{"text":"المدينة عادت للحياة وسيأتي إلينا تجّار من كل مكان. بفضلكم!","color":"white"}]
+execute if entity @s[tag=nh_met_mansour] if score #seals nh_story matches 7 if score @s nh_npcline matches 1 run tellraw @s [{"text":"التاجر منصور: ","color":"yellow","bold":true},{"text":"اليوم الشاي على حسابي يا أبطال.","color":"white"}]
+execute unless entity @s[tag=nh_met_mansour] run tellraw @s [{"text":"التاجر منصور: ","color":"yellow","bold":true},{"text":"تفضّل يا ضيفي! أنا منصور، وعندي أجمل بضائع الصحراء.","color":"white"}]
+tag @s add nh_met_mansour

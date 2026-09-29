@@ -1,0 +1,2 @@
+tellraw @s ["",{"text":"=== المهام ===","color":"gold"}]
+tellraw @s ["",{"text":"[١] هدفي الرئيسي","color":"aqua","clickEvent":{"action":"run_command","value":"/trigger nh_quest set 1"},"click_event":{"action":"run_command","command":"/trigger nh_quest set 1"}},{"text":" ","color":"white"},{"text":"[٢] المهام الجانبية","color":"aqua","clickEvent":{"action":"run_command","value":"/trigger nh_quest set 2"},"click_event":{"action":"run_command","command":"/trigger nh_quest set 2"}}]

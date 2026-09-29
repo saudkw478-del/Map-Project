@@ -1,0 +1,44 @@
+{
+ "type": "minecraft:generic",
+ "pools": [
+  {
+   "rolls": 1,
+   "entries": [
+    {
+     "type": "minecraft:item",
+     "name": "minecraft:elytra",
+     "functions": [
+      {
+       "function": "minecraft:set_components",
+       "components": {
+        "minecraft:item_model": "nahas:carpet",
+        "minecraft:custom_name": {
+         "text": "بساط الريح",
+         "color": "light_purple",
+         "italic": false
+        },
+        "minecraft:lore": [
+         {
+          "text": "البسه على صدرك ثم اقفز وحلّق",
+          "color": "gray",
+          "italic": false
+         },
+         {
+          "text": "يسرّع الطيران ويحميك من السقوط",
+          "color": "gray",
+          "italic": false
+         }
+        ],
+        "minecraft:custom_data": {
+         "nh": "carpet"
+        },
+        "minecraft:enchantment_glint_override": true,
+        "minecraft:unbreakable": {}
+       }
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

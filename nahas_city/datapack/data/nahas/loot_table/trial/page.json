@@ -1,0 +1,38 @@
+{
+ "type": "minecraft:generic",
+ "pools": [
+  {
+   "rolls": 1,
+   "entries": [
+    {
+     "type": "minecraft:item",
+     "name": "minecraft:paper",
+     "functions": [
+      {
+       "function": "minecraft:set_components",
+       "components": {
+        "minecraft:item_model": "nahas:page",
+        "minecraft:custom_name": {
+         "text": "صفحة مفقودة",
+         "color": "yellow",
+         "italic": false
+        },
+        "minecraft:lore": [
+         {
+          "text": "صفحة من كتب المكتبة الغارقة",
+          "color": "gray",
+          "italic": false
+         }
+        ],
+        "minecraft:custom_data": {
+         "nh": "page"
+        },
+        "minecraft:enchantment_glint_override": true
+       }
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

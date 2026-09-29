@@ -1,0 +1,25 @@
+{
+ "display": {
+  "icon": {
+   "id": "minecraft:elytra"
+  },
+  "title": {
+   "text": "بساط الريح",
+   "color": "gold"
+  },
+  "description": {
+   "text": "احصل على بساط الريح",
+   "color": "gray"
+  },
+  "frame": "goal",
+  "show_toast": true,
+  "announce_to_chat": true,
+  "hidden": false
+ },
+ "criteria": {
+  "done": {
+   "trigger": "minecraft:impossible"
+  }
+ },
+ "parent": "nahas:shop"
+}

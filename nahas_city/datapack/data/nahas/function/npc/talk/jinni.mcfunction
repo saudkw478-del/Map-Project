@@ -1,0 +1,11 @@
+# حوار: الجني الحكيم
+execute if entity @s[tag=nh_met_jinni] if score #seals nh_story matches 0 if score @s nh_npcline matches 0 run tellraw @s [{"text":"الجني الحكيم: ","color":"aqua","bold":true},{"text":"أسمع كل همسة في الصحراء. اكتبوا في الدردشة: !جني كيف أبدأ؟","color":"white"}]
+execute if entity @s[tag=nh_met_jinni] if score #seals nh_story matches 0 if score @s nh_npcline matches 1 run tellraw @s [{"text":"الجني الحكيم: ","color":"aqua","bold":true},{"text":"الخطوة الأولى: اجمعوا القافلة عند الواحة واختاروا أدواركم.","color":"white"}]
+execute if entity @s[tag=nh_met_jinni] if score #seals nh_story matches 1..3 if score @s nh_npcline matches 0 run tellraw @s [{"text":"الجني الحكيم: ","color":"aqua","bold":true},{"text":"لقد أضاءت الأختام فانوسي! اسألوني عن التالي بكتابة: !جني","color":"white"}]
+execute if entity @s[tag=nh_met_jinni] if score #seals nh_story matches 1..3 if score @s nh_npcline matches 1 run tellraw @s [{"text":"الجني الحكيم: ","color":"aqua","bold":true},{"text":"لكل أرض سرّ: الرمل والماء والريح والنجوم والجمر.","color":"white"}]
+execute if entity @s[tag=nh_met_jinni] if score #seals nh_story matches 4..6 if score @s nh_npcline matches 0 run tellraw @s [{"text":"الجني الحكيم: ","color":"aqua","bold":true},{"text":"اقتربنا! اسألوني إن احترتم: !جني أين أذهب الآن؟","color":"white"}]
+execute if entity @s[tag=nh_met_jinni] if score #seals nh_story matches 4..6 if score @s nh_npcline matches 1 run tellraw @s [{"text":"الجني الحكيم: ","color":"aqua","bold":true},{"text":"الحارس النحاسي حزين أكثر مما هو غاضب. تذكّروا هذا.","color":"white"}]
+execute if entity @s[tag=nh_met_jinni] if score #seals nh_story matches 7 if score @s nh_npcline matches 0 run tellraw @s [{"text":"الجني الحكيم: ","color":"aqua","bold":true},{"text":"تحرّرتُ أنا أيضًا من الفانوس! شكرًا لكم يا أصدقاء.","color":"white"}]
+execute if entity @s[tag=nh_met_jinni] if score #seals nh_story matches 7 if score @s nh_npcline matches 1 run tellraw @s [{"text":"الجني الحكيم: ","color":"aqua","bold":true},{"text":"إن أردتم حكاية جديدة فاكتبوا: !جني احكِ لي حكاية.","color":"white"}]
+execute unless entity @s[tag=nh_met_jinni] run tellraw @s [{"text":"الجني الحكيم: ","color":"aqua","bold":true},{"text":"سلامٌ عليكم، أنا الجني الحكيم. اسألوني في الدردشة بكتابة: !جني ثم سؤالكم.","color":"white"}]
+tag @s add nh_met_jinni

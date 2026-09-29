@@ -1,0 +1,5 @@
+# نصّ عائم أمام الكاميرا (ماكرو). الاستدعاء: function nahas:fx/text {msg:"...",color:"gold"}
+# المنفّذ: اللاعب (execute at @s). سطر لـ 1.21.4 (JSON نصّي) وسطر لـ 1.21.5+ (مركّب).
+# تنبيه: لا تضع علامات اقتباس مزدوجة داخل النص.
+$execute if score #textmode nh_story matches 0 run summon minecraft:text_display ^ ^0.4 ^4 {Tags:["nh_fx","nh_txt","nh_camtxt"],billboard:"center",alignment:"center",line_width:160,shadow:1b,background:1073741824,see_through:0b,teleport_duration:2,transformation:{left_rotation:[0f,0f,0f,1f],right_rotation:[0f,0f,0f,1f],translation:[0f,0f,0f],scale:[1.4f,1.4f,1.4f]},text:'{"text":"$(msg)","color":"$(color)","bold":true}'}
+$execute if score #textmode nh_story matches 1 run summon minecraft:text_display ^ ^0.4 ^4 {Tags:["nh_fx","nh_txt","nh_camtxt"],billboard:"center",alignment:"center",line_width:160,shadow:1b,background:1073741824,see_through:0b,teleport_duration:2,transformation:{left_rotation:[0f,0f,0f,1f],right_rotation:[0f,0f,0f,1f],translation:[0f,0f,0f],scale:[1.4f,1.4f,1.4f]},text:{text:"$(msg)",color:"$(color)",bold:true}}

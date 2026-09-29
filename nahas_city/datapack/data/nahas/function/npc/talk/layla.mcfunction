@@ -1,0 +1,11 @@
+# حوار: ليلى الخبّازة
+execute if entity @s[tag=nh_met_layla] if score #seals nh_story matches 0 if score @s nh_npcline matches 0 run tellraw @s [{"text":"ليلى الخبّازة: ","color":"light_purple","bold":true},{"text":"خذ رغيفًا وابدأ رحلتك، فالجائع لا يقاتل جيدًا.","color":"white"}]
+execute if entity @s[tag=nh_met_layla] if score #seals nh_story matches 0 if score @s nh_npcline matches 1 run tellraw @s [{"text":"ليلى الخبّازة: ","color":"light_purple","bold":true},{"text":"الصغار أشجع مما يظنّون. وأنت منهم!","color":"white"}]
+execute if entity @s[tag=nh_met_layla] if score #seals nh_story matches 1..3 if score @s nh_npcline matches 0 run tellraw @s [{"text":"ليلى الخبّازة: ","color":"light_purple","bold":true},{"text":"سمعتُ أن أحدكم نال ختمًا! سأخبز كعكةً للاحتفال.","color":"white"}]
+execute if entity @s[tag=nh_met_layla] if score #seals nh_story matches 1..3 if score @s nh_npcline matches 1 run tellraw @s [{"text":"ليلى الخبّازة: ","color":"light_purple","bold":true},{"text":"كلوا جيدًا فالرحلة طويلة.","color":"white"}]
+execute if entity @s[tag=nh_met_layla] if score #seals nh_story matches 4..6 if score @s nh_npcline matches 0 run tellraw @s [{"text":"ليلى الخبّازة: ","color":"light_purple","bold":true},{"text":"أدعو لكم في كل فجر. عودوا سالمين.","color":"white"}]
+execute if entity @s[tag=nh_met_layla] if score #seals nh_story matches 4..6 if score @s nh_npcline matches 1 run tellraw @s [{"text":"ليلى الخبّازة: ","color":"light_purple","bold":true},{"text":"سأحتفظ لكم بخبز ساخن حين تعودون.","color":"white"}]
+execute if entity @s[tag=nh_met_layla] if score #seals nh_story matches 7 if score @s nh_npcline matches 0 run tellraw @s [{"text":"ليلى الخبّازة: ","color":"light_purple","bold":true},{"text":"الحمد لله على السلامة! الخبز والحلوى للجميع.","color":"white"}]
+execute if entity @s[tag=nh_met_layla] if score #seals nh_story matches 7 if score @s nh_npcline matches 1 run tellraw @s [{"text":"ليلى الخبّازة: ","color":"light_purple","bold":true},{"text":"اليوم عيدٌ في الواحة بفضلكم.","color":"white"}]
+execute unless entity @s[tag=nh_met_layla] run tellraw @s [{"text":"ليلى الخبّازة: ","color":"light_purple","bold":true},{"text":"مرحبًا! أنا ليلى الخبّازة. رائحة الخبز الطازج تنتظرك!","color":"white"}]
+tag @s add nh_met_layla

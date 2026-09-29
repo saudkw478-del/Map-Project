@@ -1,0 +1,11 @@
+# حوار: الملّاح حمدان
+execute if entity @s[tag=nh_met_hamdan] if score #seals nh_story matches 0 if score @s nh_npcline matches 0 run tellraw @s [{"text":"الملّاح حمدان: ","color":"aqua","bold":true},{"text":"البحر في الغرب والجنوب. وخلف الرمال أماكن لا يصلها إلا الصبور.","color":"white"}]
+execute if entity @s[tag=nh_met_hamdan] if score #seals nh_story matches 0 if score @s nh_npcline matches 1 run tellraw @s [{"text":"الملّاح حمدان: ","color":"aqua","bold":true},{"text":"الخرائط تساعد كثيرًا. اكتب /trigger nh_map لتفتح خريطتك.","color":"white"}]
+execute if entity @s[tag=nh_met_hamdan] if score #seals nh_story matches 1..3 if score @s nh_npcline matches 0 run tellraw @s [{"text":"الملّاح حمدان: ","color":"aqua","bold":true},{"text":"مياه المكتبة الغارقة عميقة. تنفّسوا جيدًا وخذوا ما يعينكم على الغوص.","color":"white"}]
+execute if entity @s[tag=nh_met_hamdan] if score #seals nh_story matches 1..3 if score @s nh_npcline matches 1 run tellraw @s [{"text":"الملّاح حمدان: ","color":"aqua","bold":true},{"text":"لا تخافوا من الماء، فهو يحمل الأسرار.","color":"white"}]
+execute if entity @s[tag=nh_met_hamdan] if score #seals nh_story matches 4..6 if score @s nh_npcline matches 0 run tellraw @s [{"text":"الملّاح حمدان: ","color":"aqua","bold":true},{"text":"الرياح تتغيّر، والحارس يوشك أن يستيقظ.","color":"white"}]
+execute if entity @s[tag=nh_met_hamdan] if score #seals nh_story matches 4..6 if score @s nh_npcline matches 1 run tellraw @s [{"text":"الملّاح حمدان: ","color":"aqua","bold":true},{"text":"حين تعودون سأصطاد لكم أجمل سمكة.","color":"white"}]
+execute if entity @s[tag=nh_met_hamdan] if score #seals nh_story matches 7 if score @s nh_npcline matches 0 run tellraw @s [{"text":"الملّاح حمدان: ","color":"aqua","bold":true},{"text":"سفينتي جاهزة لرحلة جديدة. من يرافقني؟","color":"white"}]
+execute if entity @s[tag=nh_met_hamdan] if score #seals nh_story matches 7 if score @s nh_npcline matches 1 run tellraw @s [{"text":"الملّاح حمدان: ","color":"aqua","bold":true},{"text":"شكرًا يا أبطال، الصحراء آمنة الآن.","color":"white"}]
+execute unless entity @s[tag=nh_met_hamdan] run tellraw @s [{"text":"الملّاح حمدان: ","color":"aqua","bold":true},{"text":"أهلًا بك! أنا حمدان الملّاح، أعرف البحر كما أعرف كفّي.","color":"white"}]
+tag @s add nh_met_hamdan

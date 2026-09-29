@@ -1,0 +1,117 @@
+{
+ "type": "minecraft:gift",
+ "pools": [
+  {
+   "rolls": 1,
+   "entries": [
+    {
+     "type": "minecraft:loot_table",
+     "value": "nahas:items/lantern",
+     "weight": 1
+    }
+   ]
+  },
+  {
+   "rolls": 1,
+   "entries": [
+    {
+     "type": "minecraft:loot_table",
+     "value": "nahas:items/astrolabe_0",
+     "weight": 1
+    }
+   ]
+  },
+  {
+   "rolls": 1,
+   "entries": [
+    {
+     "type": "minecraft:item",
+     "name": "minecraft:bread",
+     "weight": 1,
+     "functions": [
+      {
+       "function": "minecraft:set_count",
+       "count": 8
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "rolls": 1,
+   "entries": [
+    {
+     "type": "minecraft:item",
+     "name": "minecraft:cooked_mutton",
+     "weight": 1,
+     "functions": [
+      {
+       "function": "minecraft:set_count",
+       "count": 6
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "rolls": 1,
+   "entries": [
+    {
+     "type": "minecraft:item",
+     "name": "minecraft:stone_sword",
+     "weight": 1,
+     "functions": [
+      {
+       "function": "minecraft:set_count",
+       "count": 1
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "rolls": 1,
+   "entries": [
+    {
+     "type": "minecraft:item",
+     "name": "minecraft:torch",
+     "weight": 1,
+     "functions": [
+      {
+       "function": "minecraft:set_count",
+       "count": 8
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "rolls": 1,
+   "entries": [
+    {
+     "type": "minecraft:item",
+     "name": "minecraft:potion",
+     "functions": [
+      {
+       "function": "minecraft:set_count",
+       "count": 2
+      },
+      {
+       "function": "minecraft:set_components",
+       "components": {
+        "minecraft:potion_contents": {
+         "potion": "minecraft:water"
+        },
+        "minecraft:custom_name": {
+         "text": "قربة ماء",
+         "color": "aqua",
+         "italic": false
+        }
+       }
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

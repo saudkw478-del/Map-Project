@@ -1,0 +1,11 @@
+# حوار: أمّ زيد
+execute if entity @s[tag=nh_met_umzaid] if score #seals nh_story matches 0 if score @s nh_npcline matches 0 run tellraw @s [{"text":"أمّ زيد: ","color":"green","bold":true},{"text":"استريحوا قبل السفر، فالطريق طويل. خذوا معكم الماء والطعام.","color":"white"}]
+execute if entity @s[tag=nh_met_umzaid] if score #seals nh_story matches 0 if score @s nh_npcline matches 1 run tellraw @s [{"text":"أمّ زيد: ","color":"green","bold":true},{"text":"اكتب /trigger nh_role لتختار دورك: المستكشف أو الفارس أو الحكيم أو الظلّ.","color":"white"}]
+execute if entity @s[tag=nh_met_umzaid] if score #seals nh_story matches 1..3 if score @s nh_npcline matches 0 run tellraw @s [{"text":"أمّ زيد: ","color":"green","bold":true},{"text":"ما شاء الله! قلوبكم قوية. تذكّروا أن تعملوا معًا فالفريق أقوى.","color":"white"}]
+execute if entity @s[tag=nh_met_umzaid] if score #seals nh_story matches 1..3 if score @s nh_npcline matches 1 run tellraw @s [{"text":"أمّ زيد: ","color":"green","bold":true},{"text":"إذا احتجتَ قوّةً فاكتب /trigger nh_power لتستعمل قدرة دورك.","color":"white"}]
+execute if entity @s[tag=nh_met_umzaid] if score #seals nh_story matches 4..6 if score @s nh_npcline matches 0 run tellraw @s [{"text":"أمّ زيد: ","color":"green","bold":true},{"text":"اقتربتم من النهاية. لا بأس بالخوف، فالشجعان يخافون ثم يمضون.","color":"white"}]
+execute if entity @s[tag=nh_met_umzaid] if score #seals nh_story matches 4..6 if score @s nh_npcline matches 1 run tellraw @s [{"text":"أمّ زيد: ","color":"green","bold":true},{"text":"كلوا واشربوا جيدًا، فالحارس الأخير ليس سهلًا.","color":"white"}]
+execute if entity @s[tag=nh_met_umzaid] if score #seals nh_story matches 7 if score @s nh_npcline matches 0 run tellraw @s [{"text":"أمّ زيد: ","color":"green","bold":true},{"text":"دموع الفرح تملأ عيني! أنتم أبطال الواحة.","color":"white"}]
+execute if entity @s[tag=nh_met_umzaid] if score #seals nh_story matches 7 if score @s nh_npcline matches 1 run tellraw @s [{"text":"أمّ زيد: ","color":"green","bold":true},{"text":"تعالوا إلى بيتي دائمًا، ففيه الشاي والحكايات.","color":"white"}]
+execute unless entity @s[tag=nh_met_umzaid] run tellraw @s [{"text":"أمّ زيد: ","color":"green","bold":true},{"text":"مرحبًا يا صغيري! أنا أمّ زيد. إن تعبتَ فاسترح عندي، ولا تخف من الظلام.","color":"white"}]
+tag @s add nh_met_umzaid

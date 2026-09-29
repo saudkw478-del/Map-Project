@@ -1,0 +1,33 @@
+{
+ "type": "minecraft:generic",
+ "pools": [
+  {
+   "rolls": 1,
+   "entries": [
+    {
+     "type": "minecraft:item",
+     "name": "minecraft:potion",
+     "functions": [
+      {
+       "function": "minecraft:set_count",
+       "count": 1
+      },
+      {
+       "function": "minecraft:set_components",
+       "components": {
+        "minecraft:potion_contents": {
+         "potion": "minecraft:healing"
+        },
+        "minecraft:custom_name": {
+         "text": "جرعة شفاء",
+         "color": "aqua",
+         "italic": false
+        }
+       }
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

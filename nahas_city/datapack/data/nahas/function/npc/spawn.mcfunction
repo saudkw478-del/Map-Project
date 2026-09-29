@@ -1,0 +1,3 @@
+# إنشاء شخصية (ماكرو): id,x,z,yaw,name,color,prof
+$execute if score #textmode nh_story matches 0 run summon minecraft:villager $(x) 71 $(z) {Tags:["nh_npc","nh_npc_$(id)"],NoAI:1b,Invulnerable:1b,PersistenceRequired:1b,Silent:1b,Rotation:[$(yaw)f,0f],CustomNameVisible:1b,CustomName:'{"text":"$(name)","color":"$(color)","bold":true}',VillagerData:{profession:"minecraft:$(prof)",type:"minecraft:desert",level:5}}
+$execute if score #textmode nh_story matches 1 run summon minecraft:villager $(x) 71 $(z) {Tags:["nh_npc","nh_npc_$(id)"],NoAI:1b,Invulnerable:1b,PersistenceRequired:1b,Silent:1b,Rotation:[$(yaw)f,0f],CustomNameVisible:1b,CustomName:{text:"$(name)",color:"$(color)",bold:true},VillagerData:{profession:"minecraft:$(prof)",type:"minecraft:desert",level:5}}

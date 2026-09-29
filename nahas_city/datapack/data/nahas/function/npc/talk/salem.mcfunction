@@ -1,0 +1,11 @@
+# حوار: الشيخ سالم
+execute if entity @s[tag=nh_met_salem] if score #seals nh_story matches 0 if score @s nh_npcline matches 0 run tellraw @s [{"text":"الشيخ سالم: ","color":"gold","bold":true},{"text":"يُقال إنّ مدينة النحاس نامت ألف عام، ولا يوقظها إلا سبعة أختام من نحاس.","color":"white"}]
+execute if entity @s[tag=nh_met_salem] if score #seals nh_story matches 0 if score @s nh_npcline matches 1 run tellraw @s [{"text":"الشيخ سالم: ","color":"gold","bold":true},{"text":"ابدؤوا بمعبد الواحة في الشرق. واكتب /trigger nh_quest لترى مهمّتك.","color":"white"}]
+execute if entity @s[tag=nh_met_salem] if score #seals nh_story matches 1..3 if score @s nh_npcline matches 0 run tellraw @s [{"text":"الشيخ سالم: ","color":"gold","bold":true},{"text":"أحسنتم! أرى نور الأختام في أيديكم. تابعوا رحلتكم بحذر.","color":"white"}]
+execute if entity @s[tag=nh_met_salem] if score #seals nh_story matches 1..3 if score @s nh_npcline matches 1 run tellraw @s [{"text":"الشيخ سالم: ","color":"gold","bold":true},{"text":"في كل أرض حكمةٌ قديمة. اقرؤوا الحجارة المنقوشة ففيها أسرار.","color":"white"}]
+execute if entity @s[tag=nh_met_salem] if score #seals nh_story matches 4..6 if score @s nh_npcline matches 0 run tellraw @s [{"text":"الشيخ سالم: ","color":"gold","bold":true},{"text":"ما أشجعكم! لم يبقَ إلا القليل. المدينة تكاد تسمع خطواتكم.","color":"white"}]
+execute if entity @s[tag=nh_met_salem] if score #seals nh_story matches 4..6 if score @s nh_npcline matches 1 run tellraw @s [{"text":"الشيخ سالم: ","color":"gold","bold":true},{"text":"إذا اكتملت الأختام الستة انفتحت بوّابة المدينة. استعدّوا لما وراءها.","color":"white"}]
+execute if entity @s[tag=nh_met_salem] if score #seals nh_story matches 7 if score @s nh_npcline matches 0 run tellraw @s [{"text":"الشيخ سالم: ","color":"gold","bold":true},{"text":"انتهت الحكاية بفضلكم! سأكتب أسماءكم في كتاب الواحة.","color":"white"}]
+execute if entity @s[tag=nh_met_salem] if score #seals nh_story matches 7 if score @s nh_npcline matches 1 run tellraw @s [{"text":"الشيخ سالم: ","color":"gold","bold":true},{"text":"يمكنكم الآن التجوّل بحرّية وجمع الأسرار المتبقّية.","color":"white"}]
+execute unless entity @s[tag=nh_met_salem] run tellraw @s [{"text":"الشيخ سالم: ","color":"gold","bold":true},{"text":"أهلًا بك يا مسافر! أنا سالم، حارس حكايات الواحة. اقترب مني متى شئت لأحكي لك.","color":"white"}]
+tag @s add nh_met_salem

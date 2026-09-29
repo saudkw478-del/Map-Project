@@ -1,0 +1,45 @@
+{
+ "type": "minecraft:generic",
+ "pools": [
+  {
+   "rolls": 1,
+   "entries": [
+    {
+     "type": "minecraft:item",
+     "name": "minecraft:golden_sword",
+     "functions": [
+      {
+       "function": "minecraft:set_components",
+       "components": {
+        "minecraft:item_model": "nahas:dagger",
+        "minecraft:custom_name": {
+         "text": "خنجر الظل",
+         "color": "dark_gray",
+         "italic": false
+        },
+        "minecraft:lore": [
+         {
+          "text": "سريع وخفيف كالظل",
+          "color": "gray",
+          "italic": false
+         }
+        ],
+        "minecraft:custom_data": {
+         "nh": "dagger"
+        }
+       }
+      },
+      {
+       "function": "minecraft:set_enchantments",
+       "enchantments": {
+        "minecraft:sharpness": 3,
+        "minecraft:knockback": 1,
+        "minecraft:unbreaking": 2
+       }
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,25 @@
+{
+ "display": {
+  "icon": {
+   "id": "minecraft:red_sand"
+  },
+  "title": {
+   "text": "وادي العقارب",
+   "color": "gold"
+  },
+  "description": {
+   "text": "وصلت إلى الوادي الأحمر",
+   "color": "gray"
+  },
+  "frame": "task",
+  "show_toast": true,
+  "announce_to_chat": true,
+  "hidden": false
+ },
+ "criteria": {
+  "done": {
+   "trigger": "minecraft:impossible"
+  }
+ },
+ "parent": "nahas:disc_hub"
+}

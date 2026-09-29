@@ -1,0 +1,43 @@
+{
+ "type": "minecraft:generic",
+ "pools": [
+  {
+   "rolls": 1,
+   "entries": [
+    {
+     "type": "minecraft:item",
+     "name": "minecraft:lantern",
+     "functions": [
+      {
+       "function": "minecraft:set_components",
+       "components": {
+        "minecraft:item_model": "nahas:lantern",
+        "minecraft:custom_name": {
+         "text": "فانوس الجني",
+         "color": "gold",
+         "italic": false
+        },
+        "minecraft:lore": [
+         {
+          "text": "فانوس مسحور يضيء ظلام الصحراء",
+          "color": "gray",
+          "italic": false
+         },
+         {
+          "text": "احمله في يدك ليكشف الأشباح القريبة",
+          "color": "gray",
+          "italic": false
+         }
+        ],
+        "minecraft:custom_data": {
+         "nh": "lantern"
+        },
+        "minecraft:enchantment_glint_override": true
+       }
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

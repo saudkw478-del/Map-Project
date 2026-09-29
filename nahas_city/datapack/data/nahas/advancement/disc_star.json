@@ -1,0 +1,25 @@
+{
+ "display": {
+  "icon": {
+   "id": "minecraft:end_rod"
+  },
+  "title": {
+   "text": "بوابة النجوم",
+   "color": "gold"
+  },
+  "description": {
+   "text": "وجدت بوابة بحر النجوم",
+   "color": "gray"
+  },
+  "frame": "task",
+  "show_toast": true,
+  "announce_to_chat": true,
+  "hidden": false
+ },
+ "criteria": {
+  "done": {
+   "trigger": "minecraft:impossible"
+  }
+ },
+ "parent": "nahas:disc_hub"
+}
