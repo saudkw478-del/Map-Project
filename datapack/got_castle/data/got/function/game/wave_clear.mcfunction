@@ -1,4 +1,4 @@
-execute if score #wave got_g matches 7.. run return run function got:game/victory
+execute if score #wave got_g >= #total got_g run return run function got:game/victory
 scoreboard players set #state got_g 2
 scoreboard players set #cool got_g 15
 title @a title {"text": "Wave cleared!", "color": "green", "bold": true}

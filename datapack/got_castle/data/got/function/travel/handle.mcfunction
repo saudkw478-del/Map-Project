@@ -1,0 +1,20 @@
+execute if score @s got_go matches 1 run function got:travel/menu
+execute if score @s got_go matches 2 run function got:travel/d2
+execute if score @s got_go matches 3 run function got:travel/d3
+execute if score @s got_go matches 4 run function got:travel/d4
+execute if score @s got_go matches 5 run function got:travel/d5
+execute if score @s got_go matches 6 run function got:travel/d6
+execute if score @s got_go matches 7 run function got:travel/d7
+execute if score @s got_go matches 8 run function got:travel/d8
+execute if score @s got_go matches 9 run function got:travel/d9
+execute if score @s got_go matches 10 run function got:travel/d10
+execute if score @s got_go matches 11 run function got:travel/d11
+execute if score @s got_go matches 12 run function got:travel/d12
+execute if score @s got_go matches 13 run function got:travel/d13
+execute if score @s got_go matches 14 run function got:travel/d14
+execute if score @s got_go matches 15 run function got:travel/d15
+execute if score @s got_go matches 16 run function got:travel/d16
+execute if score @s got_go matches 17 run function got:travel/d17
+execute if score @s got_go matches 18 run function got:travel/d18
+execute if score @s got_go matches 19 run function got:travel/d19
+scoreboard players set @s got_go 0

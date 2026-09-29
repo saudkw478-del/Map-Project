@@ -1,8 +1,6 @@
-tellraw @s {"text": "=== Game of Thrones Castle ===", "color": "gold"}
-tellraw @s {"text": "/function got:build        - build the castle where you stand (flat ground)", "color": "white"}
-tellraw @s {"text": "/function got:game/start   - start the waves + boss (gives everyone weapons and armor)", "color": "white"}
-tellraw @s {"text": "/function got:game/stop    - stop the game", "color": "white"}
-tellraw @s {"text": "/function got:kit/give     - give yourself the starter kit again", "color": "white"}
-tellraw @s {"text": "/function got:tp/hall      - teleport everyone to the throne room", "color": "white"}
-tellraw @s {"text": "/function got:tp/gate      - teleport everyone to the main gate", "color": "white"}
-tellraw @s {"text": "/function got:tp/roof      - teleport everyone to the keep roof", "color": "white"}
+tellraw @s {"text": "=== Game of Thrones: Westeros ===", "color": "gold"}
+tellraw @s {"text": "/trigger got_go            - travel menu (then /trigger got_go set N)", "color": "white"}
+tellraw @s {"text": "/trigger got_battle        - start the battle at the castle you stand in", "color": "white"}
+tellraw @s {"text": "/trigger got_battle set 2  - stop the battle", "color": "white"}
+tellraw @s {"text": "/trigger got_kit           - get your weapons and armor again", "color": "white"}
+tellraw @s {"text": "/trigger got_kit set 2     - travel kit (wings, horse egg)", "color": "white"}

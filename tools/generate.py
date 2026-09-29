@@ -31,18 +31,21 @@ def write_fn(name, lines):
 
 
 def selftest_lines(stage_names):
-    L = ['tellraw @s {"text":"--- Game of Thrones Castle self-test ---","color":"gold"}']
-    L.append(f'execute if score #state {game.SB} matches 0.. run tellraw @s {{"text":"[OK] scoreboard/state ready","color":"green"}}')
-    L.append(f'execute unless score #state {game.SB} matches 0.. run tellraw @s {{"text":"[..] game not started yet (normal before /function got:game/start)","color":"yellow"}}')
-    L.append('execute if entity @e[tag=got_origin] run tellraw @s {"text":"[OK] castle origin marker exists (castle was built)","color":"green"}')
-    L.append('execute unless entity @e[tag=got_origin] run tellraw @s {"text":"[..] castle not built yet: run /function got:build","color":"yellow"}')
-    L.append('execute if entity @e[tag=got_gate] run tellraw @s {"text":"[OK] castle build finished (gate marker exists)","color":"green"}')
-    L.append('execute at @e[tag=got_origin,limit=1] if block ~ ~ ~4 red_carpet run tellraw @s {"text":"[OK] throne room carpet found","color":"green"}')
-    L.append('execute at @e[tag=got_origin,limit=1] if block ~ ~3 ~-19 polished_blackstone_brick_stairs run tellraw @s {"text":"[OK] Iron Throne found","color":"green"}')
-    L.append('execute at @e[tag=got_origin,limit=1] if block ~-36 ~ ~21 chest run tellraw @s {"text":"[OK] armory chests found","color":"green"}')
+    ok = lambda t: f'tellraw @s {{"text":"[OK] {t}","color":"green"}}'
+    info = lambda t: f'tellraw @s {{"text":"[..] {t}","color":"yellow"}}'
+    fail = lambda t: f'tellraw @s {{"text":"[FAIL] {t}","color":"red"}}'
+    L = ['tellraw @s {"text":"--- Game of Thrones self-test ---","color":"gold"}']
+    L.append(f'execute if score #state {game.SB} matches 0.. run {ok("scoreboard ready (datapack loaded)")}')
+    L.append(f'execute unless score #state {game.SB} matches 0.. run {fail("datapack not loaded - is it enabled? (/datapack list)")}')
     L.append(f'execute store success score #ok {game.SB} run loot give @s loot got:kit/weapons')
-    L.append(f'execute if score #ok {game.SB} matches 1 run tellraw @s {{"text":"[OK] loot tables work (you just got a Valyrian sword)","color":"green"}}')
-    L.append(f'execute unless score #ok {game.SB} matches 1 run tellraw @s {{"text":"[FAIL] loot tables did not load - send the log to the developer","color":"red"}}')
+    L.append(f'execute if score #ok {game.SB} matches 1 run {ok("loot tables work (you just got a Valyrian sword)")}')
+    L.append(f'execute unless score #ok {game.SB} matches 1 run {fail("loot tables did not load")}')
+    L.append(f'execute if biome ~ ~ ~ minecraft:snowy_taiga run {ok("you are in the North biome (world map loaded)")}')
+    # only meaningful when standing near Winterfell (chunks must be loaded)
+    L.append('execute if block 234 64 371 minecraft:chest run ' + ok("Winterfell armory chest found"))
+    L.append('execute if block 270 67 331 minecraft:dark_oak_stairs run ' + ok("Winterfell high seat found"))
+    L.append('execute unless block 234 64 371 minecraft:chest run ' + info("Winterfell armory not found here (fine if you are far from Winterfell or in a custom world)"))
+    L.append(f'execute if entity @e[tag=got_origin] run {ok("a castle battle marker exists (custom-built castle or battle started)")}')
     return L
 
 

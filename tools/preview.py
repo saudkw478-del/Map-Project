@@ -23,7 +23,7 @@ def color(name):
 
 vox = {}
 for name, fn in castle.STAGES[1:]:
-    vox.update(fn().vox)
+    vox.update({k: v for k, v in fn().vox.items() if v != "air"})
 xs = [k[0] for k in vox]; ys = [k[1] for k in vox]; zs = [k[2] for k in vox]
 print("blocks:", len(vox), "x", min(xs), max(xs), "y", min(ys), max(ys), "z", min(zs), max(zs))
 fig, axes = plt.subplots(1, 3, figsize=(30, 10))

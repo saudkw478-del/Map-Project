@@ -1,0 +1,11 @@
+execute if biome ~ ~ ~ minecraft:ice_spikes unless score @s got_reg matches 1 run function got:region/enter_1
+execute if biome ~ ~ ~ minecraft:snowy_taiga unless score @s got_reg matches 2 run function got:region/enter_2
+execute if biome ~ ~ ~ minecraft:swamp unless score @s got_reg matches 3 run function got:region/enter_3
+execute if biome ~ ~ ~ minecraft:stony_shore unless score @s got_reg matches 4 run function got:region/enter_4
+execute if biome ~ ~ ~ minecraft:plains unless score @s got_reg matches 5 run function got:region/enter_5
+execute if biome ~ ~ ~ minecraft:windswept_hills unless score @s got_reg matches 6 run function got:region/enter_6
+execute if biome ~ ~ ~ minecraft:meadow unless score @s got_reg matches 7 run function got:region/enter_7
+execute if biome ~ ~ ~ minecraft:sunflower_plains unless score @s got_reg matches 8 run function got:region/enter_8
+execute if biome ~ ~ ~ minecraft:taiga unless score @s got_reg matches 9 run function got:region/enter_9
+execute if biome ~ ~ ~ minecraft:flower_forest unless score @s got_reg matches 10 run function got:region/enter_10
+execute if biome ~ ~ ~ minecraft:desert unless score @s got_reg matches 11 run function got:region/enter_11

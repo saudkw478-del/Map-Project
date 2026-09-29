@@ -39,8 +39,8 @@ setblock ~-7 ~8 ~-22 red_wall_banner[facing=south]
 setblock ~7 ~8 ~-22 red_wall_banner[facing=south]
 setblock ~-11 ~8 ~-22 black_wall_banner[facing=south]
 setblock ~11 ~8 ~-22 black_wall_banner[facing=south]
-setblock ~-15 ~8 ~-22 light_gray_wall_banner[facing=south]
-setblock ~15 ~8 ~-22 light_gray_wall_banner[facing=south]
+setblock ~-15 ~8 ~-22 red_wall_banner[facing=south]
+setblock ~15 ~8 ~-22 red_wall_banner[facing=south]
 fill ~-9 ~ ~-10 ~-9 ~17 ~-10 polished_deepslate
 setblock ~-9 ~ ~-10 chiseled_stone_bricks
 setblock ~-9 ~16 ~-10 chiseled_stone_bricks

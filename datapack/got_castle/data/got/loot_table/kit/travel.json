@@ -1,0 +1,90 @@
+{
+ "type": "minecraft:chest",
+ "pools": [
+  {
+   "rolls": 1,
+   "entries": [
+    {
+     "type": "minecraft:item",
+     "name": "minecraft:elytra",
+     "functions": [
+      {
+       "function": "minecraft:set_name",
+       "name": {
+        "text": "Wings of Drogon",
+        "color": "dark_red",
+        "italic": false
+       }
+      },
+      {
+       "function": "minecraft:set_enchantments",
+       "enchantments": {
+        "minecraft:unbreaking": 3
+       }
+      },
+      {
+       "function": "minecraft:set_components",
+       "components": {
+        "minecraft:unbreakable": {}
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "rolls": 1,
+   "entries": [
+    {
+     "type": "minecraft:item",
+     "name": "minecraft:firework_rocket",
+     "functions": [
+      {
+       "function": "minecraft:set_count",
+       "count": 64
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "rolls": 1,
+   "entries": [
+    {
+     "type": "minecraft:item",
+     "name": "minecraft:saddle"
+    }
+   ]
+  },
+  {
+   "rolls": 1,
+   "entries": [
+    {
+     "type": "minecraft:item",
+     "name": "minecraft:horse_spawn_egg",
+     "functions": [
+      {
+       "function": "minecraft:set_count",
+       "count": 2
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "rolls": 1,
+   "entries": [
+    {
+     "type": "minecraft:item",
+     "name": "minecraft:golden_carrot",
+     "functions": [
+      {
+       "function": "minecraft:set_count",
+       "count": 16
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

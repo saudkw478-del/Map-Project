@@ -28,10 +28,12 @@ def _split(x1, y1, z1, x2, y2, z2):
 
 class Build:
     """Collects relative-coordinate commands. Coordinates are offsets from the origin marker."""
+    KEEP_AIR = False   # world builder sets True so carved air really clears terrain
 
     def __init__(self, preview=True):
         self.cmds = []
         self.vox = {}
+        self.chests = []   # (x, y, z, loot table name)
         self.preview = preview
 
     def raw(self, cmd):
@@ -54,8 +56,12 @@ class Build:
                     for z in range(z1, z2 + 1):
                         self._vox(x, y, z, block)
 
+    def chest(self, x, y, z, facing, table):
+        self.set(x, y, z, f"chest[facing={facing}]")
+        self.chests.append((x, y, z, table))
+
     def _vox(self, x, y, z, block):
-        if block == "air":
+        if block == "air" and not Build.KEEP_AIR:
             self.vox.pop((x, y, z), None)
         else:
             self.vox[(x, y, z)] = block

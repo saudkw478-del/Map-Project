@@ -9,7 +9,37 @@ PLANK = "dark_oak_planks"
 LOG = "dark_oak_log"
 BLACK = "polished_blackstone_bricks"
 R = 56          # clear / flatten radius
+WALL = "stone_brick_wall"
+STAIRS = "stone_brick_stairs"
+CHISEL = "chiseled_stone_bricks"
+BASE2 = "deepslate_bricks"
+SLAB = "stone_brick_slab[type=bottom]"
+HOUSE1, HOUSE2 = "red", "black"
+THRONE = True
+
 CLEAR_H = 46
+
+
+PALETTES = {
+    # name: (stone, base, trim, roof, wall, stairs, chiseled, base2, dark)
+    "grey":  ("stone_bricks", "cobblestone", "polished_andesite", "dark_oak_planks", "stone_brick_wall", "stone_brick_stairs", "chiseled_stone_bricks", "deepslate_bricks", "polished_blackstone_bricks"),
+    "black": ("polished_blackstone_bricks", "blackstone", "polished_blackstone", "deepslate_tiles", "polished_blackstone_brick_wall", "polished_blackstone_brick_stairs", "chiseled_polished_blackstone", "deepslate_bricks", "polished_blackstone_bricks"),
+    "red":   ("red_nether_bricks", "nether_bricks", "smooth_red_sandstone", "dark_oak_planks", "red_nether_brick_wall", "red_nether_brick_stairs", "chiseled_red_sandstone", "deepslate_bricks", "polished_blackstone_bricks"),
+    "brick": ("bricks", "stone_bricks", "polished_andesite", "dark_oak_planks", "brick_wall", "brick_stairs", "chiseled_stone_bricks", "stone_bricks", "polished_blackstone_bricks"),
+    "white": ("quartz_bricks", "smooth_quartz", "polished_diorite", "light_blue_terracotta", "diorite_wall", "quartz_stairs", "chiseled_quartz_block", "stone_bricks", "polished_blackstone_bricks"),
+    "gold":  ("cut_sandstone", "sandstone", "smooth_sandstone", "red_terracotta", "sandstone_wall", "sandstone_stairs", "chiseled_sandstone", "stone_bricks", "polished_blackstone_bricks"),
+    "green": ("mossy_stone_bricks", "mossy_cobblestone", "polished_andesite", "oxidized_cut_copper", "mossy_stone_brick_wall", "mossy_stone_brick_stairs", "chiseled_stone_bricks", "stone_bricks", "polished_blackstone_bricks"),
+    "storm": ("deepslate_bricks", "cobbled_deepslate", "polished_deepslate", "deepslate_tiles", "deepslate_brick_wall", "deepslate_brick_stairs", "chiseled_deepslate", "stone_bricks", "polished_blackstone_bricks"),
+    "sand":  ("sandstone", "smooth_sandstone", "cut_sandstone", "orange_terracotta", "sandstone_wall", "sandstone_stairs", "chiseled_sandstone", "red_sandstone", "polished_blackstone_bricks"),
+}
+
+
+def set_palette(name, banners=("red", "black"), throne=True):
+    g = globals()
+    stone, base, trim, roof, wall, stairs, chisel, base2, dark = PALETTES[name]
+    g.update(STONE=stone, COBB=base, POL=trim, PLANK=roof, WALL=wall, STAIRS=stairs, CHISEL=chisel, BASE2=base2,
+             BLACK=dark, SLAB=stairs.replace("_stairs", "_slab") + "[type=bottom]",
+             HOUSE1=banners[0], HOUSE2=banners[1], THRONE=throne)
 
 
 def sgn(v):
@@ -75,12 +105,12 @@ def tower(b, cx, cz, half, top, y0=0, floors=(), openings=(), doors=(), slits=()
             b.fill(cx - h, top + 1 + i, cz - h, cx + h, top + 1 + i, cz + h, PLANK)
         py = top + 1 + half + 2
         b.fill(cx, py, cz, cx, py + 3, cz, "dark_oak_fence")
-        b.set(cx, py + 4, cz, "red_banner[rotation=0]")
+        b.set(cx, py + 4, cz, f"{HOUSE1}_banner[rotation=0]")
     else:
         parapet(b, x1, z1, x2, z2, top + 1)
         if flag:
             b.fill(cx, top + 1, cz, cx, top + 5, cz, "dark_oak_fence")
-            b.set(cx, top + 6, cz, "red_banner[rotation=0]")
+            b.set(cx, top + 6, cz, f"{HOUSE1}_banner[rotation=0]")
 
 
 # ---------------------------------------------------------------- stages
@@ -105,10 +135,10 @@ def stage_walls():
     parapet(b, -44, -44, 44, 44, 10)
     # remove the outer parapet ring's inner parts: the ring above is a full rectangle; hollow the courtyard side
     b.fill(-43, 10, -43, 43, 11, 43, "air")
-    b.fill(-43, 10, -42, 43, 10, -42, "stone_brick_wall")
-    b.fill(-43, 10, 42, 43, 10, 42, "stone_brick_wall")
-    b.fill(-42, 10, -43, -42, 10, 43, "stone_brick_wall")
-    b.fill(42, 10, -43, 42, 10, 43, "stone_brick_wall")
+    b.fill(-43, 10, -42, 43, 10, -42, WALL)
+    b.fill(-43, 10, 42, 43, 10, 42, WALL)
+    b.fill(-42, 10, -43, -42, 10, 43, WALL)
+    b.fill(42, 10, -43, 42, 10, 43, WALL)
     # arrow slits and torches
     for i in range(-36, 37, 8):
         if abs(i) > 16:
@@ -129,7 +159,7 @@ def stage_walls():
                 sz_ = z + (w * width_axis[1])
                 if i:
                     b.fill(sx_, 0, sz_, sx_, i - 1, sz_, STONE)
-                b.set(sx_, i, sz_, f"stone_brick_stairs[facing={facing}]")
+                b.set(sx_, i, sz_, f"{STAIRS}[facing={facing}]")
     stairs(-36, -41, 1, 0, (0, 1), "east")
     stairs(36, 41, -1, 0, (0, -1), "west")
     stairs(-41, 36, 0, -1, (1, 0), "north")
@@ -176,14 +206,14 @@ def stage_gate():
     # towers' corner pillars in a darker stone
     for px in (x1, x2):
         for pz in (z1, z2):
-            b.fill(px, 0, pz, px, 17, pz, "polished_andesite")
+            b.fill(px, 0, pz, px, 17, pz, POL)
     # passage
     b.fill(-4, 0, z1, 4, 9, z2, "air")
     b.fill(-4, -1, z1, 4, -1, z2, STONE)
     # arch frame
-    b.fill(-5, 0, z2, -5, 9, z2, "chiseled_stone_bricks")
-    b.fill(5, 0, z2, 5, 9, z2, "chiseled_stone_bricks")
-    b.fill(-5, 10, z2, 5, 10, z2, "chiseled_stone_bricks")
+    b.fill(-5, 0, z2, -5, 9, z2, CHISEL)
+    b.fill(5, 0, z2, 5, 9, z2, CHISEL)
+    b.fill(-5, 10, z2, 5, 10, z2, CHISEL)
     # raised portcullis
     b.fill(-4, 6, 45, 4, 9, 45, "iron_bars")
     for lz in (38, 42):
@@ -193,7 +223,7 @@ def stage_gate():
     for x in (-10, -7, 7, 10):
         b.fill(x, 12, z2, x, 13, z2, "iron_bars")
     # banners
-    for x, c in ((-8, "red"), (8, "red"), (-11, "black"), (11, "black")):
+    for x, c in ((-8, HOUSE1), (8, HOUSE1), (-11, HOUSE2), (11, HOUSE2)):
         banner(b, x, 6, z2 + 1, c, "south")
     # ladders up to the roof
     for lx in (-11, 11):
@@ -204,13 +234,13 @@ def stage_gate():
         b.fill(lx, 18, z1, lx, 19, z1, "air")
     for fx in (-13, 13):
         b.fill(fx, 18, 41, fx, 22, 41, "dark_oak_fence")
-        b.set(fx, 23, 41, "red_banner[rotation=0]")
+        b.set(fx, 23, 41, f"{HOUSE1}_banner[rotation=0]")
     # road from the gate outwards
     b.fill(-3, -1, 47, 3, -1, R, "stone_bricks")
     b.fill(-2, -1, 47, 2, -1, R, "cobblestone")
     for z in range(48, 55, 6):
         for x in (-4, 4):
-            b.fill(x, 0, z, x, 1, z, "stone_brick_wall")
+            b.fill(x, 0, z, x, 1, z, WALL)
             b.set(x, 2, z, "lantern[hanging=false]")
     return b
 
@@ -219,7 +249,7 @@ def stage_keep():
     b = Build()
     x1, x2, z1, z2 = -18, 18, -24, 12
     b.fill(x1, -3, z1, x2, -1, z2, BLACK)
-    b.fill(x1, 0, z1, x2, 1, z2, "deepslate_bricks")
+    b.fill(x1, 0, z1, x2, 1, z2, BASE2)
     b.fill(x1, 2, z1, x2, 17, z2, STONE)
     b.fill(x1, 18, z1, x2, 19, z2, POL)
     parapet(b, x1, z1, x2, z2, 20)
@@ -241,12 +271,12 @@ def stage_keep():
     b.fill(-16, -1, -22, 16, -1, 10, BLACK)
     # front entrance
     b.fill(-3, 0, 11, 3, 8, 12, "air")
-    b.fill(-4, 0, 12, -4, 9, 12, "chiseled_stone_bricks")
-    b.fill(4, 0, 12, 4, 9, 12, "chiseled_stone_bricks")
-    b.fill(-4, 9, 12, 4, 9, 12, "chiseled_stone_bricks")
-    b.fill(-3, 8, 12, 3, 8, 12, "chiseled_stone_bricks")
+    b.fill(-4, 0, 12, -4, 9, 12, CHISEL)
+    b.fill(4, 0, 12, 4, 9, 12, CHISEL)
+    b.fill(-4, 9, 12, 4, 9, 12, CHISEL)
+    b.fill(-3, 8, 12, 3, 8, 12, CHISEL)
     b.fill(-2, 0, 13, -2, 4, 13, "air")
-    for x, c in ((-9, "red"), (9, "red"), (-13, "black"), (13, "black")):
+    for x, c in ((-9, HOUSE1), (9, HOUSE1), (-13, HOUSE2), (13, HOUSE2)):
         banner(b, x, 9, 13, c, "south")
     # windows in the hall walls
     for zc in (-16, -8, 0, 6):
@@ -260,8 +290,8 @@ def stage_keep():
 def stage_hall():
     b = Build()
     # carpet aisle
-    b.fill(-1, 0, -13, 1, 0, 10, "red_carpet")
-    b.fill(-3, 0, 10, 3, 0, 10, "red_carpet")
+    b.fill(-1, 0, -13, 1, 0, 10, f"{HOUSE1}_carpet")
+    b.fill(-3, 0, 10, 3, 0, 10, f"{HOUSE1}_carpet")
     # dais
     b.fill(-9, 0, -22, 9, 0, -13, BLACK)
     b.fill(-7, 1, -22, 7, 1, -14, BLACK)
@@ -270,35 +300,47 @@ def stage_hall():
     b.fill(-9, 0, -12, 9, 0, -12, "polished_blackstone_brick_stairs[facing=north]")
     b.fill(-7, 1, -13, 7, 1, -13, "polished_blackstone_brick_stairs[facing=north]")
     b.fill(-5, 2, -15, 5, 2, -15, "polished_blackstone_brick_stairs[facing=north]")
-    b.fill(-2, 0, -12, 2, 0, -12, "red_carpet")
-    b.fill(-1, 1, -13, 1, 1, -13, "red_carpet")
-    b.fill(-1, 2, -14, 1, 2, -14, "red_carpet")
-    # the Iron Throne
-    b.fill(-2, 3, -21, 2, 3, -20, "iron_block")
-    b.set(0, 3, -19, "polished_blackstone_brick_stairs[facing=north]")
-    b.set(-1, 3, -19, "stone_brick_wall")
-    b.set(1, 3, -19, "stone_brick_wall")
-    b.fill(-1, 4, -21, 1, 6, -21, "iron_block")
-    b.set(0, 4, -20, "iron_block")
-    heights21 = {-3: 8, -2: 10, -1: 12, 0: 14, 1: 12, 2: 10, 3: 8}
-    heights22 = {-4: 7, -3: 9, -2: 11, -1: 13, 0: 15, 1: 13, 2: 11, 3: 9, 4: 7}
-    for x, h in heights21.items():
-        b.fill(x, 3, -22, x, h, -22, "iron_bars")
-    for x, h in heights22.items():
-        b.fill(x, 7, -22, x, h, -22, "iron_bars")
+    b.fill(-2, 0, -12, 2, 0, -12, f"{HOUSE1}_carpet")
+    b.fill(-1, 1, -13, 1, 1, -13, f"{HOUSE1}_carpet")
+    b.fill(-1, 2, -14, 1, 2, -14, f"{HOUSE1}_carpet")
+    if THRONE:
+        # the Iron Throne
+        b.fill(-2, 3, -21, 2, 3, -20, "iron_block")
+        b.set(0, 3, -19, "polished_blackstone_brick_stairs[facing=north]")
+        b.set(-1, 3, -19, WALL)
+        b.set(1, 3, -19, WALL)
+        b.fill(-1, 4, -21, 1, 6, -21, "iron_block")
+        b.set(0, 4, -20, "iron_block")
+        heights21 = {-3: 8, -2: 10, -1: 12, 0: 14, 1: 12, 2: 10, 3: 8}
+        heights22 = {-4: 7, -3: 9, -2: 11, -1: 13, 0: 15, 1: 13, 2: 11, 3: 9, 4: 7}
+        for x, h in heights21.items():
+            b.fill(x, 3, -22, x, h, -22, "iron_bars")
+        for x, h in heights22.items():
+            b.fill(x, 7, -22, x, h, -22, "iron_bars")
+    else:
+        # the high seat of the house
+        b.fill(-1, 3, -21, 1, 3, -20, "dark_oak_planks")
+        b.set(0, 3, -19, "dark_oak_stairs[facing=north]")
+        b.set(-1, 3, -19, "dark_oak_fence")
+        b.set(1, 3, -19, "dark_oak_fence")
+        b.fill(-1, 4, -21, 1, 8, -21, "dark_oak_planks")
+        b.fill(0, 9, -21, 0, 10, -21, "dark_oak_planks")
+        banner(b, 0, 7, -20, HOUSE1, "south")
+        banner(b, -2, 6, -22, HOUSE2, "south")
+        banner(b, 2, 6, -22, HOUSE2, "south")
     # torches by the throne
     for x in (-6, 6):
         b.fill(x, 3, -20, x, 3, -20, "polished_blackstone_wall")
         b.set(x, 4, -20, "lantern[hanging=false]")
     # banners on the north wall
-    for x, c in ((-7, "red"), (7, "red"), (-11, "black"), (11, "black"), (-15, "light_gray"), (15, "light_gray")):
+    for x, c in ((-7, HOUSE1), (7, HOUSE1), (-11, HOUSE2), (11, HOUSE2), (-15, HOUSE1), (15, HOUSE1)):
         banner(b, x, 8, -22, c, "south")
     # pillars and ceiling beams with lanterns
     for x in (-9, 9):
         for z in (-10, -4, 2, 8):
             b.fill(x, 0, z, x, 17, z, "polished_deepslate")
-            b.set(x, 0, z, "chiseled_stone_bricks")
-            b.set(x, 16, z, "chiseled_stone_bricks")
+            b.set(x, 0, z, CHISEL)
+            b.set(x, 16, z, CHISEL)
     for z in (-19, -11, -3, 5):
         b.fill(-16, 17, z, 16, 17, z, "dark_oak_log[axis=x]")
         for x in (-12, -5, 5, 12):
@@ -329,7 +371,7 @@ def stage_courtyard():
     b.fill(3, -1, 13, 3, -1, 36, "cobblestone")
     for z in range(16, 37, 6):
         for x in (-4, 4):
-            b.fill(x, 0, z, x, 1, z, "stone_brick_wall")
+            b.fill(x, 0, z, x, 1, z, WALL)
             b.set(x, 2, z, "lantern[hanging=false]")
     # ---- armory (west) ----
     ax1, ax2, az1, az2 = -38, -24, 12, 22
@@ -341,8 +383,8 @@ def stage_courtyard():
         b.fill(ax1 - 1, 7 + k, az1 - 1 + k, ax2 + 1, 7 + k, az2 + 1 - k, PLANK)
     b.fill(-32, 0, az1, -30, 2, az1, "air")           # door (north)
     b.fill(-32, 0, az1 - 1, -30, 0, az1 - 3, "stone_bricks")
-    for x in range(-36, -25, 2):
-        b.set(x, 0, 21, "chest[facing=north]")
+    for (x, tbl) in zip(range(-36, -25, 2), ("swords", "ranged", "lannister", "nights_watch", "targaryen", "supplies")):
+        b.chest(x, 0, 21, "north", tbl)
     b.set(-36, 0, 13, "smithing_table")
     b.set(-34, 0, 13, "anvil")
     b.set(-28, 0, 13, "grindstone[face=floor]")
