@@ -1,0 +1,21 @@
+{
+ "criteria": {
+  "talk": {
+   "trigger": "minecraft:player_interacted_with_entity",
+   "conditions": {
+    "entity": [
+     {
+      "condition": "minecraft:entity_properties",
+      "entity": "this",
+      "predicate": {
+       "nbt": "{Tags:[\"got_npc\"]}"
+      }
+     }
+    ]
+   }
+  }
+ },
+ "rewards": {
+  "function": "got:npc/talk"
+ }
+}

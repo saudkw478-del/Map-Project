@@ -9,3 +9,4 @@ execute if biome ~ ~ ~ minecraft:sunflower_plains unless score @s got_reg matche
 execute if biome ~ ~ ~ minecraft:taiga unless score @s got_reg matches 9 run function got:region/enter_9
 execute if biome ~ ~ ~ minecraft:flower_forest unless score @s got_reg matches 10 run function got:region/enter_10
 execute if biome ~ ~ ~ minecraft:desert unless score @s got_reg matches 11 run function got:region/enter_11
+function got:npc/near

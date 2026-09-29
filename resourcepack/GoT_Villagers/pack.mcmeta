@@ -1,0 +1,12 @@
+{
+ "pack": {
+  "pack_format": 34,
+  "description": "Game of Thrones villagers: Westeros clothing",
+  "supported_formats": {
+   "min_inclusive": 22,
+   "max_inclusive": 999
+  },
+  "min_format": 22,
+  "max_format": 999
+ }
+}

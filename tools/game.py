@@ -263,6 +263,8 @@ def game_functions():
         "scoreboard objectives add got_battle trigger",
         "scoreboard objectives add got_kit trigger",
         "scoreboard objectives add got_reg dummy",
+        "scoreboard objectives add got_talkcd dummy",
+        "scoreboard objectives add got_gift dummy",
         "team add got_enemies",
         "team modify got_enemies color red",
         f"execute unless score #state {SB} matches 0.. run scoreboard players set #state {SB} 0",
@@ -277,6 +279,8 @@ def game_functions():
         f"execute as @a[scores={{got_go=1..}}] run function {NS}:travel/handle",
         f"execute as @a[scores={{got_battle=1..}}] run function {NS}:battle/handle",
         f"execute as @a[scores={{got_kit=1..}}] run function {NS}:kit/handle",
+        "scoreboard players remove @a[scores={got_talkcd=1..}] got_talkcd 1",
+        "scoreboard players remove @a[scores={got_gift=1..}] got_gift 1",
         f"scoreboard players add #rt {SB} 1",
         f"execute if score #rt {SB} matches 20.. run function {NS}:region/check",
         f"execute if score #state {SB} matches 1..2 run function {NS}:game/loop",
@@ -328,7 +332,7 @@ def game_functions():
     F["travel/menu"] = menu
     # ---- regions
     F["region/check"] = [f"scoreboard players set #rt {SB} 0", f"execute as @a at @s run function {NS}:region/one"]
-    F["region/one"] = region_checks
+    F["region/one"] = region_checks + [f"function {NS}:npc/near"]
     subtitles = {
         "beyond": "Where the dead walk", "north": "Winter is coming", "neck": "Swamps and lizard-lions",
         "iron": "We do not sow", "riverlands": "Family, Duty, Honor", "vale": "As high as honor",
@@ -521,6 +525,7 @@ def game_functions():
         gear.append(f"execute if entity @s[type=minecraft:{m}] if score #gear {SB} matches 6.. run item replace entity @s weapon.mainhand with minecraft:diamond_sword")
     F["wave/gear"] = gear
     F.update(wave_functions())
+    F.update(npc_functions())
     return F
 
 
@@ -548,3 +553,145 @@ def finish_lines():
         f"function {NS}:util/rules",
         f'tellraw @a {json.dumps([{"text": "The castle is ready! ", "color": "green", "bold": True}, {"text": "Weapons & armor are in the armory (west courtyard). Start the game: /function got:game/start", "color": "white"}])}',
     ]
+
+
+# ---------------------------------------------------------------- NPC villagers (scripted "smart" NPCs)
+
+SPEAKER = {"watch": "Night's Watchman", "north": "Northman", "river": "Riverlander", "vale": "Valeman",
+           "crown": "Smallfolk of King's Landing", "west": "Westerman", "reach": "Reach Farmer", "storm": "Stormlander",
+           "dorne": "Dornishman"}
+SPEAK_COLOR = {"watch": "dark_gray", "north": "aqua", "river": "blue", "vale": "white", "crown": "red", "west": "gold",
+               "reach": "green", "storm": "yellow", "dorne": "gold"}
+DIALOGUE = {
+    "watch": [
+        "Night gathers, and now my watch begins. Stay clear of the Wall's edge, friend.",
+        "The Wall is 78 blocks high. Climb the ladders by the tunnel - the view is worth it.",
+        "The wildlings come at dusk. Stand inside the castle and type /trigger got_battle to call the fight.",
+        "Beyond the Wall the dead walk. Bring a bow, a torch, and someone who can fight.",
+        "The armory chests hold better steel than we have. Open them before the battle!",
+    ],
+    "north": [
+        "Winter is coming. Keep your sword sharp and your torch lit.",
+        "The Stark words are true - the lone wolf dies, but the pack survives. Fight beside your friends.",
+        "Type /trigger got_go to see every castle you can travel to.",
+        "Winterfell has held for a thousand years. Hold it for a few waves more, and it will hold forever.",
+        "Stand on the walls with a bow. The gate is easier to hold from above.",
+    ],
+    "river": [
+        "Family, Duty, Honor. The Tullys never break a promise... but others do.",
+        "The Trident runs cold and fast. Cross by the bridges, not the water.",
+        "Riverrun's hall has good steel in the armory. Take a shield before you go out.",
+        "I heard something about a wedding. I would not go, if I were you.",
+        "The Kingsroad is long. Type /trigger got_kit set 2 for wings and a horse egg.",
+    ],
+    "vale": [
+        "As High as Honor. The Eyrie has never been taken by force.",
+        "It is a long climb to the Eyrie. Mind the edge!",
+        "The Mountains of the Moon are full of clansmen. Do not go alone.",
+        "The winds up here would blow a dragon off course.",
+        "If you can hold the Eyrie against the mountain clans, you can hold any castle.",
+    ],
+    "crown": [
+        "The Iron Throne is made of a thousand swords. Do not sit on it - it bites.",
+        "I hear green fire will burn on the water when the Blackwater battle comes.",
+        "Creepers are the wildfire of this age. Keep your distance!",
+        "The Red Keep has a great hall. Stand before the throne and remember: hold the gate.",
+        "Trade is slow, war is loud. Be brave, be quick.",
+    ],
+    "west": [
+        "Hear me roar! A Lannister always pays his debts.",
+        "Casterly Rock has more gold than the rest of the kingdom together. Sadly, none for you.",
+        "Take the golden armor from the chests. It suits you.",
+        "The Goldroad is safe from bandits - as long as the army stands.",
+        "Fight in the courtyard, not the gate. The rock is behind you.",
+    ],
+    "reach": [
+        "Growing Strong! The roses are in bloom, if you can call them that.",
+        "Highgarden feeds half the realm. Do not trample the flowers.",
+        "The Tyrells fight with flowers and gold. You should bring a sword too.",
+        "If you are hungry, there is bread in the armory chests.",
+        "Storm clouds gather in the east. Stay alert.",
+    ],
+    "storm": [
+        "Ours is the Fury! Storm's End has never fallen to a siege.",
+        "The walls here are older than the kingdom. Stone cannot be scared.",
+        "They say a shadow once crept through the wall. Guard the gate anyway.",
+        "Stannis is a grim man, but a fair one. Do you fight well?",
+        "The armory has heavy armor. Take it - you will need it against the wave.",
+    ],
+    "dorne": [
+        "Unbowed, Unbent, Unbroken! Welcome to Sunspear, traveler.",
+        "The sand snakes are quick. Watch for the ones who wear the scarves.",
+        "Drink water often. The sun here is a harsh master.",
+        "Sunspear is easy to hold if you keep the gate. Type /trigger got_battle to begin.",
+        "Beyond the Red Mountains lies the Reach. Bring a horse - the desert is long.",
+    ],
+}
+
+
+def load_npcs():
+    p = os.path.join(os.path.dirname(os.path.abspath(__file__)), "world", "npcs.json")
+    if not os.path.exists(p):
+        return []
+    with open(p) as f:
+        return json.load(f)
+
+
+def npc_functions():
+    F = {}
+    groups = load_npcs()
+    near = []
+    reset = ["kill @e[tag=got_npc]"]
+    for g in groups:
+        gid = g["id"]
+        x0, y0, z0 = g["spots"][0][0], g["spots"][0][1], g["spots"][0][2]
+        sp = [f"scoreboard players set #npc_{gid} {SB} 1"]
+        for (x, y, z, yaw) in g["spots"]:
+            sp.append(
+                f'summon minecraft:villager {x}.5 {y} {z}.5 {{Tags:["got_npc","got_h_{g["house"]}"],'
+                f'VillagerData:{{type:"minecraft:{g["type"]}",profession:"minecraft:none",level:1}},'
+                f'PersistenceRequired:1b,Invulnerable:1b,Rotation:[{yaw}.0f,0.0f]}}')
+        F[f"npc/spawn_{gid}"] = sp
+        near.append(f"execute positioned {x0} {y0} {z0} if entity @s[distance=..60] unless score #npc_{gid} {SB} matches 1 run function {NS}:npc/spawn_{gid}")
+        reset.append(f"scoreboard players reset #npc_{gid} {SB}")
+    F["npc/near"] = near or ["# no npcs"]
+    F["npc/reset"] = reset
+    talk = [
+        "advancement revoke @s only got:npc_talk",
+        f"execute if score @s got_talkcd matches 1.. run return 0",
+        f"scoreboard players set @s got_talkcd 30",
+        f"execute as @e[type=minecraft:villager,tag=got_npc,sort=nearest,limit=1,distance=..8] at @s run function {NS}:npc/speak",
+        f"execute unless score @s got_gift matches 1.. run function {NS}:npc/maybe_gift",
+    ]
+    F["npc/talk"] = talk
+    F["npc/maybe_gift"] = [
+        f"execute store result score #g {SB} run random value 1..4",
+        f"execute if score #g {SB} matches 1 run function {NS}:npc/gift",
+    ]
+    F["npc/gift"] = [
+        f"scoreboard players set @s got_gift 2400",
+        f"loot give @s loot {NS}:reward/supplies",
+        f'tellraw @s {json.dumps({"text": "The villager presses some supplies into your hands.", "color": "green", "italic": True})}',
+        "playsound minecraft:entity.villager.celebrate master @s",
+    ]
+    sp = []
+    for h in DIALOGUE:
+        sp.append(f"execute if entity @s[tag=got_h_{h}] run function {NS}:npc/say_{h}")
+        L = [f"execute store result score #r {SB} run random value 1..{len(DIALOGUE[h])}"]
+        for i, line in enumerate(DIALOGUE[h], start=1):
+            msg = json.dumps([{"text": f"<{SPEAKER[h]}> ", "color": SPEAK_COLOR[h]}, {"text": line, "color": "white"}])
+            L.append(f"execute if score #r {SB} matches {i} run tellraw @a[distance=..10] {msg}")
+        L.append("playsound minecraft:entity.villager.ambient master @a[distance=..10]")
+        F[f"npc/say_{h}"] = L
+    F["npc/speak"] = sp
+    return F
+
+
+ADVANCEMENT_NPC_TALK = {
+    "criteria": {"talk": {
+        "trigger": "minecraft:player_interacted_with_entity",
+        "conditions": {"entity": [{
+            "condition": "minecraft:entity_properties", "entity": "this",
+            "predicate": {"nbt": "{Tags:[\"got_npc\"]}"}}]}}},
+    "rewards": {"function": "got:npc/talk"},
+}

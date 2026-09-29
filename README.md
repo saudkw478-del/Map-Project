@@ -5,6 +5,30 @@
 
 ![الخريطة](docs/westeros_map.png)
 
+## صور من منظور اللاعب
+
+> هذي **رسومات (renders) من مجسّم سوّيته أنا يقرأ العالم اللي ولّدته**، بألوان وأنسجة تقريبية وبدون لقطات حقيقية من ماينكرافت،
+> فالشكل الحقيقي داخل اللعبة بيكون أنعم (إضاءة وأنسجة ماينكرافت الأصلية). الغرض منها إنك تشوف التصميم والأماكن.
+
+| | |
+|---|---|
+| ![](docs/screenshots/01_winterfell_spawn.jpg) نقطة البداية: فناء Winterfell | ![](docs/screenshots/04_throne_room.jpg) قاعة العرش في King's Landing |
+| ![](docs/screenshots/05_wall_from_castle_black.jpg) الجدار من سطح Castle Black | ![](docs/screenshots/06_atop_the_wall.jpg) فوق الجدار |
+| ![](docs/screenshots/03_night_battle.jpg) معركة عند الغروب من فوق السور | ![](docs/screenshots/10_iron_throne.jpg) العرش الحديدي |
+| ![](docs/screenshots/11_godswood_weirwood.jpg) شجرة الـ Weirwood في الـ Godswood | ![](docs/screenshots/16_highgarden.jpg) Highgarden |
+| ![](docs/screenshots/17_sunspear.jpg) Sunspear | ![](docs/screenshots/18_casterly_rock.jpg) Casterly Rock |
+| ![](docs/screenshots/08_kings_landing.jpg) King's Landing من طريق الملك | ![](docs/screenshots/09_eyrie.jpg) The Eyrie فوق جبلها |
+| ![](docs/screenshots/villagers_lineup.jpg) القرويين بلبس Westeros | ![](docs/screenshots/villager_north.jpg) الشمال (Stark) وحرس الليل |
+
+## القرويين (لبس Westeros + سلوك ذكي مبرمج)
+
+- **اللبس:** حزمة موارد (`GoT_Villagers_ResourcePack.zip`) تبدّل شكل القرويين: فراء رمادي للشمال (Stark)، أسود وذهبي لحرس الليل وStormlands، أزرق للأنهار (Tully)، قرمزي وذهبي لـ Lannister وأراضي التاج، برتقالي لـ Dorne، أخضر للـ Reach (Tyrell)، أسمال زيتونية لأهل العنق.
+  تُحمَّل تلقائيًا مع العالم في اللعب الفردي، وإذا ما ظهرت فعّلها من *Options ← Resource Packs* (المثبّت ينسخها لمجلد الحزم).
+- **الوجود:** القلاع فيها 6 قرويين لكل قلعة، وفي القرى والموانئ (White Harbor, Lannisport, Oldtown …) قرويين قرب الأبواب. يظهرون تلقائيًا لما تقترب منهم، ولا يموتون (لأنهم للزينة والقصة).
+- **الكلام:** اضغط بزر الفأرة الأيمن على أي قروي يرد عليك بجملة من قصة بيته (لكل بيت 5 جمل فيها تلميحات للعب)، وأحيانًا يعطيك مؤونة (مرة كل دقيقتين تقريبًا).
+- **بخصوص الذكاء الاصطناعي:** ما أقدر أحط ذكاء اصطناعي حقيقي (مثل Claude) داخل ماينكرافت العادي، لأنه ما يقدر يتصل بالإنترنت ولا ينفّذ نماذج لغوية.
+  اللي سويته سلوك مبرمج: حركة القرويين الطبيعية بذكاء ماينكرافت الأصلي، وردودهم حسب بيتهم، وهدايا عشوائية. الذكاء الاصطناعي الحقيقي ممكن مستقبلًا لكن يحتاج سيرفر Paper مع إضافة (plugin) ومفتاح API ومصاريف استخدام.
+
 > ملاحظة صريحة: بيئة التطوير اللي بنيت فيها هذا المشروع ما تقدر تشغّل ماينكرافت ولا تدخل CurseForge،
 > فما جرّبت العالم داخل اللعبة بنفسي. اللي تحققت منه: العالم انقرأ من جديد بقارئ مستقل،
 > وكل أوامر الـ datapack اجتازت فاحص الصياغة `mecha`، وكل أسماء البلوكات والعناصر والكيانات موجودة في
@@ -90,6 +114,7 @@
 tools/world/   مولّد العالم (تضاريس، أقاليم، أنهار، طرق، أشجار، معالم) + كاتب ملفات Anvil و level.dat
 tools/castle.py  قالب القلعة (يقبل ألوان كل بيت)   tools/game.py  المعارك/الموجات/الأسلحة/السفر
 tools/generate.py  يولّد الـ datapack   tools/package.py  يبني كل شي ويطلّع الـ zip في dist/
+tools/render/     مجسّم الصور من منظور اللاعب (يقرأ العالم مباشرة)   tools/villagers/  رسم لبس القرويين + حزمة الموارد
 tools/validate_names.py  يتحقق من أسماء البلوكات/العناصر مقابل سجلات ماينكرافت
 datapack/got_castle/  الـ datapack المولّد    world/GoT_Westeros/  العالم المولّد
 ```

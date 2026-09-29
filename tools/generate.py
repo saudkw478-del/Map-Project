@@ -83,6 +83,8 @@ def main():
     for name, tbl in game.loot_tables().items():
         for d in LOOT_DIRS:
             w(os.path.join(DP, "data", "got", d, name + ".json"), json.dumps(tbl, indent=1))
+    for d in ("advancement", "advancements"):
+        w(os.path.join(DP, "data", "got", d, "npc_talk.json"), json.dumps(game.ADVANCEMENT_NPC_TALK, indent=1))
     for tag, fn in (("load", "got:load"), ("tick", "got:tick")):
         for d in TAG_DIRS:
             w(os.path.join(DP, "data", "minecraft", "tags", d, tag + ".json"),

@@ -23,8 +23,15 @@ if errorlevel 1 (
   pause
   exit /b 1
 )
+if exist "%~dp0GoT_Villagers_ResourcePack.zip" (
+  if not exist "%APPDATA%\.minecraft\resourcepacks" mkdir "%APPDATA%\.minecraft\resourcepacks"
+  copy /Y "%~dp0GoT_Villagers_ResourcePack.zip" "%APPDATA%\.minecraft\resourcepacks\GoT_Villagers.zip" >nul
+)
 echo.
 echo Done! Now open Minecraft Java Edition ^(1.21 or newer^):
 echo   Singleplayer ^> "Game of Thrones - Westeros"
+echo.
+echo For the Westeros villager clothing: Options ^> Resource Packs ^> enable "GoT_Villagers".
+echo ^(It also loads automatically with the world in most versions.^)
 echo.
 pause

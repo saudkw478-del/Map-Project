@@ -1,0 +1,9 @@
+execute if entity @s[tag=got_h_watch] run function got:npc/say_watch
+execute if entity @s[tag=got_h_north] run function got:npc/say_north
+execute if entity @s[tag=got_h_river] run function got:npc/say_river
+execute if entity @s[tag=got_h_vale] run function got:npc/say_vale
+execute if entity @s[tag=got_h_crown] run function got:npc/say_crown
+execute if entity @s[tag=got_h_west] run function got:npc/say_west
+execute if entity @s[tag=got_h_reach] run function got:npc/say_reach
+execute if entity @s[tag=got_h_storm] run function got:npc/say_storm
+execute if entity @s[tag=got_h_dorne] run function got:npc/say_dorne

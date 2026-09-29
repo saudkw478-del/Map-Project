@@ -7,4 +7,6 @@ if [ ! -f "$HERE/GoT_Westeros/level.dat" ]; then echo "GoT_Westeros folder not f
 mkdir -p "$SAVES"
 if [ -e "$SAVES/GoT_Westeros" ]; then echo "Already installed at $SAVES/GoT_Westeros (delete it to reinstall)"; exit 0; fi
 cp -R "$HERE/GoT_Westeros" "$SAVES/GoT_Westeros"
+RP="$(dirname "$SAVES")/resourcepacks"; mkdir -p "$RP"
+[ -f "$HERE/GoT_Villagers_ResourcePack.zip" ] && cp "$HERE/GoT_Villagers_ResourcePack.zip" "$RP/GoT_Villagers.zip"
 echo "Done! Open Minecraft Java (1.21+): Singleplayer > Game of Thrones - Westeros"

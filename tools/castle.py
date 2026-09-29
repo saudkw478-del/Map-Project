@@ -1,5 +1,7 @@
 """Castle geometry. Origin (0,0,0) = the first air block above ground at the player's feet.
 x = east, z = south (the main gate faces +z / south)."""
+import random
+
 from mc import Build
 
 STONE = "stone_bricks"
@@ -396,14 +398,32 @@ def stage_courtyard():
     # ---- godswood (east) ----
     b.fill(24, -1, 12, 38, -1, 36, "grass_block")
     b.fill(26, -2, 26, 31, -1, 30, "water")
-    # weirwood: white trunk, red canopy
-    b.fill(33, 0, 18, 34, 12, 19, "birch_log")
-    b.fill(29, 9, 14, 38, 11, 23, "red_wool")
-    b.fill(31, 12, 16, 36, 13, 21, "red_wool")
-    b.fill(33, 14, 18, 34, 14, 19, "red_wool")
-    # hang the canopy a little lower on the sides
-    b.fill(30, 8, 15, 37, 8, 22, "red_wool")
-    b.fill(33, 9, 18, 34, 12, 19, "birch_log")
+    # weirwood: pale trunk with a carved face, spreading branches and a ragged red canopy
+    rnd = random.Random(21)
+    tx, tz = 33, 19                     # trunk centre (3x3 base)
+    b.fill(tx - 2, 0, tz - 2, tx + 2, 0, tz + 2, "birch_log[axis=y]")          # root flare
+    b.fill(tx - 1, 1, tz - 1, tx + 1, 9, tz + 1, "birch_log[axis=y]")
+    b.fill(tx, 10, tz, tx, 13, tz, "birch_log[axis=y]")
+    for (dx, dz, ln) in ((-1, 0, 4), (1, 0, 4), (0, -1, 4), (0, 1, 4)):
+        for k in range(2, 2 + ln):
+            b.set(tx + dx * k, 8 + k // 2, tz + dz * k, "birch_log[axis=%s]" % ("x" if dx else "z"))
+    # the face (south side): eyes, weeping red tears, mouth
+    for ex in (tx - 1, tx + 1):
+        b.set(ex, 6, tz + 2, "black_wool"); b.set(ex, 5, tz + 2, "red_wool"); b.set(ex, 4, tz + 2, "red_wool")
+    b.set(tx, 3, tz + 2, "black_wool"); b.set(tx, 2, tz + 2, "black_wool")
+    cx_, cy_, cz_ = tx, 13, tz
+    for x in range(cx_ - 8, cx_ + 9):
+        for y in range(cy_ - 4, cy_ + 5):
+            for z in range(cz_ - 8, cz_ + 9):
+                d = ((x - cx_) / 7.0) ** 2 + ((y - cy_) / 3.6) ** 2 + ((z - cz_) / 7.0) ** 2
+                if d < 1.0 and rnd.random() < (1.15 - d):
+                    b.set(x, y, z, "red_wool" if rnd.random() < 0.7 else "red_terracotta")
+    for _ in range(26):                # hanging strands of red leaves
+        x, z = rnd.randint(cx_ - 7, cx_ + 7), rnd.randint(cz_ - 7, cz_ + 7)
+        if ((x - cx_) / 7.0) ** 2 + ((z - cz_) / 7.0) ** 2 < 0.9:
+            for y in range(cy_ - 4, cy_ - 4 - rnd.randint(1, 3), -1):
+                b.set(x, y, z, "red_wool")
+    # heart-tree pool
     # benches
     for x in (27, 30):
         b.set(x, 0, 32, "oak_stairs[facing=north]")

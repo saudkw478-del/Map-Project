@@ -1,0 +1,17 @@
+execute positioned 397 64 474 if entity @s[distance=..60] unless score #npc_white_harbor got_g matches 1 run function got:npc/spawn_white_harbor
+execute positioned 104 64 845 if entity @s[distance=..60] unless score #npc_lannisport got_g matches 1 run function got:npc/spawn_lannisport
+execute positioned 126 64 1163 if entity @s[distance=..60] unless score #npc_oldtown got_g matches 1 run function got:npc/spawn_oldtown
+execute positioned 565 64 680 if entity @s[distance=..60] unless score #npc_gulltown got_g matches 1 run function got:npc/spawn_gulltown
+execute positioned 304 64 492 if entity @s[distance=..60] unless score #npc_kingsroad_inn_1 got_g matches 1 run function got:npc/spawn_kingsroad_inn_1
+execute positioned 336 64 840 if entity @s[distance=..60] unless score #npc_kingsroad_inn_2 got_g matches 1 run function got:npc/spawn_kingsroad_inn_2
+execute positioned 223 64 447 if entity @s[distance=..60] unless score #npc_winter_town got_g matches 1 run function got:npc/spawn_winter_town
+execute positioned 335 64 732 if entity @s[distance=..60] unless score #npc_crossroads got_g matches 1 run function got:npc/spawn_crossroads
+execute positioned 242 64 264 if entity @s[distance=..60] unless score #npc_castle_black got_g matches 1 run function got:npc/spawn_castle_black
+execute positioned 262 64 378 if entity @s[distance=..60] unless score #npc_winterfell got_g matches 1 run function got:npc/spawn_winterfell
+execute positioned 227 64 798 if entity @s[distance=..60] unless score #npc_riverrun got_g matches 1 run function got:npc/spawn_riverrun
+execute positioned 492 124 718 if entity @s[distance=..60] unless score #npc_eyrie got_g matches 1 run function got:npc/spawn_eyrie
+execute positioned 397 64 908 if entity @s[distance=..60] unless score #npc_kings_landing got_g matches 1 run function got:npc/spawn_kings_landing
+execute positioned 132 64 828 if entity @s[distance=..60] unless score #npc_casterly_rock got_g matches 1 run function got:npc/spawn_casterly_rock
+execute positioned 207 64 1058 if entity @s[distance=..60] unless score #npc_highgarden got_g matches 1 run function got:npc/spawn_highgarden
+execute positioned 472 64 1033 if entity @s[distance=..60] unless score #npc_storms_end got_g matches 1 run function got:npc/spawn_storms_end
+execute positioned 462 64 1263 if entity @s[distance=..60] unless score #npc_sunspear got_g matches 1 run function got:npc/spawn_sunspear
