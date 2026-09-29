@@ -115,7 +115,7 @@ class Canvas:
         else:
             rot = {"south": 0, "west": 4, "north": 8, "east": 12}.get(facing, 0)
             self.set(x, y, z, f"minecraft:{mat}_sign[rotation={rot}]")
-        self.add_be(x, y, z, f"minecraft:{mat}_wall_sign" if wall else f"minecraft:{mat}_sign",
+        self.add_be(x, y, z, "minecraft:sign",
                     front_text={"messages": NList(TAG_STRING, msgs), "color": "black", "has_glowing_text": Byte(1 if glow else 0)},
                     back_text={"messages": NList(TAG_STRING, [blank] * 4), "color": "black", "has_glowing_text": Byte(0)},
                     is_waxed=Byte(1))

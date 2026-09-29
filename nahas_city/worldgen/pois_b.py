@@ -334,7 +334,7 @@ def build_t4(W):
     # keep: center (ax, az-14)
     kx, kz = ax, az - 14
     KH = 30
-    cv.box(kx - 10, y, kz - 10, kx + 10, y + KH, kz + 10, PB, inner="air", roof=False, floor=False)
+    cv.box(kx - 10, y + 1, kz - 10, kx + 10, y + KH, kz + 10, PB, inner="air", roof=False, floor=False)
     cv.fill(kx - 10, y + 15, kz - 10, kx + 10, y + 15, kz + 10, DS)          # mid floor
     cv.fill(kx - 3, y + 15, kz - 3, kx + 3, y + 15, kz + 3, "air")           # stair well
     cv.fill(kx - 10, y + KH, kz - 10, kx + 10, y + KH, kz + 10, DS)          # roof/arena floor

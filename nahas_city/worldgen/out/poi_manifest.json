@@ -1,0 +1,3193 @@
+{
+ "world": "NahasCity",
+ "spawn": [
+  300,
+  71,
+  2050
+ ],
+ "note": "coordinates are block coordinates; y = ground top solid block; first air block is y+1",
+ "pois": [
+  {
+   "features": {
+    "cursed_lantern_chest": [
+     300,
+     72,
+     2036
+    ],
+    "altar": [
+     300,
+     71,
+     2036
+    ],
+    "tent_chest_2": [
+     278,
+     71,
+     2042
+    ],
+    "tent_chest_5": [
+     324,
+     71,
+     2035
+    ],
+    "plaza": 64,
+    "player_spawn": [
+     300,
+     71,
+     2050
+    ]
+   },
+   "id": "spawn",
+   "ar": "معسكر القافلة المهجور",
+   "x": 300,
+   "y": 70,
+   "z": 2050,
+   "kind": "main",
+   "dimension": "minecraft:overworld"
+  },
+  {
+   "features": {
+    "well": [
+     609,
+     71,
+     1641
+    ],
+    "quest_board": [
+     592,
+     71,
+     1646
+    ],
+    "shop": [
+     609,
+     71,
+     1656
+    ],
+    "tavern_door": [
+     579,
+     71,
+     1624
+    ],
+    "tavern_center": [
+     566,
+     71,
+     1624
+    ],
+    "plaza": 116
+   },
+   "id": "hub",
+   "ar": "واحة الدلال",
+   "x": 600,
+   "y": 70,
+   "z": 1650,
+   "kind": "main",
+   "dimension": "minecraft:overworld"
+  },
+  {
+   "features": {
+    "pedestals": [
+     [
+      986,
+      74,
+      1872
+     ],
+     [
+      1014,
+      74,
+      1872
+     ],
+     [
+      986,
+      74,
+      1881
+     ],
+     [
+      1014,
+      74,
+      1881
+     ]
+    ],
+    "plate_grid": [
+     [
+      994,
+      71,
+      1873
+     ],
+     [
+      994,
+      71,
+      1877
+     ],
+     [
+      994,
+      71,
+      1881
+     ],
+     [
+      1000,
+      71,
+      1873
+     ],
+     [
+      1000,
+      71,
+      1877
+     ],
+     [
+      1000,
+      71,
+      1881
+     ],
+     [
+      1006,
+      71,
+      1873
+     ],
+     [
+      1006,
+      71,
+      1877
+     ],
+     [
+      1006,
+      71,
+      1881
+     ]
+    ],
+    "puzzle_room": [
+     1000,
+     71,
+     1877
+    ],
+    "sealed_door": [
+     1000,
+     71,
+     1870
+    ],
+    "sealed_door_y2": [
+     1000,
+     72,
+     1870
+    ],
+    "seal_altar": [
+     1000,
+     73,
+     1866
+    ],
+    "trial_chamber": [
+     1000,
+     71,
+     1866
+    ],
+    "temple_entrance": [
+     1000,
+     71,
+     1894
+    ],
+    "antechamber": [
+     1000,
+     71,
+     1889
+    ],
+    "plaza": 84
+   },
+   "id": "t1",
+   "ar": "معبد الواحة",
+   "x": 1000,
+   "y": 70,
+   "z": 1900,
+   "kind": "main",
+   "dimension": "minecraft:overworld"
+  },
+  {
+   "features": {
+    "arena_radius": 30,
+    "boss_nest": [
+     1800,
+     71,
+     1830
+    ],
+    "gates": [
+     [
+      1800,
+      70,
+      1817
+     ],
+     [
+      1800,
+      70,
+      1883
+     ],
+     [
+      1767,
+      70,
+      1850
+     ],
+     [
+      1833,
+      70,
+      1850
+     ]
+    ],
+    "entrance": [
+     1800,
+     71,
+     1883
+    ],
+    "plaza": 60
+   },
+   "id": "t2",
+   "ar": "وادي العقارب",
+   "x": 1800,
+   "y": 70,
+   "z": 1850,
+   "kind": "main",
+   "dimension": "minecraft:overworld"
+  },
+  {
+   "features": {
+    "seal_altar": [
+     2100,
+     44,
+     1390
+    ],
+    "seal_room": [
+     2100,
+     43,
+     1387
+    ],
+    "wing_west": [
+     2064,
+     43,
+     1360
+    ],
+    "wing_east": [
+     2136,
+     43,
+     1360
+    ],
+    "pavilion": [
+     2100,
+     71,
+     1284
+    ],
+    "shaft_top": [
+     2100,
+     71,
+     1284
+    ],
+    "main_hall": [
+     2100,
+     43,
+     1360
+    ],
+    "bridge_start": [
+     2100,
+     71,
+     1400
+    ],
+    "lake": [
+     2100,
+     69,
+     1300
+    ],
+    "plaza": 68
+   },
+   "id": "t3",
+   "ar": "المكتبة الغارقة",
+   "x": 2100,
+   "y": 70,
+   "z": 1300,
+   "kind": "main",
+   "dimension": "minecraft:overworld"
+  },
+  {
+   "features": {
+    "arena_center": [
+     1700,
+     151,
+     436
+    ],
+    "arena_radius": 15,
+    "keep_door": [
+     1700,
+     121,
+     446
+    ],
+    "keep_center": [
+     1700,
+     121,
+     436
+    ],
+    "parkour_start": [
+     1700,
+     123,
+     450
+    ],
+    "parkour_platforms": [
+     [
+      1700,
+      123,
+      450
+     ],
+     [
+      1693,
+      124,
+      448
+     ],
+     [
+      1688,
+      125,
+      444
+     ],
+     [
+      1686,
+      126,
+      438
+     ],
+     [
+      1687,
+      127,
+      431
+     ],
+     [
+      1691,
+      128,
+      426
+     ],
+     [
+      1697,
+      129,
+      422
+     ],
+     [
+      1703,
+      130,
+      422
+     ],
+     [
+      1709,
+      131,
+      426
+     ],
+     [
+      1713,
+      133,
+      431
+     ],
+     [
+      1714,
+      134,
+      438
+     ],
+     [
+      1712,
+      135,
+      444
+     ],
+     [
+      1707,
+      136,
+      448
+     ],
+     [
+      1700,
+      137,
+      450
+     ],
+     [
+      1693,
+      138,
+      448
+     ],
+     [
+      1688,
+      139,
+      444
+     ],
+     [
+      1686,
+      140,
+      438
+     ],
+     [
+      1687,
+      142,
+      431
+     ],
+     [
+      1691,
+      143,
+      426
+     ],
+     [
+      1697,
+      144,
+      422
+     ],
+     [
+      1703,
+      145,
+      422
+     ],
+     [
+      1709,
+      146,
+      426
+     ],
+     [
+      1713,
+      147,
+      431
+     ],
+     [
+      1714,
+      148,
+      438
+     ],
+     [
+      1712,
+      149,
+      444
+     ],
+     [
+      1707,
+      151,
+      448
+     ]
+    ],
+    "plaza": 64
+   },
+   "id": "t4",
+   "ar": "قلعة الريح",
+   "x": 1700,
+   "y": 120,
+   "z": 450,
+   "kind": "main",
+   "dimension": "minecraft:overworld"
+  },
+  {
+   "features": {
+    "portal": [
+     1000,
+     71,
+     333
+    ],
+    "portal_interior": [
+     [
+      997,
+      71,
+      333
+     ],
+     [
+      1003,
+      79,
+      333
+     ]
+    ],
+    "dais": [
+     1000,
+     70,
+     350
+    ],
+    "dimension": "nahas:star_sea",
+    "dim_arrival": [
+     600,
+     101,
+     600
+    ],
+    "plaza": 76
+   },
+   "id": "g_star",
+   "ar": "بوابة النجوم",
+   "x": 1000,
+   "y": 70,
+   "z": 350,
+   "kind": "main",
+   "dimension": "minecraft:overworld"
+  },
+  {
+   "features": {
+    "portal": [
+     300,
+     71,
+     871
+    ],
+    "bridge": [
+     300,
+     71,
+     886
+    ],
+    "fissure_z": 886,
+    "dimension": "nahas:ember",
+    "dim_arrival": [
+     500,
+     65,
+     500
+    ],
+    "plaza": 76
+   },
+   "id": "g_ember",
+   "ar": "بوابة الجمر",
+   "x": 300,
+   "y": 70,
+   "z": 900,
+   "kind": "main",
+   "dimension": "minecraft:overworld"
+  },
+  {
+   "features": {
+    "south_gate_seal_box": [
+     1194,
+     71,
+     1342,
+     1206,
+     84,
+     1354
+    ],
+    "south_gate_center": [
+     1200,
+     71,
+     1350
+    ],
+    "gate_sockets": [
+     [
+      1194,
+      76,
+      1351
+     ],
+     [
+      1196,
+      77,
+      1351
+     ],
+     [
+      1198,
+      77,
+      1351
+     ],
+     [
+      1200,
+      78,
+      1351
+     ],
+     [
+      1202,
+      77,
+      1351
+     ],
+     [
+      1204,
+      77,
+      1351
+     ],
+     [
+      1206,
+      76,
+      1351
+     ]
+    ],
+    "gate_note": "datapack opens the gate by fill air over south_gate_seal_box (x1,y1,z1,x2,y2,z2)",
+    "courtyard_center": [
+     1200,
+     71,
+     1200
+    ],
+    "courtyard_radius": 40,
+    "boss_spawn": [
+     1200,
+     71,
+     1200
+    ],
+    "seal7_altar": [
+     1200,
+     73,
+     1172
+    ],
+    "courtyard_gates": [
+     [
+      1200,
+      71,
+      1158
+     ],
+     [
+      1200,
+      71,
+      1242
+     ],
+     [
+      1158,
+      71,
+      1200
+     ],
+     [
+      1242,
+      71,
+      1200
+     ]
+    ],
+    "throne": [
+     1200,
+     74,
+     1100
+    ],
+    "palace_door": [
+     1200,
+     71,
+     1152
+    ],
+    "palace_bounds": [
+     1148,
+     70,
+     1096,
+     1252,
+     96,
+     1152
+    ],
+    "houses": 61,
+    "statues_est": 121,
+    "plaza": 320
+   },
+   "id": "city",
+   "ar": "مدينة النحاس",
+   "x": 1200,
+   "y": 70,
+   "z": 1200,
+   "kind": "main",
+   "dimension": "minecraft:overworld"
+  },
+  {
+   "features": {
+    "palms": 17,
+    "pond_radius": 12,
+    "note": "y = pond water surface block"
+   },
+   "id": "oasis_1",
+   "ar": "واحة الغزال",
+   "x": 420,
+   "y": 69,
+   "z": 1450,
+   "kind": "minor_oasis",
+   "dimension": "minecraft:overworld"
+  },
+  {
+   "features": {
+    "palms": 17,
+    "pond_radius": 14,
+    "note": "y = pond water surface block"
+   },
+   "id": "oasis_2",
+   "ar": "واحة النخلتين",
+   "x": 850,
+   "y": 69,
+   "z": 1150,
+   "kind": "minor_oasis",
+   "dimension": "minecraft:overworld"
+  },
+  {
+   "features": {
+    "palms": 16,
+    "pond_radius": 13,
+    "note": "y = pond water surface block"
+   },
+   "id": "oasis_3",
+   "ar": "واحة الهدهد",
+   "x": 1500,
+   "y": 69,
+   "z": 1620,
+   "kind": "minor_oasis",
+   "dimension": "minecraft:overworld"
+  },
+  {
+   "features": {
+    "palms": 16,
+    "pond_radius": 12,
+    "note": "y = pond water surface block"
+   },
+   "id": "oasis_4",
+   "ar": "واحة السراب",
+   "x": 1720,
+   "y": 69,
+   "z": 1040,
+   "kind": "minor_oasis",
+   "dimension": "minecraft:overworld"
+  },
+  {
+   "features": {
+    "palms": 22,
+    "pond_radius": 15,
+    "note": "y = pond water surface block"
+   },
+   "id": "oasis_5",
+   "ar": "واحة الشروق",
+   "x": 2250,
+   "y": 69,
+   "z": 1760,
+   "kind": "minor_oasis",
+   "dimension": "minecraft:overworld"
+  },
+  {
+   "features": {
+    "palms": 18,
+    "pond_radius": 12,
+    "note": "y = pond water surface block"
+   },
+   "id": "oasis_6",
+   "ar": "واحة الصقر",
+   "x": 2050,
+   "y": 69,
+   "z": 250,
+   "kind": "minor_oasis",
+   "dimension": "minecraft:overworld"
+  },
+  {
+   "features": {
+    "palms": 19,
+    "pond_radius": 13,
+    "note": "y = pond water surface block"
+   },
+   "id": "oasis_7",
+   "ar": "واحة الهمس",
+   "x": 700,
+   "y": 69,
+   "z": 480,
+   "kind": "minor_oasis",
+   "dimension": "minecraft:overworld"
+  },
+  {
+   "features": {
+    "palms": 0,
+    "pond_radius": 14,
+    "note": "y = pond water surface block"
+   },
+   "id": "oasis_8",
+   "ar": "واحة الملح العذب",
+   "x": 1150,
+   "y": 69,
+   "z": 2200,
+   "kind": "minor_oasis",
+   "dimension": "minecraft:overworld"
+  },
+  {
+   "features": {
+    "palms": 17,
+    "pond_radius": 11,
+    "note": "y = pond water surface block"
+   },
+   "id": "oasis_9",
+   "ar": "واحة الجبل",
+   "x": 1350,
+   "y": 69,
+   "z": 700,
+   "kind": "minor_oasis",
+   "dimension": "minecraft:overworld"
+  },
+  {
+   "features": {
+    "loot": "nahas:chests/ruins"
+   },
+   "id": "ruin_1",
+   "ar": "أطلال الفجر",
+   "x": 900,
+   "y": 66,
+   "z": 700,
+   "kind": "ruin",
+   "dimension": "minecraft:overworld"
+  },
+  {
+   "features": {
+    "loot": "nahas:chests/ruins"
+   },
+   "id": "ruin_2",
+   "ar": "أطلال الحداد",
+   "x": 1450,
+   "y": 74,
+   "z": 1420,
+   "kind": "ruin",
+   "dimension": "minecraft:overworld"
+  },
+  {
+   "features": {
+    "loot": "nahas:chests/ruins"
+   },
+   "id": "ruin_3",
+   "ar": "أطلال القافلة الضائعة",
+   "x": 2250,
+   "y": 73,
+   "z": 1520,
+   "kind": "ruin",
+   "dimension": "minecraft:overworld"
+  },
+  {
+   "features": {
+    "loot": "nahas:chests/ruins"
+   },
+   "id": "ruin_4",
+   "ar": "أطلال المنارة القديمة",
+   "x": 250,
+   "y": 69,
+   "z": 1500,
+   "kind": "ruin",
+   "dimension": "minecraft:overworld"
+  },
+  {
+   "features": {
+    "loot": "nahas:chests/ruins"
+   },
+   "id": "ruin_5",
+   "ar": "أطلال الحارس",
+   "x": 1400,
+   "y": 70,
+   "z": 600,
+   "kind": "ruin",
+   "dimension": "minecraft:overworld"
+  },
+  {
+   "features": {
+    "loot": "nahas:chests/ruins"
+   },
+   "id": "ruin_6",
+   "ar": "أطلال السوق المنسي",
+   "x": 800,
+   "y": 72,
+   "z": 2080,
+   "kind": "ruin",
+   "dimension": "minecraft:overworld"
+  },
+  {
+   "features": {
+    "loot": "nahas:chests/ruins"
+   },
+   "id": "ruin_7",
+   "ar": "أطلال قصر الرمل",
+   "x": 1600,
+   "y": 70,
+   "z": 2100,
+   "kind": "ruin",
+   "dimension": "minecraft:overworld"
+  },
+  {
+   "features": {
+    "loot": "nahas:chests/tomb",
+    "chamber": [
+     1050,
+     57,
+     773
+    ],
+    "mound": [
+     1050,
+     70,
+     773
+    ],
+    "note": "anchor = top of the entrance ramp (ground level)"
+   },
+   "id": "tomb_1",
+   "ar": "مقبرة الملك الأول",
+   "x": 1050,
+   "y": 69,
+   "z": 793,
+   "kind": "tomb",
+   "dimension": "minecraft:overworld"
+  },
+  {
+   "features": {
+    "loot": "nahas:chests/tomb",
+    "chamber": [
+     1900,
+     56,
+     1113
+    ],
+    "mound": [
+     1900,
+     69,
+     1113
+    ],
+    "note": "anchor = top of the entrance ramp (ground level)"
+   },
+   "id": "tomb_2",
+   "ar": "مقبرة الأميرة",
+   "x": 1900,
+   "y": 68,
+   "z": 1133,
+   "kind": "tomb",
+   "dimension": "minecraft:overworld"
+  },
+  {
+   "features": {
+    "loot": "nahas:chests/tomb",
+    "chamber": [
+     520,
+     59,
+     1093
+    ],
+    "mound": [
+     520,
+     72,
+     1093
+    ],
+    "note": "anchor = top of the entrance ramp (ground level)"
+   },
+   "id": "tomb_3",
+   "ar": "مقبرة الصائغ",
+   "x": 520,
+   "y": 71,
+   "z": 1113,
+   "kind": "tomb",
+   "dimension": "minecraft:overworld"
+  },
+  {
+   "features": {
+    "loot": "nahas:chests/tomb",
+    "chamber": [
+     2000,
+     65,
+     2093
+    ],
+    "mound": [
+     2000,
+     78,
+     2093
+    ],
+    "note": "anchor = top of the entrance ramp (ground level)"
+   },
+   "id": "tomb_4",
+   "ar": "مقبرة الجني الصغير",
+   "x": 2000,
+   "y": 77,
+   "z": 2113,
+   "kind": "tomb",
+   "dimension": "minecraft:overworld"
+  },
+  {
+   "features": {
+    "loot": "nahas:chests/tomb",
+    "chamber": [
+     700,
+     54,
+     323
+    ],
+    "mound": [
+     700,
+     67,
+     323
+    ],
+    "note": "anchor = top of the entrance ramp (ground level)"
+   },
+   "id": "tomb_5",
+   "ar": "مقبرة العرّاف",
+   "x": 700,
+   "y": 66,
+   "z": 343,
+   "kind": "tomb",
+   "dimension": "minecraft:overworld"
+  },
+  {
+   "features": {
+    "loot": "nahas:chests/tomb",
+    "vault": [
+     1250,
+     63,
+     1665
+    ],
+    "surface_entrance": [
+     1250,
+     72,
+     1650
+    ],
+    "note": "anchor = vault floor; entrance buried under sand at surface_entrance"
+   },
+   "id": "buried_1",
+   "ar": "المدخل المدفون الأول",
+   "x": 1250,
+   "y": 62,
+   "z": 1664,
+   "kind": "buried_temple",
+   "dimension": "minecraft:overworld"
+  },
+  {
+   "features": {
+    "loot": "nahas:chests/tomb",
+    "vault": [
+     1600,
+     66,
+     1515
+    ],
+    "surface_entrance": [
+     1600,
+     75,
+     1500
+    ],
+    "note": "anchor = vault floor; entrance buried under sand at surface_entrance"
+   },
+   "id": "buried_2",
+   "ar": "المدخل المدفون الثاني",
+   "x": 1600,
+   "y": 65,
+   "z": 1514,
+   "kind": "buried_temple",
+   "dimension": "minecraft:overworld"
+  },
+  {
+   "features": {
+    "loot": "nahas:chests/tomb",
+    "vault": [
+     300,
+     67,
+     1315
+    ],
+    "surface_entrance": [
+     300,
+     76,
+     1300
+    ],
+    "note": "anchor = vault floor; entrance buried under sand at surface_entrance"
+   },
+   "id": "buried_3",
+   "ar": "المدخل المدفون الثالث",
+   "x": 300,
+   "y": 66,
+   "z": 1314,
+   "kind": "buried_temple",
+   "dimension": "minecraft:overworld"
+  },
+  {
+   "features": {
+    "text": "قالوا: مدينة من نحاس لا يدخلها إلا من جمع الأختام"
+   },
+   "id": "lore_1",
+   "ar": "حجر الحكاية الأول",
+   "x": 800,
+   "y": 66,
+   "z": 1500,
+   "kind": "lore_stone",
+   "dimension": "minecraft:overworld"
+  },
+  {
+   "features": {
+    "text": "كل ليلة تصحو المدينة وتنام في الفجر من جديد"
+   },
+   "id": "lore_2",
+   "ar": "حجر الحكاية الثاني",
+   "x": 1300,
+   "y": 69,
+   "z": 980,
+   "kind": "lore_stone",
+   "dimension": "minecraft:overworld"
+  },
+  {
+   "features": {
+    "text": "الفانوس يعرف طريقه إلى القلب الشجاع "
+   },
+   "id": "lore_3",
+   "ar": "حجر الحكاية الثالث",
+   "x": 1880,
+   "y": 91,
+   "z": 560,
+   "kind": "lore_stone",
+   "dimension": "minecraft:overworld"
+  },
+  {
+   "features": {
+    "text": "سبعة أختام وسبع تجارب وحارس واحد "
+   },
+   "id": "lore_4",
+   "ar": "حجر الحكاية الرابع",
+   "x": 600,
+   "y": 75,
+   "z": 1980,
+   "kind": "lore_stone",
+   "dimension": "minecraft:overworld"
+  },
+  {
+   "features": {
+    "text": "من ضحك في الظلام نجا منه "
+   },
+   "id": "lore_5",
+   "ar": "حجر الحكاية الخامس",
+   "x": 2000,
+   "y": 72,
+   "z": 1730,
+   "kind": "lore_stone",
+   "dimension": "minecraft:overworld"
+  },
+  {
+   "features": {
+    "loot": "nahas:chests/common"
+   },
+   "id": "tower_1",
+   "ar": "برج المراقبة الجنوبي",
+   "x": 1100,
+   "y": 77,
+   "z": 1500,
+   "kind": "watchtower",
+   "dimension": "minecraft:overworld"
+  },
+  {
+   "features": {
+    "loot": "nahas:chests/common"
+   },
+   "id": "tower_2",
+   "ar": "برج القافلة",
+   "x": 1700,
+   "y": 80,
+   "z": 1620,
+   "kind": "watchtower",
+   "dimension": "minecraft:overworld"
+  },
+  {
+   "features": {
+    "loot": "nahas:chests/common"
+   },
+   "id": "tower_3",
+   "ar": "برج الغروب",
+   "x": 800,
+   "y": 81,
+   "z": 900,
+   "kind": "watchtower",
+   "dimension": "minecraft:overworld"
+  },
+  {
+   "features": {
+    "loot": "nahas:chests/common"
+   },
+   "id": "tower_4",
+   "ar": "برج الملح",
+   "x": 1400,
+   "y": 80,
+   "z": 700,
+   "kind": "watchtower",
+   "dimension": "minecraft:overworld"
+  },
+  {
+   "features": {
+    "secret_entrance": [
+     1560,
+     66,
+     929
+    ],
+    "chest": [
+     1560,
+     60,
+     950
+    ]
+   },
+   "id": "salt_mirror",
+   "ar": "مرآة الملح",
+   "x": 1560,
+   "y": 66,
+   "z": 950,
+   "kind": "salt_mirror",
+   "dimension": "minecraft:overworld"
+  },
+  {
+   "features": {
+    "chest": [
+     674,
+     73,
+     1250
+    ]
+   },
+   "id": "fossil",
+   "ar": "عظام العملاق",
+   "x": 700,
+   "y": 70,
+   "z": 1250,
+   "kind": "fossil",
+   "dimension": "minecraft:overworld"
+  },
+  {
+   "features": {
+    "road": [
+     361,
+     1940
+    ]
+   },
+   "id": "waystation_1",
+   "ar": "محطة القافلة 1",
+   "x": 370,
+   "y": 72,
+   "z": 1945,
+   "kind": "waystation",
+   "dimension": "minecraft:overworld"
+  },
+  {
+   "features": {
+    "road": [
+     507,
+     1739
+    ]
+   },
+   "id": "waystation_2",
+   "ar": "محطة القافلة 2",
+   "x": 515,
+   "y": 81,
+   "z": 1746,
+   "kind": "waystation",
+   "dimension": "minecraft:overworld"
+  },
+  {
+   "features": {
+    "road": [
+     722,
+     1679
+    ]
+   },
+   "id": "waystation_3",
+   "ar": "محطة القافلة 3",
+   "x": 719,
+   "y": 88,
+   "z": 1690,
+   "kind": "waystation",
+   "dimension": "minecraft:overworld"
+  },
+  {
+   "features": {
+    "road": [
+     1053,
+     1786
+    ]
+   },
+   "id": "waystation_4",
+   "ar": "محطة القافلة 4",
+   "x": 1063,
+   "y": 81,
+   "z": 1791,
+   "kind": "waystation",
+   "dimension": "minecraft:overworld"
+  },
+  {
+   "features": {
+    "road": [
+     1139,
+     1552
+    ]
+   },
+   "id": "waystation_5",
+   "ar": "محطة القافلة 5",
+   "x": 1149,
+   "y": 72,
+   "z": 1556,
+   "kind": "waystation",
+   "dimension": "minecraft:overworld"
+  },
+  {
+   "features": {
+    "road": [
+     1122,
+     1924
+    ]
+   },
+   "id": "waystation_6",
+   "ar": "محطة القافلة 6",
+   "x": 1120,
+   "y": 67,
+   "z": 1935,
+   "kind": "waystation",
+   "dimension": "minecraft:overworld"
+  },
+  {
+   "features": {
+    "road": [
+     1368,
+     1926
+    ]
+   },
+   "id": "waystation_7",
+   "ar": "محطة القافلة 7",
+   "x": 1369,
+   "y": 68,
+   "z": 1937,
+   "kind": "waystation",
+   "dimension": "minecraft:overworld"
+  },
+  {
+   "features": {
+    "road": [
+     1614,
+     1879
+    ]
+   },
+   "id": "waystation_8",
+   "ar": "محطة القافلة 8",
+   "x": 1616,
+   "y": 78,
+   "z": 1890,
+   "kind": "waystation",
+   "dimension": "minecraft:overworld"
+  },
+  {
+   "features": {
+    "road": [
+     1874,
+     1749
+    ]
+   },
+   "id": "waystation_9",
+   "ar": "محطة القافلة 9",
+   "x": 1882,
+   "y": 77,
+   "z": 1756,
+   "kind": "waystation",
+   "dimension": "minecraft:overworld"
+  },
+  {
+   "features": {
+    "road": [
+     2018,
+     1545
+    ]
+   },
+   "id": "waystation_10",
+   "ar": "محطة القافلة 10",
+   "x": 2028,
+   "y": 72,
+   "z": 1551,
+   "kind": "waystation",
+   "dimension": "minecraft:overworld"
+  },
+  {
+   "features": {
+    "road": [
+     2051,
+     1080
+    ]
+   },
+   "id": "waystation_11",
+   "ar": "محطة القافلة 11",
+   "x": 2061,
+   "y": 70,
+   "z": 1076,
+   "kind": "waystation",
+   "dimension": "minecraft:overworld"
+  },
+  {
+   "features": {
+    "road": [
+     1943,
+     855
+    ]
+   },
+   "id": "waystation_12",
+   "ar": "محطة القافلة 12",
+   "x": 1953,
+   "y": 71,
+   "z": 849,
+   "kind": "waystation",
+   "dimension": "minecraft:overworld"
+  },
+  {
+   "features": {
+    "road": [
+     1815,
+     641
+    ]
+   },
+   "id": "waystation_13",
+   "ar": "محطة القافلة 13",
+   "x": 1824,
+   "y": 79,
+   "z": 635,
+   "kind": "waystation",
+   "dimension": "minecraft:overworld"
+  },
+  {
+   "features": {
+    "road": [
+     1581,
+     409
+    ]
+   },
+   "id": "waystation_14",
+   "ar": "محطة القافلة 14",
+   "x": 1584,
+   "y": 118,
+   "z": 399,
+   "kind": "waystation",
+   "dimension": "minecraft:overworld"
+  },
+  {
+   "features": {
+    "road": [
+     1338,
+     406
+    ]
+   },
+   "id": "waystation_15",
+   "ar": "محطة القافلة 15",
+   "x": 1336,
+   "y": 73,
+   "z": 395,
+   "kind": "waystation",
+   "dimension": "minecraft:overworld"
+  },
+  {
+   "features": {
+    "road": [
+     1173,
+     915
+    ]
+   },
+   "id": "waystation_16",
+   "ar": "محطة القافلة 16",
+   "x": 1184,
+   "y": 69,
+   "z": 913,
+   "kind": "waystation",
+   "dimension": "minecraft:overworld"
+  },
+  {
+   "features": {
+    "road": [
+     1113,
+     673
+    ]
+   },
+   "id": "waystation_17",
+   "ar": "محطة القافلة 17",
+   "x": 1124,
+   "y": 71,
+   "z": 670,
+   "kind": "waystation",
+   "dimension": "minecraft:overworld"
+  },
+  {
+   "features": {
+    "road": [
+     554,
+     1533
+    ]
+   },
+   "id": "waystation_18",
+   "ar": "محطة القافلة 18",
+   "x": 564,
+   "y": 66,
+   "z": 1529,
+   "kind": "waystation",
+   "dimension": "minecraft:overworld"
+  },
+  {
+   "features": {
+    "road": [
+     465,
+     1299
+    ]
+   },
+   "id": "waystation_19",
+   "ar": "محطة القافلة 19",
+   "x": 475,
+   "y": 74,
+   "z": 1295,
+   "kind": "waystation",
+   "dimension": "minecraft:overworld"
+  },
+  {
+   "features": {
+    "road": [
+     364,
+     1071
+    ]
+   },
+   "id": "waystation_20",
+   "ar": "محطة القافلة 20",
+   "x": 373,
+   "y": 71,
+   "z": 1066,
+   "kind": "waystation",
+   "dimension": "minecraft:overworld"
+  },
+  {
+   "features": {
+    "road": [
+     416,
+     945
+    ]
+   },
+   "id": "waystation_21",
+   "ar": "محطة القافلة 21",
+   "x": 412,
+   "y": 73,
+   "z": 955,
+   "kind": "waystation",
+   "dimension": "minecraft:overworld"
+  },
+  {
+   "features": {
+    "road": [
+     645,
+     1045
+    ]
+   },
+   "id": "waystation_22",
+   "ar": "محطة القافلة 22",
+   "x": 640,
+   "y": 72,
+   "z": 1055,
+   "kind": "waystation",
+   "dimension": "minecraft:overworld"
+  },
+  {
+   "features": {
+    "road": [
+     869,
+     1155
+    ]
+   },
+   "id": "waystation_23",
+   "ar": "محطة القافلة 23",
+   "x": 866,
+   "y": 69,
+   "z": 1166,
+   "kind": "waystation",
+   "dimension": "minecraft:overworld"
+  },
+  {
+   "features": {
+    "road": [
+     1485,
+     1221
+    ]
+   },
+   "id": "waystation_24",
+   "ar": "محطة القافلة 24",
+   "x": 1483,
+   "y": 73,
+   "z": 1232,
+   "kind": "waystation",
+   "dimension": "minecraft:overworld"
+  },
+  {
+   "features": {
+    "road": [
+     1731,
+     1266
+    ]
+   },
+   "id": "waystation_25",
+   "ar": "محطة القافلة 25",
+   "x": 1729,
+   "y": 70,
+   "z": 1276,
+   "kind": "waystation",
+   "dimension": "minecraft:overworld"
+  },
+  {
+   "features": {
+    "road": [
+     1978,
+     1300
+    ]
+   },
+   "id": "waystation_26",
+   "ar": "محطة القافلة 26",
+   "x": 1978,
+   "y": 69,
+   "z": 1311,
+   "kind": "waystation",
+   "dimension": "minecraft:overworld"
+  },
+  {
+   "features": {},
+   "id": "lighthouse",
+   "ar": "منارة البحر",
+   "x": 42,
+   "y": 74,
+   "z": 1750,
+   "kind": "lighthouse",
+   "dimension": "minecraft:overworld"
+  },
+  {
+   "features": {
+    "loot": "nahas:chests/ruins"
+   },
+   "id": "shipwreck_1",
+   "ar": "حطام السفينة الحمراء",
+   "x": 96,
+   "y": 62,
+   "z": 1250,
+   "kind": "shipwreck",
+   "dimension": "minecraft:overworld"
+  },
+  {
+   "features": {
+    "loot": "nahas:chests/ruins"
+   },
+   "id": "shipwreck_2",
+   "ar": "حطام سفينة الريح",
+   "x": 128,
+   "y": 62,
+   "z": 1950,
+   "kind": "shipwreck",
+   "dimension": "minecraft:overworld"
+  },
+  {
+   "features": {
+    "loot": "nahas:chests/ruins"
+   },
+   "id": "shipwreck_3",
+   "ar": "حطام سفينة اللؤلؤ",
+   "x": 690,
+   "y": 62,
+   "z": 2305,
+   "kind": "shipwreck",
+   "dimension": "minecraft:overworld"
+  },
+  {
+   "features": {
+    "loot": "nahas:chests/ruins"
+   },
+   "id": "shipwreck_4",
+   "ar": "حطام الجنية",
+   "x": 1500,
+   "y": 62,
+   "z": 2340,
+   "kind": "shipwreck",
+   "dimension": "minecraft:overworld"
+  },
+  {
+   "features": {
+    "note": "y = pond water surface block"
+   },
+   "id": "hub_pond",
+   "ar": "بركة واحة الدلال",
+   "x": 520,
+   "y": 69,
+   "z": 1665,
+   "kind": "pond",
+   "dimension": "minecraft:overworld"
+  },
+  {
+   "features": {
+    "note": "y = pond water surface block"
+   },
+   "id": "t1_pond",
+   "ar": "بركة معبد الواحة",
+   "x": 1000,
+   "y": 69,
+   "z": 1958,
+   "kind": "pond",
+   "dimension": "minecraft:overworld"
+  },
+  {
+   "id": "star_arrival",
+   "ar": "جزيرة الوصول",
+   "x": 600,
+   "y": 100,
+   "z": 600,
+   "kind": "dimension_arrival",
+   "dimension": "nahas:star_sea",
+   "features": {
+    "arrival": {
+     "pos": [
+      600,
+      100,
+      600
+     ],
+     "return_portal": [
+      600,
+      101,
+      583
+     ],
+     "portal_interior": [
+      [
+       597,
+       101,
+       583
+      ],
+      [
+       603,
+       108,
+       583
+      ]
+     ]
+    },
+    "boss": {
+     "center": [
+      560,
+      96,
+      921
+     ],
+     "radius": 30,
+     "chest": [
+      560,
+      96,
+      901
+     ]
+    },
+    "islands": [
+     {
+      "x": 600,
+      "z": 600,
+      "top": 100,
+      "r": 32,
+      "kind": "arrival"
+     },
+     {
+      "x": 566,
+      "z": 577,
+      "top": 99,
+      "r": 6,
+      "kind": "hop"
+     },
+     {
+      "x": 556,
+      "z": 562,
+      "top": 101,
+      "r": 10,
+      "kind": "hop"
+     },
+     {
+      "x": 539,
+      "z": 555,
+      "top": 100,
+      "r": 6,
+      "kind": "hop"
+     },
+     {
+      "x": 522,
+      "z": 555,
+      "top": 101,
+      "r": 8,
+      "kind": "hop"
+     },
+     {
+      "x": 507,
+      "z": 564,
+      "top": 101,
+      "r": 8,
+      "kind": "hop"
+     },
+     {
+      "x": 493,
+      "z": 574,
+      "top": 103,
+      "r": 6,
+      "kind": "hop"
+     },
+     {
+      "x": 480,
+      "z": 580,
+      "top": 103,
+      "r": 7,
+      "kind": "hop"
+     },
+     {
+      "x": 462,
+      "z": 591,
+      "top": 102,
+      "r": 10,
+      "kind": "hop"
+     },
+     {
+      "x": 450,
+      "z": 606,
+      "top": 101,
+      "r": 7,
+      "kind": "hop"
+     },
+     {
+      "x": 445,
+      "z": 620,
+      "top": 100,
+      "r": 6,
+      "kind": "hop"
+     },
+     {
+      "x": 439,
+      "z": 639,
+      "top": 99,
+      "r": 10,
+      "kind": "hop"
+     },
+     {
+      "x": 439,
+      "z": 658,
+      "top": 100,
+      "r": 7,
+      "kind": "hop"
+     },
+     {
+      "x": 439,
+      "z": 676,
+      "top": 102,
+      "r": 8,
+      "kind": "hop"
+     },
+     {
+      "x": 449,
+      "z": 690,
+      "top": 101,
+      "r": 7,
+      "kind": "hop"
+     },
+     {
+      "x": 450,
+      "z": 710,
+      "top": 101,
+      "r": 10,
+      "kind": "hop"
+     },
+     {
+      "x": 442,
+      "z": 727,
+      "top": 101,
+      "r": 6,
+      "kind": "hop"
+     },
+     {
+      "x": 442,
+      "z": 742,
+      "top": 99,
+      "r": 6,
+      "kind": "hop"
+     },
+     {
+      "x": 445,
+      "z": 759,
+      "top": 99,
+      "r": 9,
+      "kind": "hop"
+     },
+     {
+      "x": 454,
+      "z": 776,
+      "top": 99,
+      "r": 8,
+      "kind": "hop"
+     },
+     {
+      "x": 465,
+      "z": 792,
+      "top": 98,
+      "r": 9,
+      "kind": "hop"
+     },
+     {
+      "x": 474,
+      "z": 809,
+      "top": 98,
+      "r": 8,
+      "kind": "hop"
+     },
+     {
+      "x": 472,
+      "z": 827,
+      "top": 96,
+      "r": 8,
+      "kind": "hop"
+     },
+     {
+      "x": 470,
+      "z": 843,
+      "top": 97,
+      "r": 6,
+      "kind": "hop"
+     },
+     {
+      "x": 474,
+      "z": 860,
+      "top": 95,
+      "r": 10,
+      "kind": "hop"
+     },
+     {
+      "x": 483,
+      "z": 877,
+      "top": 95,
+      "r": 6,
+      "kind": "hop"
+     },
+     {
+      "x": 496,
+      "z": 884,
+      "top": 96,
+      "r": 6,
+      "kind": "hop"
+     },
+     {
+      "x": 510,
+      "z": 894,
+      "top": 95,
+      "r": 9,
+      "kind": "hop"
+     },
+     {
+      "x": 560,
+      "z": 921,
+      "top": 95,
+      "r": 45,
+      "kind": "boss"
+     },
+     {
+      "x": 268,
+      "z": 810,
+      "top": 90,
+      "r": 6,
+      "kind": "outer"
+     },
+     {
+      "x": 373,
+      "z": 695,
+      "top": 117,
+      "r": 10,
+      "kind": "outer"
+     },
+     {
+      "x": 838,
+      "z": 774,
+      "top": 88,
+      "r": 8,
+      "kind": "outer"
+     },
+     {
+      "x": 861,
+      "z": 884,
+      "top": 86,
+      "r": 9,
+      "kind": "outer"
+     },
+     {
+      "x": 602,
+      "z": 304,
+      "top": 133,
+      "r": 5,
+      "kind": "outer"
+     },
+     {
+      "x": 389,
+      "z": 508,
+      "top": 112,
+      "r": 10,
+      "kind": "outer"
+     },
+     {
+      "x": 683,
+      "z": 917,
+      "top": 87,
+      "r": 9,
+      "kind": "outer"
+     },
+     {
+      "x": 513,
+      "z": 999,
+      "top": 105,
+      "r": 9,
+      "kind": "outer"
+     },
+     {
+      "x": 1107,
+      "z": 662,
+      "top": 89,
+      "r": 10,
+      "kind": "outer"
+     },
+     {
+      "x": 357,
+      "z": 621,
+      "top": 98,
+      "r": 12,
+      "kind": "outer"
+     },
+     {
+      "x": 656,
+      "z": 324,
+      "top": 125,
+      "r": 8,
+      "kind": "outer"
+     },
+     {
+      "x": 286,
+      "z": 327,
+      "top": 129,
+      "r": 12,
+      "kind": "outer"
+     },
+     {
+      "x": 286,
+      "z": 247,
+      "top": 96,
+      "r": 10,
+      "kind": "outer"
+     },
+     {
+      "x": 703,
+      "z": 1106,
+      "top": 131,
+      "r": 6,
+      "kind": "outer"
+     },
+     {
+      "x": 410,
+      "z": 754,
+      "top": 110,
+      "r": 8,
+      "kind": "outer"
+     },
+     {
+      "x": 808,
+      "z": 670,
+      "top": 90,
+      "r": 5,
+      "kind": "outer"
+     }
+    ],
+    "outer_chests": [
+     [
+      373,
+      118,
+      695
+     ],
+     [
+      838,
+      89,
+      774
+     ],
+     [
+      389,
+      113,
+      508
+     ],
+     [
+      683,
+      88,
+      917
+     ],
+     [
+      513,
+      106,
+      999
+     ],
+     [
+      1107,
+      90,
+      662
+     ],
+     [
+      357,
+      99,
+      621
+     ],
+     [
+      656,
+      126,
+      324
+     ],
+     [
+      286,
+      130,
+      327
+     ],
+     [
+      410,
+      111,
+      754
+     ]
+    ]
+   }
+  },
+  {
+   "id": "star_boss",
+   "ar": "عرش ملكة النجوم",
+   "x": 560,
+   "y": 95,
+   "z": 921,
+   "kind": "dimension_boss",
+   "dimension": "nahas:star_sea",
+   "features": {
+    "arrival": {
+     "pos": [
+      600,
+      100,
+      600
+     ],
+     "return_portal": [
+      600,
+      101,
+      583
+     ],
+     "portal_interior": [
+      [
+       597,
+       101,
+       583
+      ],
+      [
+       603,
+       108,
+       583
+      ]
+     ]
+    },
+    "boss": {
+     "center": [
+      560,
+      96,
+      921
+     ],
+     "radius": 30,
+     "chest": [
+      560,
+      96,
+      901
+     ]
+    },
+    "islands": [
+     {
+      "x": 600,
+      "z": 600,
+      "top": 100,
+      "r": 32,
+      "kind": "arrival"
+     },
+     {
+      "x": 566,
+      "z": 577,
+      "top": 99,
+      "r": 6,
+      "kind": "hop"
+     },
+     {
+      "x": 556,
+      "z": 562,
+      "top": 101,
+      "r": 10,
+      "kind": "hop"
+     },
+     {
+      "x": 539,
+      "z": 555,
+      "top": 100,
+      "r": 6,
+      "kind": "hop"
+     },
+     {
+      "x": 522,
+      "z": 555,
+      "top": 101,
+      "r": 8,
+      "kind": "hop"
+     },
+     {
+      "x": 507,
+      "z": 564,
+      "top": 101,
+      "r": 8,
+      "kind": "hop"
+     },
+     {
+      "x": 493,
+      "z": 574,
+      "top": 103,
+      "r": 6,
+      "kind": "hop"
+     },
+     {
+      "x": 480,
+      "z": 580,
+      "top": 103,
+      "r": 7,
+      "kind": "hop"
+     },
+     {
+      "x": 462,
+      "z": 591,
+      "top": 102,
+      "r": 10,
+      "kind": "hop"
+     },
+     {
+      "x": 450,
+      "z": 606,
+      "top": 101,
+      "r": 7,
+      "kind": "hop"
+     },
+     {
+      "x": 445,
+      "z": 620,
+      "top": 100,
+      "r": 6,
+      "kind": "hop"
+     },
+     {
+      "x": 439,
+      "z": 639,
+      "top": 99,
+      "r": 10,
+      "kind": "hop"
+     },
+     {
+      "x": 439,
+      "z": 658,
+      "top": 100,
+      "r": 7,
+      "kind": "hop"
+     },
+     {
+      "x": 439,
+      "z": 676,
+      "top": 102,
+      "r": 8,
+      "kind": "hop"
+     },
+     {
+      "x": 449,
+      "z": 690,
+      "top": 101,
+      "r": 7,
+      "kind": "hop"
+     },
+     {
+      "x": 450,
+      "z": 710,
+      "top": 101,
+      "r": 10,
+      "kind": "hop"
+     },
+     {
+      "x": 442,
+      "z": 727,
+      "top": 101,
+      "r": 6,
+      "kind": "hop"
+     },
+     {
+      "x": 442,
+      "z": 742,
+      "top": 99,
+      "r": 6,
+      "kind": "hop"
+     },
+     {
+      "x": 445,
+      "z": 759,
+      "top": 99,
+      "r": 9,
+      "kind": "hop"
+     },
+     {
+      "x": 454,
+      "z": 776,
+      "top": 99,
+      "r": 8,
+      "kind": "hop"
+     },
+     {
+      "x": 465,
+      "z": 792,
+      "top": 98,
+      "r": 9,
+      "kind": "hop"
+     },
+     {
+      "x": 474,
+      "z": 809,
+      "top": 98,
+      "r": 8,
+      "kind": "hop"
+     },
+     {
+      "x": 472,
+      "z": 827,
+      "top": 96,
+      "r": 8,
+      "kind": "hop"
+     },
+     {
+      "x": 470,
+      "z": 843,
+      "top": 97,
+      "r": 6,
+      "kind": "hop"
+     },
+     {
+      "x": 474,
+      "z": 860,
+      "top": 95,
+      "r": 10,
+      "kind": "hop"
+     },
+     {
+      "x": 483,
+      "z": 877,
+      "top": 95,
+      "r": 6,
+      "kind": "hop"
+     },
+     {
+      "x": 496,
+      "z": 884,
+      "top": 96,
+      "r": 6,
+      "kind": "hop"
+     },
+     {
+      "x": 510,
+      "z": 894,
+      "top": 95,
+      "r": 9,
+      "kind": "hop"
+     },
+     {
+      "x": 560,
+      "z": 921,
+      "top": 95,
+      "r": 45,
+      "kind": "boss"
+     },
+     {
+      "x": 268,
+      "z": 810,
+      "top": 90,
+      "r": 6,
+      "kind": "outer"
+     },
+     {
+      "x": 373,
+      "z": 695,
+      "top": 117,
+      "r": 10,
+      "kind": "outer"
+     },
+     {
+      "x": 838,
+      "z": 774,
+      "top": 88,
+      "r": 8,
+      "kind": "outer"
+     },
+     {
+      "x": 861,
+      "z": 884,
+      "top": 86,
+      "r": 9,
+      "kind": "outer"
+     },
+     {
+      "x": 602,
+      "z": 304,
+      "top": 133,
+      "r": 5,
+      "kind": "outer"
+     },
+     {
+      "x": 389,
+      "z": 508,
+      "top": 112,
+      "r": 10,
+      "kind": "outer"
+     },
+     {
+      "x": 683,
+      "z": 917,
+      "top": 87,
+      "r": 9,
+      "kind": "outer"
+     },
+     {
+      "x": 513,
+      "z": 999,
+      "top": 105,
+      "r": 9,
+      "kind": "outer"
+     },
+     {
+      "x": 1107,
+      "z": 662,
+      "top": 89,
+      "r": 10,
+      "kind": "outer"
+     },
+     {
+      "x": 357,
+      "z": 621,
+      "top": 98,
+      "r": 12,
+      "kind": "outer"
+     },
+     {
+      "x": 656,
+      "z": 324,
+      "top": 125,
+      "r": 8,
+      "kind": "outer"
+     },
+     {
+      "x": 286,
+      "z": 327,
+      "top": 129,
+      "r": 12,
+      "kind": "outer"
+     },
+     {
+      "x": 286,
+      "z": 247,
+      "top": 96,
+      "r": 10,
+      "kind": "outer"
+     },
+     {
+      "x": 703,
+      "z": 1106,
+      "top": 131,
+      "r": 6,
+      "kind": "outer"
+     },
+     {
+      "x": 410,
+      "z": 754,
+      "top": 110,
+      "r": 8,
+      "kind": "outer"
+     },
+     {
+      "x": 808,
+      "z": 670,
+      "top": 90,
+      "r": 5,
+      "kind": "outer"
+     }
+    ],
+    "outer_chests": [
+     [
+      373,
+      118,
+      695
+     ],
+     [
+      838,
+      89,
+      774
+     ],
+     [
+      389,
+      113,
+      508
+     ],
+     [
+      683,
+      88,
+      917
+     ],
+     [
+      513,
+      106,
+      999
+     ],
+     [
+      1107,
+      90,
+      662
+     ],
+     [
+      357,
+      99,
+      621
+     ],
+     [
+      656,
+      126,
+      324
+     ],
+     [
+      286,
+      130,
+      327
+     ],
+     [
+      410,
+      111,
+      754
+     ]
+    ]
+   }
+  },
+  {
+   "id": "ember_arrival",
+   "ar": "منصة الوصول (أرض الجمر)",
+   "x": 500,
+   "y": 64,
+   "z": 500,
+   "kind": "dimension_arrival",
+   "dimension": "nahas:ember",
+   "features": {
+    "arrival": {
+     "pos": [
+      500,
+      64,
+      500
+     ],
+     "return_portal": [
+      500,
+      65,
+      480
+     ],
+     "portal_interior": [
+      [
+       497,
+       65,
+       480
+      ],
+      [
+       503,
+       72,
+       480
+      ]
+     ]
+    },
+    "pillars": [
+     [
+      605,
+      68,
+      439
+     ],
+     [
+      607,
+      67,
+      434
+     ],
+     [
+      611,
+      68,
+      431
+     ],
+     [
+      616,
+      69,
+      431
+     ],
+     [
+      618,
+      70,
+      426
+     ],
+     [
+      623,
+      69,
+      425
+     ],
+     [
+      624,
+      70,
+      421
+     ],
+     [
+      630,
+      71,
+      421
+     ],
+     [
+      635,
+      70,
+      420
+     ],
+     [
+      640,
+      71,
+      420
+     ],
+     [
+      641,
+      71,
+      416
+     ],
+     [
+      645,
+      71,
+      413
+     ],
+     [
+      649,
+      71,
+      410
+     ],
+     [
+      655,
+      71,
+      409
+     ],
+     [
+      656,
+      71,
+      405
+     ],
+     [
+      661,
+      71,
+      405
+     ],
+     [
+      663,
+      71,
+      400
+     ],
+     [
+      667,
+      71,
+      397
+     ],
+     [
+      668,
+      71,
+      392
+     ],
+     [
+      670,
+      71,
+      387
+     ],
+     [
+      675,
+      71,
+      386
+     ],
+     [
+      676,
+      71,
+      382
+     ],
+     [
+      680,
+      71,
+      380
+     ],
+     [
+      682,
+      70,
+      375
+     ],
+     [
+      686,
+      70,
+      373
+     ],
+     [
+      692,
+      71,
+      372
+     ],
+     [
+      695,
+      71,
+      368
+     ],
+     [
+      698,
+      70,
+      363
+     ],
+     [
+      702,
+      69,
+      361
+     ],
+     [
+      707,
+      68,
+      359
+     ],
+     [
+      712,
+      69,
+      359
+     ],
+     [
+      717,
+      70,
+      358
+     ],
+     [
+      722,
+      71,
+      357
+     ],
+     [
+      726,
+      71,
+      354
+     ],
+     [
+      727,
+      71,
+      348
+     ],
+     [
+      732,
+      71,
+      348
+     ],
+     [
+      735,
+      71,
+      346
+     ],
+     [
+      738,
+      71,
+      341
+     ],
+     [
+      741,
+      71,
+      338
+     ],
+     [
+      745,
+      71,
+      334
+     ],
+     [
+      749,
+      71,
+      333
+     ],
+     [
+      753,
+      71,
+      333
+     ],
+     [
+      757,
+      71,
+      329
+     ],
+     [
+      761,
+      71,
+      327
+     ],
+     [
+      766,
+      71,
+      325
+     ],
+     [
+      768,
+      70,
+      320
+     ],
+     [
+      771,
+      71,
+      317
+     ],
+     [
+      775,
+      71,
+      316
+     ],
+     [
+      779,
+      71,
+      312
+     ],
+     [
+      781,
+      70,
+      307
+     ],
+     [
+      786,
+      71,
+      307
+     ],
+     [
+      791,
+      71,
+      307
+     ],
+     [
+      795,
+      71,
+      304
+     ],
+     [
+      798,
+      71,
+      300
+     ],
+     [
+      800,
+      71,
+      295
+     ],
+     [
+      805,
+      70,
+      294
+     ],
+     [
+      809,
+      70,
+      291
+     ],
+     [
+      812,
+      69,
+      288
+     ]
+    ],
+    "parkour_start": [
+     605,
+     68,
+     439
+    ],
+    "boss": {
+     "center": [
+      860,
+      67,
+      250
+     ],
+     "radius": 30,
+     "chest": [
+      860,
+      67,
+      224
+     ]
+    }
+   }
+  },
+  {
+   "id": "ember_boss",
+   "ar": "ساحة عملاق الجمر",
+   "x": 860,
+   "y": 66,
+   "z": 250,
+   "kind": "dimension_boss",
+   "dimension": "nahas:ember",
+   "features": {
+    "arrival": {
+     "pos": [
+      500,
+      64,
+      500
+     ],
+     "return_portal": [
+      500,
+      65,
+      480
+     ],
+     "portal_interior": [
+      [
+       497,
+       65,
+       480
+      ],
+      [
+       503,
+       72,
+       480
+      ]
+     ]
+    },
+    "pillars": [
+     [
+      605,
+      68,
+      439
+     ],
+     [
+      607,
+      67,
+      434
+     ],
+     [
+      611,
+      68,
+      431
+     ],
+     [
+      616,
+      69,
+      431
+     ],
+     [
+      618,
+      70,
+      426
+     ],
+     [
+      623,
+      69,
+      425
+     ],
+     [
+      624,
+      70,
+      421
+     ],
+     [
+      630,
+      71,
+      421
+     ],
+     [
+      635,
+      70,
+      420
+     ],
+     [
+      640,
+      71,
+      420
+     ],
+     [
+      641,
+      71,
+      416
+     ],
+     [
+      645,
+      71,
+      413
+     ],
+     [
+      649,
+      71,
+      410
+     ],
+     [
+      655,
+      71,
+      409
+     ],
+     [
+      656,
+      71,
+      405
+     ],
+     [
+      661,
+      71,
+      405
+     ],
+     [
+      663,
+      71,
+      400
+     ],
+     [
+      667,
+      71,
+      397
+     ],
+     [
+      668,
+      71,
+      392
+     ],
+     [
+      670,
+      71,
+      387
+     ],
+     [
+      675,
+      71,
+      386
+     ],
+     [
+      676,
+      71,
+      382
+     ],
+     [
+      680,
+      71,
+      380
+     ],
+     [
+      682,
+      70,
+      375
+     ],
+     [
+      686,
+      70,
+      373
+     ],
+     [
+      692,
+      71,
+      372
+     ],
+     [
+      695,
+      71,
+      368
+     ],
+     [
+      698,
+      70,
+      363
+     ],
+     [
+      702,
+      69,
+      361
+     ],
+     [
+      707,
+      68,
+      359
+     ],
+     [
+      712,
+      69,
+      359
+     ],
+     [
+      717,
+      70,
+      358
+     ],
+     [
+      722,
+      71,
+      357
+     ],
+     [
+      726,
+      71,
+      354
+     ],
+     [
+      727,
+      71,
+      348
+     ],
+     [
+      732,
+      71,
+      348
+     ],
+     [
+      735,
+      71,
+      346
+     ],
+     [
+      738,
+      71,
+      341
+     ],
+     [
+      741,
+      71,
+      338
+     ],
+     [
+      745,
+      71,
+      334
+     ],
+     [
+      749,
+      71,
+      333
+     ],
+     [
+      753,
+      71,
+      333
+     ],
+     [
+      757,
+      71,
+      329
+     ],
+     [
+      761,
+      71,
+      327
+     ],
+     [
+      766,
+      71,
+      325
+     ],
+     [
+      768,
+      70,
+      320
+     ],
+     [
+      771,
+      71,
+      317
+     ],
+     [
+      775,
+      71,
+      316
+     ],
+     [
+      779,
+      71,
+      312
+     ],
+     [
+      781,
+      70,
+      307
+     ],
+     [
+      786,
+      71,
+      307
+     ],
+     [
+      791,
+      71,
+      307
+     ],
+     [
+      795,
+      71,
+      304
+     ],
+     [
+      798,
+      71,
+      300
+     ],
+     [
+      800,
+      71,
+      295
+     ],
+     [
+      805,
+      70,
+      294
+     ],
+     [
+      809,
+      70,
+      291
+     ],
+     [
+      812,
+      69,
+      288
+     ]
+    ],
+    "parkour_start": [
+     605,
+     68,
+     439
+    ],
+    "boss": {
+     "center": [
+      860,
+      67,
+      250
+     ],
+     "radius": 30,
+     "chest": [
+      860,
+      67,
+      224
+     ]
+    }
+   }
+  }
+ ]
+}
