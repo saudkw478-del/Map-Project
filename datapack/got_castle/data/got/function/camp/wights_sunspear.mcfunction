@@ -1,0 +1,9 @@
+scoreboard players set #wt_sunspear got_g 1
+summon minecraft:zombie 464 64 1265 {Tags:["got_wight"],PersistenceRequired:1b}
+summon minecraft:zombie 476 64 1265 {Tags:["got_wight"],PersistenceRequired:1b}
+summon minecraft:zombie 458 64 1269 {Tags:["got_wight"],PersistenceRequired:1b}
+summon minecraft:zombie 482 64 1269 {Tags:["got_wight"],PersistenceRequired:1b}
+summon minecraft:zombie 470 64 1261 {Tags:["got_wight"],PersistenceRequired:1b}
+summon minecraft:zombie 452 64 1263 {Tags:["got_wight"],PersistenceRequired:1b}
+summon minecraft:zombie 488 64 1263 {Tags:["got_wight"],PersistenceRequired:1b}
+summon minecraft:zombie 466 64 1271 {Tags:["got_wight"],PersistenceRequired:1b}

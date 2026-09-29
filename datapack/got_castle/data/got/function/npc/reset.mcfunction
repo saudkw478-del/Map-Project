@@ -1,12 +1,12 @@
 kill @e[tag=got_npc]
+kill @e[type=minecraft:marker,tag=got_warm]
 scoreboard players reset #npc_white_harbor got_g
 scoreboard players reset #npc_lannisport got_g
 scoreboard players reset #npc_oldtown got_g
 scoreboard players reset #npc_gulltown got_g
 scoreboard players reset #npc_kingsroad_inn_1 got_g
-scoreboard players reset #npc_kingsroad_inn_2 got_g
 scoreboard players reset #npc_winter_town got_g
-scoreboard players reset #npc_crossroads got_g
+scoreboard players reset #npc_kl_city got_g
 scoreboard players reset #npc_castle_black got_g
 scoreboard players reset #npc_winterfell got_g
 scoreboard players reset #npc_riverrun got_g

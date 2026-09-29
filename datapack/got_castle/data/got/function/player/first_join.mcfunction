@@ -1,9 +1,11 @@
 tag @s add got_seen
 tp @s 270.5 64 378.5
-tellraw @s {"text": "Winter is coming.", "color": "aqua", "bold": true}
-tellraw @s {"text": "You stand in Winterfell, seat of House Stark. The realm of Westeros lies before you:", "color": "white"}
-tellraw @s {"text": "the Wall in the north, the Iron Throne in King's Landing, and the sun-scorched land of Dorne far in the south.", "color": "white"}
-tellraw @s {"text": "Conquer each great castle in battle - and when the Night King comes, hold Winterfell.", "color": "yellow"}
-tellraw @s {"text": "Type /trigger got_go to travel, /trigger got_battle to fight, /trigger got_kit for gear.", "color": "green"}
+tellraw @s {"text": "\u0627\u0644\u0634\u062a\u0627\u0621 \u0642\u0627\u062f\u0645.", "color": "aqua", "bold": true}
+tellraw @s {"text": "\u0623\u0646\u062a \u0641\u064a \u0648\u064a\u0646\u062a\u0631\u0641\u064a\u0644\u060c \u0642\u0644\u0639\u0629 \u0622\u0644 \u0633\u062a\u0627\u0631\u0643. \u0645\u0645\u0627\u0644\u0643 \u0648\u0633\u062a\u064a\u0631\u0648\u0633 \u0623\u0645\u0627\u0645\u0643: \u0627\u0644\u062c\u062f\u0627\u0631 \u0641\u064a \u0627\u0644\u0634\u0645\u0627\u0644 \u0648\u0627\u0644\u0639\u0631\u0634 \u0627\u0644\u062d\u062f\u064a\u062f\u064a \u0641\u064a \u0643\u064a\u0646\u063a\u0632 \u0644\u0627\u0646\u062f\u064a\u0646\u063a \u0648\u0635\u062d\u0631\u0627\u0621 \u062f\u0648\u0631\u0646 \u0641\u064a \u0627\u0644\u062c\u0646\u0648\u0628.", "color": "white"}
+tellraw @s {"text": "\u062e\u0644\u0641\u064e \u0627\u0644\u062c\u062f\u0627\u0631 \u064a\u062a\u062d\u0631\u0643 \u0627\u0644\u0645\u0648\u062a\u0649\u060c \u0648\u0644\u0646 \u064a\u062a\u0648\u0642\u0641 \u0627\u0644\u0644\u064a\u0644 \u0627\u0644\u0637\u0648\u064a\u0644. \u0627\u062c\u0645\u0639 \u0627\u0644\u0645\u0645\u0627\u0644\u0643 \u0648\u0627\u0645\u0646\u0639 \u0633\u0642\u0648\u0637 \u0627\u0644\u0642\u0644\u0627\u0639 \u0642\u0628\u0644 \u0623\u0646 \u064a\u062d\u0644\u0651 \u0627\u0644\u0638\u0644\u0627\u0645.", "color": "yellow"}
+tellraw @s [{"text": "\u0661) \u0627\u062e\u062a\u0631 \u0628\u064a\u062a\u0643: ", "color": "green", "bold": true}, {"text": "/trigger got_house", "color": "white"}]
+tellraw @s [{"text": "\u0662) \u0627\u0628\u062f\u0623 \u0627\u0644\u062d\u0645\u0644\u0629: ", "color": "green", "bold": true}, {"text": "/trigger got_start", "color": "white"}]
+tellraw @s [{"text": "\u0663) \u0644\u0644\u0645\u0633\u0627\u0639\u062f\u0629 \u0648\u0627\u0644\u0648\u0636\u0639: ", "color": "green", "bold": true}, {"text": "/trigger got_quest", "color": "white"}]
 function got:kit/give
 function got:kit/give_travel
+scoreboard players set @s got_gold 20

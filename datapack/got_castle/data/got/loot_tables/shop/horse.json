@@ -1,0 +1,38 @@
+{
+ "type": "minecraft:chest",
+ "pools": [
+  {
+   "rolls": 1,
+   "entries": [
+    {
+     "type": "minecraft:item",
+     "name": "minecraft:saddle"
+    }
+   ]
+  },
+  {
+   "rolls": 1,
+   "entries": [
+    {
+     "type": "minecraft:item",
+     "name": "minecraft:horse_spawn_egg"
+    }
+   ]
+  },
+  {
+   "rolls": 1,
+   "entries": [
+    {
+     "type": "minecraft:item",
+     "name": "minecraft:golden_carrot",
+     "functions": [
+      {
+       "function": "minecraft:set_count",
+       "count": 16
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

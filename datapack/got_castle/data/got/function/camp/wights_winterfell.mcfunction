@@ -1,0 +1,9 @@
+scoreboard players set #wt_winterfell got_g 1
+summon minecraft:zombie 264 64 380 {Tags:["got_wight"],PersistenceRequired:1b}
+summon minecraft:zombie 276 64 380 {Tags:["got_wight"],PersistenceRequired:1b}
+summon minecraft:zombie 258 64 384 {Tags:["got_wight"],PersistenceRequired:1b}
+summon minecraft:zombie 282 64 384 {Tags:["got_wight"],PersistenceRequired:1b}
+summon minecraft:zombie 270 64 376 {Tags:["got_wight"],PersistenceRequired:1b}
+summon minecraft:zombie 252 64 378 {Tags:["got_wight"],PersistenceRequired:1b}
+summon minecraft:zombie 288 64 378 {Tags:["got_wight"],PersistenceRequired:1b}
+summon minecraft:zombie 266 64 386 {Tags:["got_wight"],PersistenceRequired:1b}

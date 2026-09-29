@@ -1,0 +1,39 @@
+{
+ "type": "minecraft:chest",
+ "pools": [
+  {
+   "rolls": 1,
+   "entries": [
+    {
+     "type": "minecraft:item",
+     "name": "minecraft:diamond_sword",
+     "functions": [
+      {
+       "function": "minecraft:set_name",
+       "name": {
+        "text": "\u0633\u064a\u0641 \u0627\u0644\u0641\u0627\u0631\u0633 \u0627\u0644\u0645\u062d\u0627\u0631\u0628",
+        "color": "aqua",
+        "italic": false
+       }
+      },
+      {
+       "function": "minecraft:set_enchantments",
+       "enchantments": {
+        "minecraft:sharpness": 5,
+        "minecraft:fire_aspect": 1,
+        "minecraft:looting": 2,
+        "minecraft:unbreaking": 3
+       }
+      },
+      {
+       "function": "minecraft:set_components",
+       "components": {
+        "minecraft:unbreakable": {}
+       }
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

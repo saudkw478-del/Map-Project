@@ -27,6 +27,20 @@ PLAIN, BRICKS, PLANKS, LOG, GRASS, LEAVES, WATER, GLASS, BARS, LADDER, SMALLLIGH
 
 RULES = [  # substring, rgb, kind, emit light
     ("water", (48, 84, 210), WATER, 0),
+    ("white_terracotta", (209, 178, 161), ROOF, 0),
+    ("light_gray_terracotta", (135, 106, 97), ROOF, 0),
+    ("farmland", (110, 75, 45), PLAIN, 0),
+    ("bone_block", (225, 221, 199), PLAIN, 0),
+    ("magma_block", (140, 50, 20), PLAIN, 6),
+    ("obsidian", (20, 16, 32), PLAIN, 0),
+    ("gold_ore", (150, 140, 95), STONE, 0),
+    ("raw_gold_block", (215, 175, 50), PLAIN, 0),
+    ("gold_block", (250, 220, 70), PLAIN, 0),
+    ("smooth_stone", (165, 165, 165), PLAIN, 0),
+    ("barrel", (140, 100, 55), PLANKS, 0),
+    ("cactus", (30, 110, 40), PLAIN, 0),
+    ("jungle_log", (110, 80, 50), LOG, 0),
+    ("acacia_log", (120, 110, 100), LOG, 0),
     ("glass", (180, 200, 220), GLASS, 0),
     ("iron_bars", (170, 172, 175), BARS, 0),
     ("ladder", (140, 104, 60), LADDER, 0),
@@ -113,7 +127,9 @@ def classify(name):
     return ((h >> 16) & 255 // 1 | 60, (h >> 8) & 255 | 60, h & 255 | 60), PLAIN, 0
 
 
-PLANTS = {"poppy", "dandelion", "azure_bluet", "oxeye_daisy", "allium", "grass", "short_grass", "fern", "dead_bush"}
+PLANTS = {"poppy", "dandelion", "azure_bluet", "oxeye_daisy", "allium", "grass", "short_grass", "fern", "dead_bush", "tall_grass",
+          "large_fern", "peony", "rose_bush", "lilac", "cornflower", "red_tulip", "pink_tulip", "wheat", "carrots", "cobweb",
+          "skeleton_skull", "wither_rose", "lava_dummy"}
 
 
 class Grid:
@@ -214,6 +230,9 @@ def prepare(G):
         if short.endswith("_carpet"):
             remap[i] = 0
             carpet_ids[i] = c
+        if short == "snow":
+            remap[i] = 0
+            carpet_ids[i] = (246, 249, 252)
     solid[0] = 0
     g = G.g
     # carpets: recolour the block below (top surface reads as carpet)

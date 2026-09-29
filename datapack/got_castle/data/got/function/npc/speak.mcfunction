@@ -1,3 +1,4 @@
+execute if entity @s[tag=got_impostor] run return run function got:npc/say_impostor
 execute if entity @s[tag=got_h_watch] run function got:npc/say_watch
 execute if entity @s[tag=got_h_north] run function got:npc/say_north
 execute if entity @s[tag=got_h_river] run function got:npc/say_river

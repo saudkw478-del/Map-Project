@@ -11,7 +11,7 @@
       {
        "function": "minecraft:set_name",
        "name": {
-        "text": "Valyrian Steel Longsword",
+        "text": "\u0633\u064a\u0641 \u0627\u0644\u0641\u0648\u0644\u0627\u0630 \u0627\u0644\u0641\u0627\u0644\u064a\u0631\u064a",
         "color": "aqua",
         "italic": false
        }
@@ -44,7 +44,7 @@
       {
        "function": "minecraft:set_name",
        "name": {
-        "text": "Dragonglass Bow",
+        "text": "\u0642\u0648\u0633 \u0627\u0644\u0632\u062c\u0627\u062c \u0627\u0644\u062a\u0646\u064a\u0646\u064a",
         "color": "dark_purple",
         "italic": false
        }
@@ -78,7 +78,7 @@
       {
        "function": "minecraft:set_name",
        "name": {
-        "text": "Scorpion Crossbow",
+        "text": "\u0627\u0644\u0639\u0642\u0631\u0628 - \u0646\u0634\u0651\u0627\u0628\u0629",
         "color": "gold",
         "italic": false
        }

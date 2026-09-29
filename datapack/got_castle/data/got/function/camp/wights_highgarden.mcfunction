@@ -1,0 +1,9 @@
+scoreboard players set #wt_highgarden got_g 1
+summon minecraft:zombie 209 64 1060 {Tags:["got_wight"],PersistenceRequired:1b}
+summon minecraft:zombie 221 64 1060 {Tags:["got_wight"],PersistenceRequired:1b}
+summon minecraft:zombie 203 64 1064 {Tags:["got_wight"],PersistenceRequired:1b}
+summon minecraft:zombie 227 64 1064 {Tags:["got_wight"],PersistenceRequired:1b}
+summon minecraft:zombie 215 64 1056 {Tags:["got_wight"],PersistenceRequired:1b}
+summon minecraft:zombie 197 64 1058 {Tags:["got_wight"],PersistenceRequired:1b}
+summon minecraft:zombie 233 64 1058 {Tags:["got_wight"],PersistenceRequired:1b}
+summon minecraft:zombie 211 64 1066 {Tags:["got_wight"],PersistenceRequired:1b}

@@ -1,0 +1,9 @@
+scoreboard players set #wt_castle_black got_g 1
+summon minecraft:zombie 244 64 266 {Tags:["got_wight"],PersistenceRequired:1b}
+summon minecraft:zombie 256 64 266 {Tags:["got_wight"],PersistenceRequired:1b}
+summon minecraft:zombie 238 64 270 {Tags:["got_wight"],PersistenceRequired:1b}
+summon minecraft:zombie 262 64 270 {Tags:["got_wight"],PersistenceRequired:1b}
+summon minecraft:zombie 250 64 262 {Tags:["got_wight"],PersistenceRequired:1b}
+summon minecraft:zombie 232 64 264 {Tags:["got_wight"],PersistenceRequired:1b}
+summon minecraft:zombie 268 64 264 {Tags:["got_wight"],PersistenceRequired:1b}
+summon minecraft:zombie 246 64 272 {Tags:["got_wight"],PersistenceRequired:1b}

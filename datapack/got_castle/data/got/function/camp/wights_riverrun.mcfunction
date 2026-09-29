@@ -1,0 +1,9 @@
+scoreboard players set #wt_riverrun got_g 1
+summon minecraft:zombie 209 64 750 {Tags:["got_wight"],PersistenceRequired:1b}
+summon minecraft:zombie 221 64 750 {Tags:["got_wight"],PersistenceRequired:1b}
+summon minecraft:zombie 203 64 754 {Tags:["got_wight"],PersistenceRequired:1b}
+summon minecraft:zombie 227 64 754 {Tags:["got_wight"],PersistenceRequired:1b}
+summon minecraft:zombie 215 64 746 {Tags:["got_wight"],PersistenceRequired:1b}
+summon minecraft:zombie 197 64 748 {Tags:["got_wight"],PersistenceRequired:1b}
+summon minecraft:zombie 233 64 748 {Tags:["got_wight"],PersistenceRequired:1b}
+summon minecraft:zombie 211 64 756 {Tags:["got_wight"],PersistenceRequired:1b}

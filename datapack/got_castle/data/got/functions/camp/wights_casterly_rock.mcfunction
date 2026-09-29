@@ -1,0 +1,9 @@
+scoreboard players set #wt_casterly_rock got_g 1
+summon minecraft:zombie 134 64 830 {Tags:["got_wight"],PersistenceRequired:1b}
+summon minecraft:zombie 146 64 830 {Tags:["got_wight"],PersistenceRequired:1b}
+summon minecraft:zombie 128 64 834 {Tags:["got_wight"],PersistenceRequired:1b}
+summon minecraft:zombie 152 64 834 {Tags:["got_wight"],PersistenceRequired:1b}
+summon minecraft:zombie 140 64 826 {Tags:["got_wight"],PersistenceRequired:1b}
+summon minecraft:zombie 122 64 828 {Tags:["got_wight"],PersistenceRequired:1b}
+summon minecraft:zombie 158 64 828 {Tags:["got_wight"],PersistenceRequired:1b}
+summon minecraft:zombie 136 64 836 {Tags:["got_wight"],PersistenceRequired:1b}

@@ -1,8 +1,7 @@
 scoreboard players add #wave got_g 1
-scoreboard players operation Wave got_g = #wave got_g
+scoreboard players set #state got_g 1
 scoreboard players operation #gear got_g = #wave got_g
 scoreboard players operation #gear got_g += #base got_g
-scoreboard players set #state got_g 1
 execute if score #theme got_g matches 1 if score #wave got_g matches 1 run function got:wave/wildlings_1
 execute if score #theme got_g matches 1 if score #wave got_g matches 2 run function got:wave/wildlings_2
 execute if score #theme got_g matches 1 if score #wave got_g matches 3 run function got:wave/wildlings_3

@@ -49,3 +49,4 @@ execute if score #players got_g matches 7.. run summon minecraft:zombie ~15 ~ ~6
 execute if score #players got_g matches 7.. run summon minecraft:zombie ~21 ~ ~56 {Tags:["got_enemy","got_new"],PersistenceRequired:1b}
 execute if score #players got_g matches 8.. run summon minecraft:zombie ~27 ~ ~60 {Tags:["got_enemy","got_new"],PersistenceRequired:1b}
 execute if score #players got_g matches 8.. run summon minecraft:zombie ~-27 ~ ~56 {Tags:["got_enemy","got_new"],PersistenceRequired:1b}
+execute if score #fallen got_g matches 1.. run function got:wave/bonus

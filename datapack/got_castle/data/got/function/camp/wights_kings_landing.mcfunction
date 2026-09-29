@@ -1,0 +1,9 @@
+scoreboard players set #wt_kings_landing got_g 1
+summon minecraft:zombie 399 64 910 {Tags:["got_wight"],PersistenceRequired:1b}
+summon minecraft:zombie 411 64 910 {Tags:["got_wight"],PersistenceRequired:1b}
+summon minecraft:zombie 393 64 914 {Tags:["got_wight"],PersistenceRequired:1b}
+summon minecraft:zombie 417 64 914 {Tags:["got_wight"],PersistenceRequired:1b}
+summon minecraft:zombie 405 64 906 {Tags:["got_wight"],PersistenceRequired:1b}
+summon minecraft:zombie 387 64 908 {Tags:["got_wight"],PersistenceRequired:1b}
+summon minecraft:zombie 423 64 908 {Tags:["got_wight"],PersistenceRequired:1b}
+summon minecraft:zombie 401 64 916 {Tags:["got_wight"],PersistenceRequired:1b}

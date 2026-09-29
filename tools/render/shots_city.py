@@ -1,0 +1,12 @@
+from shots_common import *
+S = vr.Scene(370, 870, 170)
+save = lambda im, n: im.save(f"{OUT}/{n}.png")
+save(S.shot(262.5, 118, 870.5, 270, 26, maxd=260, fov=80), "20_kl_city_aerial")
+save(S.shot(262.5, 64, 870.5, 270, 2, maxd=260, fov=80), "21_kl_main_avenue")
+y, p = look_at(300.5, 64, 815, 300, 75, 850)
+save(S.shot(300.5, 64, 815.5, y, p, maxd=120, fov=80), "22_great_sept")
+save(S.shot(400.5, 150, 790.5, 0, 42, maxd=300, fov=85), "24_kl_from_north")
+S = vr.Scene(340, 750, 170)
+save(S.shot(340.5, 130, 690.5, 0, 30, maxd=300, fov=85), "25_harrenhal_aerial")
+S = vr.Scene(270, 350, 170)
+save(S.shot(150.5, 120, 350.5, 270-180, 25, maxd=300, fov=85), "26_winterfell_snow")

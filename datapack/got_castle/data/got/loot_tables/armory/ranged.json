@@ -11,7 +11,7 @@
       {
        "function": "minecraft:set_name",
        "name": {
-        "text": "Longbow of the North",
+        "text": "\u0642\u0648\u0633 \u0627\u0644\u0634\u0645\u0627\u0644 \u0627\u0644\u0637\u0648\u064a\u0644",
         "color": "green",
         "italic": false
        }
@@ -44,7 +44,7 @@
       {
        "function": "minecraft:set_name",
        "name": {
-        "text": "Heavy Crossbow",
+        "text": "\u0646\u0634\u0651\u0627\u0628\u0629 \u062b\u0642\u064a\u0644\u0629",
         "color": "gold",
         "italic": false
        }
@@ -76,7 +76,7 @@
       {
        "function": "minecraft:set_name",
        "name": {
-        "text": "Kraken Spear",
+        "text": "\u0631\u0645\u062d \u0627\u0644\u0643\u0631\u0627\u0643\u0646",
         "color": "dark_aqua",
         "italic": false
        }

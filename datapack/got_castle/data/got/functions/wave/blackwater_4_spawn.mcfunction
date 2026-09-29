@@ -49,3 +49,4 @@ execute if score #players got_g matches 5.. run summon minecraft:wither_skeleton
 execute if score #players got_g matches 6.. run summon minecraft:wither_skeleton ~21 ~ ~56 {Tags:["got_enemy","got_new"],PersistenceRequired:1b}
 execute if score #players got_g matches 7.. run summon minecraft:wither_skeleton ~27 ~ ~60 {Tags:["got_enemy","got_new"],PersistenceRequired:1b}
 execute if score #players got_g matches 8.. run summon minecraft:wither_skeleton ~-27 ~ ~56 {Tags:["got_enemy","got_new"],PersistenceRequired:1b}
+execute if score #fallen got_g matches 1.. run function got:wave/bonus

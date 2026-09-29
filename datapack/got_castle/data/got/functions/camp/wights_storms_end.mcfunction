@@ -1,0 +1,9 @@
+scoreboard players set #wt_storms_end got_g 1
+summon minecraft:zombie 474 64 1035 {Tags:["got_wight"],PersistenceRequired:1b}
+summon minecraft:zombie 486 64 1035 {Tags:["got_wight"],PersistenceRequired:1b}
+summon minecraft:zombie 468 64 1039 {Tags:["got_wight"],PersistenceRequired:1b}
+summon minecraft:zombie 492 64 1039 {Tags:["got_wight"],PersistenceRequired:1b}
+summon minecraft:zombie 480 64 1031 {Tags:["got_wight"],PersistenceRequired:1b}
+summon minecraft:zombie 462 64 1033 {Tags:["got_wight"],PersistenceRequired:1b}
+summon minecraft:zombie 498 64 1033 {Tags:["got_wight"],PersistenceRequired:1b}
+summon minecraft:zombie 476 64 1041 {Tags:["got_wight"],PersistenceRequired:1b}

@@ -18,6 +18,7 @@ BASE2 = "deepslate_bricks"
 SLAB = "stone_brick_slab[type=bottom]"
 HOUSE1, HOUSE2 = "red", "black"
 THRONE = True
+TREE = "oak"      # courtyard tree: weirwood | oak | palm | none
 
 CLEAR_H = 46
 
@@ -36,12 +37,14 @@ PALETTES = {
 }
 
 
-def set_palette(name, banners=("red", "black"), throne=True):
+def set_palette(name, banners=("red", "black"), throne=True, tree=None):
     g = globals()
     stone, base, trim, roof, wall, stairs, chisel, base2, dark = PALETTES[name]
     g.update(STONE=stone, COBB=base, POL=trim, PLANK=roof, WALL=wall, STAIRS=stairs, CHISEL=chisel, BASE2=base2,
              BLACK=dark, SLAB=stairs.replace("_stairs", "_slab") + "[type=bottom]",
              HOUSE1=banners[0], HOUSE2=banners[1], THRONE=throne)
+    if tree:
+        g["TREE"] = tree
 
 
 def sgn(v):
@@ -398,31 +401,50 @@ def stage_courtyard():
     # ---- godswood (east) ----
     b.fill(24, -1, 12, 38, -1, 36, "grass_block")
     b.fill(26, -2, 26, 31, -1, 30, "water")
-    # weirwood: pale trunk with a carved face, spreading branches and a ragged red canopy
-    rnd = random.Random(21)
-    tx, tz = 33, 19                     # trunk centre (3x3 base)
-    b.fill(tx - 2, 0, tz - 2, tx + 2, 0, tz + 2, "birch_log[axis=y]")          # root flare
-    b.fill(tx - 1, 1, tz - 1, tx + 1, 9, tz + 1, "birch_log[axis=y]")
-    b.fill(tx, 10, tz, tx, 13, tz, "birch_log[axis=y]")
-    for (dx, dz, ln) in ((-1, 0, 4), (1, 0, 4), (0, -1, 4), (0, 1, 4)):
-        for k in range(2, 2 + ln):
-            b.set(tx + dx * k, 8 + k // 2, tz + dz * k, "birch_log[axis=%s]" % ("x" if dx else "z"))
-    # the face (south side): eyes, weeping red tears, mouth
-    for ex in (tx - 1, tx + 1):
-        b.set(ex, 6, tz + 2, "black_wool"); b.set(ex, 5, tz + 2, "red_wool"); b.set(ex, 4, tz + 2, "red_wool")
-    b.set(tx, 3, tz + 2, "black_wool"); b.set(tx, 2, tz + 2, "black_wool")
-    cx_, cy_, cz_ = tx, 13, tz
-    for x in range(cx_ - 8, cx_ + 9):
-        for y in range(cy_ - 4, cy_ + 5):
-            for z in range(cz_ - 8, cz_ + 9):
-                d = ((x - cx_) / 7.0) ** 2 + ((y - cy_) / 3.6) ** 2 + ((z - cz_) / 7.0) ** 2
-                if d < 1.0 and rnd.random() < (1.15 - d):
-                    b.set(x, y, z, "red_wool" if rnd.random() < 0.7 else "red_terracotta")
-    for _ in range(26):                # hanging strands of red leaves
-        x, z = rnd.randint(cx_ - 7, cx_ + 7), rnd.randint(cz_ - 7, cz_ + 7)
-        if ((x - cx_) / 7.0) ** 2 + ((z - cz_) / 7.0) ** 2 < 0.9:
-            for y in range(cy_ - 4, cy_ - 4 - rnd.randint(1, 3), -1):
-                b.set(x, y, z, "red_wool")
+    if TREE == "weirwood":
+        # weirwood: pale trunk with a carved face, spreading branches and a ragged red canopy
+        rnd = random.Random(21)
+        tx, tz = 33, 19                     # trunk centre (3x3 base)
+        b.fill(tx - 2, 0, tz - 2, tx + 2, 0, tz + 2, "birch_log[axis=y]")          # root flare
+        b.fill(tx - 1, 1, tz - 1, tx + 1, 9, tz + 1, "birch_log[axis=y]")
+        b.fill(tx, 10, tz, tx, 13, tz, "birch_log[axis=y]")
+        for (dx, dz, ln) in ((-1, 0, 4), (1, 0, 4), (0, -1, 4), (0, 1, 4)):
+            for k in range(2, 2 + ln):
+                b.set(tx + dx * k, 8 + k // 2, tz + dz * k, "birch_log[axis=%s]" % ("x" if dx else "z"))
+        # the face (south side): eyes, weeping red tears, mouth
+        for ex in (tx - 1, tx + 1):
+            b.set(ex, 6, tz + 2, "black_wool"); b.set(ex, 5, tz + 2, "red_wool"); b.set(ex, 4, tz + 2, "red_wool")
+        b.set(tx, 3, tz + 2, "black_wool"); b.set(tx, 2, tz + 2, "black_wool")
+        cx_, cy_, cz_ = tx, 13, tz
+        for x in range(cx_ - 8, cx_ + 9):
+            for y in range(cy_ - 4, cy_ + 5):
+                for z in range(cz_ - 8, cz_ + 9):
+                    d = ((x - cx_) / 7.0) ** 2 + ((y - cy_) / 3.6) ** 2 + ((z - cz_) / 7.0) ** 2
+                    if d < 1.0 and rnd.random() < (1.15 - d):
+                        b.set(x, y, z, "red_wool" if rnd.random() < 0.7 else "red_terracotta")
+        for _ in range(26):                # hanging strands of red leaves
+            x, z = rnd.randint(cx_ - 7, cx_ + 7), rnd.randint(cz_ - 7, cz_ + 7)
+            if ((x - cx_) / 7.0) ** 2 + ((z - cz_) / 7.0) ** 2 < 0.9:
+                for y in range(cy_ - 4, cy_ - 4 - rnd.randint(1, 3), -1):
+                    b.set(x, y, z, "red_wool")
+    elif TREE == "oak":
+        rnd = random.Random(5)
+        b.fill(33, 0, 19, 34, 9, 20, "oak_log[axis=y]")
+        for x in range(27, 41):
+            for y in range(8, 15):
+                for z in range(13, 27):
+                    d = ((x - 33.5) / 7) ** 2 + ((y - 11.5) / 3.6) ** 2 + ((z - 19.5) / 7) ** 2
+                    if d < 1 and rnd.random() < 1.1 - d:
+                        b.set(x, y, z, "oak_leaves[persistent=true]")
+        for (fx, fz) in ((30, 30), (36, 31), (28, 16), (39, 33), (25, 22)):
+            b.set(fx, 0, fz, rnd.choice(["poppy", "dandelion", "azure_bluet", "cornflower"]))
+    elif TREE == "palm":
+        for i, (px, pz) in enumerate(((30, 18), (36, 22), (32, 30), (38, 16))):
+            h = 7 + i % 3
+            b.fill(px, 0, pz, px, h, pz, "jungle_log[axis=y]")
+            for dx, dz in ((1, 0), (-1, 0), (0, 1), (0, -1), (2, 0), (-2, 0), (0, 2), (0, -2)):
+                b.set(px + dx, h, pz + dz, "jungle_leaves[persistent=true]")
+            b.set(px, h + 1, pz, "jungle_leaves[persistent=true]")
     # heart-tree pool
     # benches
     for x in (27, 30):

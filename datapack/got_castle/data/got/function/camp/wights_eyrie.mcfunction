@@ -1,0 +1,9 @@
+scoreboard players set #wt_eyrie got_g 1
+summon minecraft:zombie 494 124 720 {Tags:["got_wight"],PersistenceRequired:1b}
+summon minecraft:zombie 506 124 720 {Tags:["got_wight"],PersistenceRequired:1b}
+summon minecraft:zombie 488 124 724 {Tags:["got_wight"],PersistenceRequired:1b}
+summon minecraft:zombie 512 124 724 {Tags:["got_wight"],PersistenceRequired:1b}
+summon minecraft:zombie 500 124 716 {Tags:["got_wight"],PersistenceRequired:1b}
+summon minecraft:zombie 482 124 718 {Tags:["got_wight"],PersistenceRequired:1b}
+summon minecraft:zombie 518 124 718 {Tags:["got_wight"],PersistenceRequired:1b}
+summon minecraft:zombie 496 124 726 {Tags:["got_wight"],PersistenceRequired:1b}
