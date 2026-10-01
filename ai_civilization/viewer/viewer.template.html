@@ -1,0 +1,261 @@
+<title>مدينة الذكاء الاصطناعي الحية</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+Arabic:wght@400;500;600&family=Reem+Kufi:wght@500;700&display=swap">
+<style>
+/* Layout: one observer window. Left: living map with day/night. Right: two life cards + relationship. Below: scrubber and event feed. */
+:root {
+  --bg: #e6eee8;
+  --panel: #f5faf6;
+  --ink: #12231b;
+  --muted: #4d6558;
+  --line: #c3d3c8;
+  --land: #cfe0cf;
+  --land-alt: #c2d6c4;
+  --road: #e9dfc4;
+  --amber: #a8620f;
+  --a1: #17717f;
+  --a2: #b83a58;
+  --warn: #b3321e;
+  --night: 12, 20, 48;
+  --f-display: "Reem Kufi", "Noto Kufi Arabic", system-ui, sans-serif;
+  --f-body: "IBM Plex Sans Arabic", "Segoe UI", Tahoma, system-ui, sans-serif;
+  --f-mono: "IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0b1317; --panel: #131e24; --ink: #dce9e3; --muted: #8ea79b; --line: #26373e;
+    --land: #17302a; --land-alt: #1b3830; --road: #3a3a2c; --amber: #e3a640; --a1: #5cc9db; --a2: #ff7f98; --warn: #ff8a73;
+    --night: 4, 8, 24; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0b1317; --panel: #131e24; --ink: #dce9e3; --muted: #8ea79b; --line: #26373e;
+  --land: #17302a; --land-alt: #1b3830; --road: #3a3a2c; --amber: #e3a640; --a1: #5cc9db; --a2: #ff7f98; --warn: #ff8a73;
+  --night: 4, 8, 24; color-scheme: dark;
+}
+body { background: var(--bg); color: var(--ink); }
+.app { font-family: var(--f-body); max-width: 1120px; margin-inline: auto; padding-inline: 16px; padding-block: 20px 32px; display: grid; gap: 16px; }
+.top { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: 12px 24px; }
+h1 { font: 700 clamp(1.5rem, 4vw, 2.1rem)/1.15 var(--f-display); margin: 0; text-wrap: balance; }
+.sub { margin: 6px 0 0; color: var(--muted); font-size: .95rem; max-width: 52ch; }
+.clock { text-align: end; font-family: var(--f-mono); }
+.clock .day { font: 500 .9rem var(--f-body); color: var(--muted); }
+.clock .time { font-size: 2.1rem; font-weight: 500; color: var(--amber); line-height: 1.1; font-variant-numeric: tabular-nums; direction: ltr; display: inline-block; }
+.stage { display: grid; grid-template-columns: minmax(0, 1fr) 330px; gap: 16px; align-items: start; }
+@media (max-width: 860px) { .stage { grid-template-columns: minmax(0, 1fr); } }
+.map { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 8px; }
+canvas { display: block; width: 100%; aspect-ratio: 11 / 10; max-width: 100%; border-radius: 6px; }
+.side { display: grid; gap: 12px; min-width: 0; }
+.card { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; min-width: 0; }
+.who { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.who h2 { font: 700 1.25rem var(--f-display); margin: 0; display: flex; align-items: center; gap: 8px; }
+.dot { width: 12px; height: 12px; border-radius: 50%; background: var(--c); display: inline-block; }
+.what { color: var(--muted); font-size: .9rem; margin: 2px 0 10px; min-height: 1.4em; }
+.bars { display: grid; gap: 7px; }
+.bar { display: grid; grid-template-columns: 4.6rem 1fr 2.6rem; gap: 8px; align-items: center; font-size: .85rem; }
+.bar .tr { height: 7px; border-radius: 4px; background: var(--line); overflow: hidden; }
+.bar .fl { height: 100%; width: 0; background: var(--c); border-radius: 4px; }
+.bar.low .fl { background: var(--warn); }
+.bar .n, .num { font-family: var(--f-mono); font-variant-numeric: tabular-nums; text-align: end; direction: ltr; }
+.stats { display: flex; gap: 16px; margin-top: 10px; font-size: .85rem; color: var(--muted); flex-wrap: wrap; }
+.stats b { color: var(--ink); font-family: var(--f-mono); font-weight: 500; }
+.rel h3 { font: 600 .95rem var(--f-body); margin: 0 0 8px; }
+.relrow { display: flex; justify-content: space-between; font-size: .85rem; color: var(--muted); }
+.relbar { height: 8px; border-radius: 4px; background: var(--line); margin-block: 6px 10px; overflow: hidden; }
+.relbar i { display: block; height: 100%; width: 0; background: linear-gradient(90deg, var(--a1), var(--a2)); }
+.controls { display: flex; flex-wrap: wrap; gap: 10px 14px; align-items: center; background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 10px 14px; }
+button { font: 500 .9rem var(--f-body); color: var(--ink); background: transparent; border: 1px solid var(--line); border-radius: 8px; padding: 7px 14px; cursor: pointer; }
+button:hover { border-color: var(--amber); }
+button:focus-visible, input[type=range]:focus-visible { outline: 2px solid var(--amber); outline-offset: 2px; }
+button[aria-pressed="true"] { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+.seg { display: flex; gap: 6px; }
+.scrub { flex: 1 1 220px; min-width: 0; display: flex; align-items: center; gap: 10px; }
+.scrub input { flex: 1; min-width: 0; accent-color: var(--amber); }
+.feedwrap { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; }
+.feedwrap h3 { font: 700 1.05rem var(--f-display); margin: 0 0 8px; }
+ol.feed { list-style: none; margin: 0; padding: 0; display: grid; gap: 0; }
+ol.feed li { display: grid; grid-template-columns: 7.2rem 1fr; gap: 12px; padding: 6px 0; border-top: 1px solid var(--line); font-size: .92rem; }
+ol.feed li:first-child { border-top: 0; }
+ol.feed time { font-family: var(--f-mono); font-size: .8rem; color: var(--muted); direction: ltr; text-align: end; padding-top: 2px; }
+.note { color: var(--muted); font-size: .82rem; max-width: 70ch; line-height: 1.6; }
+@media (max-width: 480px) { ol.feed li { grid-template-columns: 1fr; gap: 0; } ol.feed time { text-align: start; } }
+</style>
+
+<div class="app" dir="rtl" lang="ar">
+  <header class="top">
+    <div>
+      <h1>مدينة الذكاء الاصطناعي الحية</h1>
+      <p class="sub">شخصان في عالم صغير. تراقبهم ولا تأمرهم: ينامون ويأكلون ويشتغلون ويتقابلون بحسب احتياجاتهم وطباعهم.</p>
+    </div>
+    <div class="clock" aria-live="off"><div class="day" id="day">اليوم 1</div><span class="time" id="time">06:00</span></div>
+  </header>
+
+  <section class="stage">
+    <div class="map"><canvas id="cv" role="img" aria-label="خريطة المدينة: بيتان وسوق ومزرعة وحديقة ومرعى، وشخصان يتنقلان بينها"></canvas></div>
+    <aside class="side">
+      <article class="card" id="c0"></article>
+      <article class="card" id="c1"></article>
+      <article class="card rel">
+        <h3 id="reltitle">العلاقة</h3>
+        <div class="relrow"><span>اللقاءات</span><span class="num" id="relmeet">0</span></div>
+        <div class="relrow"><span>الود بينهما</span><span class="num" id="relaff">0</span></div>
+        <div class="relbar"><i id="relbar"></i></div>
+        <div class="relrow" style="margin:0"><span>تتغير بحسب توافق الطباع، وما فيها نص مكتوب مسبقاً</span></div>
+      </article>
+    </aside>
+  </section>
+
+  <section class="controls" aria-label="التحكم بالزمن">
+    <button id="play" type="button" aria-pressed="true">إيقاف</button>
+    <div class="seg" role="group" aria-label="السرعة">
+      <button type="button" data-speed="1" aria-pressed="true">عادي</button>
+      <button type="button" data-speed="4" aria-pressed="false">سريع</button>
+      <button type="button" data-speed="16" aria-pressed="false">أسرع</button>
+    </div>
+    <label class="scrub"><span style="color:var(--muted);font-size:.85rem">الزمن</span><input id="scrub" type="range" min="0" value="0" step="1"></label>
+  </section>
+
+  <section class="feedwrap">
+    <h3>آخر ما حدث</h3>
+    <ol class="feed" id="feed"></ol>
+  </section>
+
+  <p class="note">هذا عرض لمحاكاة مسجلة مدتها <span id="ndays"></span> يوماً (seed <span id="seed"></span>). القرارات الحالية كلها بقواعد الكود وطباع كل شخص، والذكاء الاصطناعي ما دخل بعد وسيكتب الحوارات في المرحلة التالية. لو شغّلت المحاكاة بنفس الـ seed تطلع الأحداث نفسها بالضبط.</p>
+</div>
+
+<script>
+const D = /*__DATA__*/;
+(() => {
+  const root = document.documentElement;
+  const $ = id => document.getElementById(id);
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const STRIDE = 9, N = D.agents.length, samples = D.samples, STEP = D.step;
+  const maxT = samples[samples.length - 1][0];
+  const topicAr = { work: 'العمل', food: 'الأكل', weather: 'الجو', plans: 'الخطط', each_other: 'بعضهما', health: 'الصحة' };
+  const stateAr = { sleep: 'نائم', eat: 'يأكل', buy: 'يشتري أكل', work: 'يعمل في المزرعة', socialize: 'في الحديقة مع الناس', forage: 'يجمع طعاماً من المرعى', idle: 'يرتاح', travel: 'في الطريق' };
+  const locAr = { market: 'السوق', farm: 'المزرعة', park: 'الحديقة', meadow: 'المرعى', home_1: 'بيت ' + D.agents[0].name, home_2: 'بيت ' + (D.agents[1] ? D.agents[1].name : '') };
+  const g = (a, m, f) => (a.sex === 'F' ? f : m);
+  const locName = i => (i >= 0 ? locAr[D.locations[i].id] : '');
+  $('ndays').textContent = D.days; $('seed').textContent = D.seed;
+  $('reltitle').textContent = 'العلاقة بين ' + D.agents.map(a => a.name).join(' و');
+
+  // ---- cards ----
+  const colors = ['--a1', '--a2'];
+  const cards = D.agents.map((a, i) => {
+    const el = $('c' + i);
+    el.style.setProperty('--c', `var(${colors[i]})`);
+    el.innerHTML = `<div class="who"><h2><span class="dot"></span>${a.name}</h2></div><div class="what"></div>
+      <div class="bars">${['الشبع', 'الطاقة', 'الاجتماعي'].map(l => `<div class="bar"><span>${l}</span><div class="tr"><div class="fl"></div></div><span class="n">0</span></div>`).join('')}</div>
+      <div class="stats"><span>المال <b class="m">0</b></span><span>مخزون الأكل <b class="p">0</b></span></div>`;
+    return { what: el.querySelector('.what'), bars: [...el.querySelectorAll('.bar')], m: el.querySelector('.m'), p: el.querySelector('.p') };
+  });
+
+  // ---- time/state ----
+  let t = reduce ? 3 * 86400 + 3 * 3600 : 0, playing = !reduce, speed = 1, last = null, lastFeedKey = -1;
+  const hourOf = tt => (D.start_hour + tt / 3600) % 24;
+  function at(tt) {
+    tt = Math.max(0, Math.min(maxT - 1, tt));
+    const i = Math.min(Math.floor(tt / STEP), samples.length - 2), k = (tt - samples[i][0]) / STEP, a = samples[i], b = samples[i + 1];
+    return D.agents.map((ag, n) => {
+      const o = 1 + n * STRIDE, L = j => a[o + j] + (b[o + j] - a[o + j]) * k;
+      return { x: L(0), y: L(1), state: D.states[a[o + 2]], dest: a[o + 3], hunger: L(4), energy: L(5), social: L(6), money: a[o + 7], pantry: a[o + 8] };
+    });
+  }
+
+  // ---- map ----
+  const cv = $('cv'), ctx = cv.getContext('2d');
+  const roads = [['home_1', 'market'], ['market', 'park'], ['park', 'farm'], ['home_2', 'park'], ['park', 'meadow'], ['home_2', 'farm'], ['home_1', 'meadow']];
+  const idx = {}; D.locations.forEach((l, i) => (idx[l.id] = l));
+  let W = 0, H = 0, dpr = 1;
+  function resize() {
+    dpr = Math.min(2, devicePixelRatio || 1);
+    W = cv.clientWidth; H = cv.clientHeight;
+    cv.width = Math.round(W * dpr); cv.height = Math.round(H * dpr);
+  }
+  new ResizeObserver(resize).observe(cv); resize();
+  const css = () => { const s = getComputedStyle(root); return n => s.getPropertyValue(n).trim(); };
+  function draw(ags, tt) {
+    const c = css(), M = 1.1, cw = 10 + 2 * M, ch = 9 + 2 * M, sc = Math.min(W / cw, H / ch);
+    const ox = (W - 10 * sc) / 2, oy = (H - 9 * sc) / 2, X = x => ox + x * sc, Y = y => oy + y * sc;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.fillStyle = c('--land'); ctx.fillRect(0, 0, W, H);
+    ctx.fillStyle = c('--land-alt');
+    for (let i = 0; i < 26; i++) { const px = ((i * 53) % 97) / 97, py = ((i * 31 + 17) % 89) / 89; ctx.beginPath(); ctx.ellipse(px * W, py * H, sc * (0.7 + (i % 4) * 0.35), sc * (0.45 + (i % 3) * 0.25), (i % 5) * 0.6, 0, 7); ctx.fill(); }
+    ctx.strokeStyle = c('--road'); ctx.lineWidth = sc * 0.34; ctx.lineCap = 'round';
+    roads.forEach(([a, b]) => { ctx.beginPath(); ctx.moveTo(X(idx[a].x), Y(idx[a].y)); ctx.lineTo(X(idx[b].x), Y(idx[b].y)); ctx.stroke(); });
+    ctx.font = `600 ${Math.max(11, sc * 0.36)}px ${c('--f-body')}`; ctx.textAlign = 'center';
+    D.locations.forEach(l => {
+      const x = X(l.x), y = Y(l.y), r = sc * 0.5;
+      ctx.fillStyle = c('--panel'); ctx.strokeStyle = c('--line'); ctx.lineWidth = 1.5;
+      ctx.beginPath(); ctx.roundRect(x - r, y - r, 2 * r, 2 * r, r * 0.35); ctx.fill(); ctx.stroke();
+      ctx.fillStyle = c('--ink'); ctx.strokeStyle = c('--ink'); ctx.lineWidth = Math.max(1.5, sc * 0.07);
+      if (l.kind === 'home') { ctx.beginPath(); ctx.moveTo(x - r * .6, y + r * .1); ctx.lineTo(x, y - r * .55); ctx.lineTo(x + r * .6, y + r * .1); ctx.closePath(); ctx.stroke(); ctx.strokeRect(x - r * .4, y + r * .1, r * .8, r * .45); }
+      else if (l.kind === 'shop') { for (let i = -2; i <= 1; i++) { ctx.fillStyle = i % 2 ? c('--amber') : c('--ink'); ctx.fillRect(x + i * r * .3, y - r * .5, r * .3, r * .4); } ctx.strokeRect(x - r * .6, y - r * .1, r * 1.2, r * .6); }
+      else if (l.kind === 'work') { for (let i = -1; i <= 1; i++) { ctx.beginPath(); ctx.moveTo(x - r * .6, y + i * r * .3); ctx.lineTo(x + r * .6, y + i * r * .3); ctx.stroke(); } }
+      else if (l.kind === 'social') { ctx.beginPath(); ctx.arc(x, y - r * .1, r * .42, 0, 7); ctx.stroke(); ctx.beginPath(); ctx.moveTo(x, y + r * .3); ctx.lineTo(x, y + r * .6); ctx.stroke(); }
+      else { [[-.3, -.1], [.25, -.25], [0, .25], [.3, .2]].forEach(([dx, dy]) => { ctx.beginPath(); ctx.arc(x + dx * r, y + dy * r, r * .09, 0, 7); ctx.fill(); }); }
+      ctx.fillStyle = c('--ink'); ctx.fillText(locAr[l.id], x, y + r + sc * 0.42);
+    });
+    // agents
+    const here = {};
+    ags.forEach((a, i) => { const key = Math.round(a.x * 10) + ',' + Math.round(a.y * 10); (here[key] = here[key] || []).push(i); });
+    ags.forEach((a, i) => {
+      const key = Math.round(a.x * 10) + ',' + Math.round(a.y * 10), grp = here[key], off = grp.length > 1 ? (grp.indexOf(i) - 0.5) * sc * 0.75 : 0;
+      const x = X(a.x) + off, y = Y(a.y) - sc * 0.05, r = sc * 0.27;
+      ctx.fillStyle = c(colors[i]); ctx.beginPath(); ctx.arc(x, y, r, 0, 7); ctx.fill();
+      ctx.strokeStyle = c('--bg'); ctx.lineWidth = 2; ctx.stroke();
+      ctx.fillStyle = c('--ink'); ctx.font = `600 ${Math.max(11, sc * 0.34)}px ${c('--f-body')}`; ctx.fillText(D.agents[i].name, x, y - r - sc * 0.15 - (grp.length > 1 ? grp.indexOf(i) * sc * 0.38 : 0));
+      if (a.state === 'sleep') { ctx.fillStyle = c('--amber'); ctx.font = `700 ${sc * 0.4}px ${c('--f-mono')}`; ctx.fillText('z', x + r * 1.5, y - r * 0.6); }
+    });
+    if (N > 1 && ags[0].state === 'socialize' && ags[1].state === 'socialize' && Math.hypot(ags[0].x - ags[1].x, ags[0].y - ags[1].y) < 0.05) {
+      const x = X(ags[0].x), y = Y(ags[0].y) - sc * 1.15; ctx.fillStyle = c('--panel'); ctx.strokeStyle = c('--line'); ctx.lineWidth = 1.5;
+      ctx.beginPath(); ctx.roundRect(x - sc * 0.7, y - sc * 0.3, sc * 1.4, sc * 0.55, sc * 0.2); ctx.fill(); ctx.stroke();
+      ctx.fillStyle = c('--ink'); ctx.font = `600 ${Math.max(11, sc * 0.34)}px ${c('--f-body')}`; ctx.fillText('يتحدثان', x, y + sc * 0.1);
+    }
+    const h = hourOf(tt), d = h >= 21 || h < 5 ? 1 : h >= 19 ? (h - 19) / 2 : h < 7 ? (7 - h) / 2 : 0;
+    if (d > 0) { ctx.fillStyle = `rgba(${c('--night')}, ${0.58 * d})`; ctx.fillRect(0, 0, W, H); }
+  }
+
+  // ---- ui ----
+  const fmtT = tt => { const a = D.start_hour * 3600 + tt, day = Math.floor(a / 86400) + 1, hh = Math.floor((a % 86400) / 3600), mm = Math.floor((a % 3600) / 60); return [day, String(hh).padStart(2, '0') + ':' + String(mm).padStart(2, '0')]; };
+  const sentence = e => {
+    const [, type, ids, loc, det] = e, a = D.agents.find(x => x.id === ids[0]);
+    if (type === 'conversation') return `${D.agents.find(x => x.id === ids[0]).name} و${D.agents.find(x => x.id === ids[1]).name} تحدثا عن ${topicAr[det[0]]} في ${locName(loc)}`;
+    if (type === 'wage') return `${a.name} ${g(a, 'قبض', 'قبضت')} ${det} من المزرعة`;
+    if (type === 'purchase') return `${a.name} ${g(a, 'اشترى', 'اشترت')} ${det} من الأكل في السوق`;
+    const act = { eat: g(a, 'تناول وجبة', 'تناولت وجبة'), sleep: g(a, 'استيقظ', 'استيقظت'), work: g(a, 'أنهى دوام المزرعة', 'أنهت دوام المزرعة'), forage: g(a, 'جمع طعاماً من المرعى', 'جمعت طعاماً من المرعى') };
+    return act[det] ? `${a.name} ${act[det]}` : '';
+  };
+  const set = (el, v) => { if (el.textContent !== v) el.textContent = v; };
+  function ui(ags, tt) {
+    const [day, hm] = fmtT(tt); set($('day'), 'اليوم ' + day); set($('time'), hm);
+    ags.forEach((a, i) => {
+      const cd = cards[i];
+      set(cd.what, a.state === 'travel' ? 'في الطريق إلى ' + locName(a.dest) : stateAr[a.state]);
+      [a.hunger, a.energy, a.social].forEach((v, j) => { const b = cd.bars[j]; b.classList.toggle('low', v < 25); b.querySelector('.fl').style.width = v.toFixed(0) + '%'; set(b.querySelector('.n'), v.toFixed(0)); });
+      set(cd.m, String(a.money)); set(cd.p, String(a.pantry));
+    });
+    let n = 0; while (n < D.events.length && D.events[n][0] <= tt) n++;
+    if (n !== lastFeedKey) {
+      lastFeedKey = n; const items = D.events.slice(Math.max(0, n - 12), n).reverse();
+      $('feed').innerHTML = items.map(e => { const [dd, hh] = fmtT(e[0]); return `<li><time>اليوم ${dd} · ${hh}</time><span>${sentence(e)}</span></li>`; }).join('') || '<li><time></time><span>ما صار شي بعد، شغّل الزمن.</span></li>';
+      let meet = 0, aff = 0; for (let i = 0; i < n; i++) if (D.events[i][1] === 'conversation') { meet++; aff = D.events[i][4][1]; }
+      set($('relmeet'), String(meet)); set($('relaff'), aff.toFixed(1)); $('relbar').style.width = Math.max(2, Math.min(100, aff / 40 * 100)) + '%';
+    }
+    $('scrub').value = Math.round(tt / STEP);
+  }
+
+  function frame(now) {
+    if (last == null) last = now;
+    const dt = (now - last) / 1000; last = now;
+    if (playing) { t += dt * speed * 3600; if (t >= maxT - 1) { t = maxT - 1; setPlaying(false); } }
+    const ags = at(t); draw(ags, t); ui(ags, t); requestAnimationFrame(frame);
+  }
+  function setPlaying(p) { playing = p; $('play').textContent = p ? 'إيقاف' : 'تشغيل'; $('play').setAttribute('aria-pressed', String(p)); }
+  $('scrub').max = samples.length - 1;
+  $('play').addEventListener('click', () => { if (t >= maxT - 1) t = 0; setPlaying(!playing); });
+  document.querySelectorAll('[data-speed]').forEach(b => b.addEventListener('click', () => { speed = +b.dataset.speed; document.querySelectorAll('[data-speed]').forEach(x => x.setAttribute('aria-pressed', String(x === b))); }));
+  $('scrub').addEventListener('input', e => { t = +e.target.value * STEP; });
+  setPlaying(playing);
+  requestAnimationFrame(frame);
+})();
+</script>

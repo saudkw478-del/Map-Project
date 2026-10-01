@@ -23,3 +23,10 @@ cp config/llm.toml.example config/llm.toml
 export GROQ_API_KEY=...   GEMINI_API_KEY=...   # never commit keys
 ```
 Free-tier limits change often; check each provider's current limits.
+
+## Observer viewer
+```bash
+cd backend && python -m civ.cli.export_viz --days 14 --seed 1 --out ../viewer/run.json
+```
+`viewer/viewer.template.html` + `run.json` => `viewer/index.html` (self-contained playback of a recorded run:
+map, day/night, needs, relationship, event feed). Open `viewer/index.html` in a browser.
