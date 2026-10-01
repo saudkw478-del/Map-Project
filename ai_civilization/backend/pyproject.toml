@@ -1,0 +1,13 @@
+[project]
+name = "civ"
+version = "0.1.0"
+description = "AI Living Civilization - simulation engine (Phase 0)"
+requires-python = ">=3.11"
+dependencies = []
+
+[project.optional-dependencies]
+dev = ["pytest>=8"]
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]

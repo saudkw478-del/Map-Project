@@ -1,0 +1,35 @@
+# Copy to config/llm.toml and export the API keys as environment variables (never commit keys).
+# Free-tier limits change often -- check each provider's current limits page before relying on them.
+# Model names below are EXAMPLES; verify them against each provider's current model list.
+
+allow_fake = true            # append an offline fake provider so development never hard-fails
+
+[providers.groq]
+base_url = "https://api.groq.com/openai/v1"
+model = "llama-3.1-8b-instant"
+api_key_env = "GROQ_API_KEY"
+
+[providers.gemini]
+base_url = "https://generativelanguage.googleapis.com/v1beta/openai"
+model = "gemini-2.5-flash-lite"
+api_key_env = "GEMINI_API_KEY"
+
+[providers.openrouter]
+base_url = "https://openrouter.ai/api/v1"
+model = "meta-llama/llama-3.3-70b-instruct:free"
+api_key_env = "OPENROUTER_API_KEY"
+
+[providers.local]            # Ollama / llama.cpp / vLLM on your own machine
+base_url = "http://localhost:11434/v1"
+model = "qwen2.5:7b"
+
+[tiers]
+bulk      = ["groq", "gemini", "local"]          # chatter, small decisions, summaries
+important = ["gemini", "openrouter", "groq"]     # big life decisions (swap in a paid model later)
+
+[budget]
+global_daily = 2000
+[budget.per_provider_daily]
+groq = 1000
+gemini = 200
+openrouter = 40
