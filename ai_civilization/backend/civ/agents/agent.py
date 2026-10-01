@@ -20,6 +20,7 @@ class Agent:
     birth_time: float
     home: str
     workplace: str
+    job_title: str
     traits: dict
     needs: Needs
     rng: RNG

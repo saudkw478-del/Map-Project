@@ -5,6 +5,8 @@ Observer-only simulation of an AI-driven society. Design: [`docs/DESIGN.md`](doc
 ## Status
 - **Phase 0 (done):** deterministic discrete-event engine, lazy needs, utility-AI routines, work/money ledger,
   proximity meetings, append-only SQLite event log, replay digest. **No LLM used.**
+- **Town (done):** 64x40 tile town: 8 homes, library, cafe, market, bakery, gift shop, park, farm, two streets.
+  8 residents with jobs, personalities and daily routines (sleep, eat, work, coffee, read, browse, stroll, socialize).
 - **LLM Gateway (done, offline-tested only):** tiers, per-agent provider pinning, daily budgets, fallback, cache,
   OpenAI-compatible providers (Groq / Gemini / OpenRouter / local). Not yet tested against live APIs.
 
@@ -26,7 +28,7 @@ Free-tier limits change often; check each provider's current limits.
 
 ## Observer viewer
 ```bash
-cd backend && python -m civ.cli.export_viz --days 14 --seed 1 --out ../viewer/run.json
+cd backend && python -m civ.cli.export_viz --days 10 --seed 1 --out ../viewer/run.json
 ```
 `viewer/viewer.template.html` + `run.json` => `viewer/index.html` (self-contained playback of a recorded run:
 map, day/night, needs, relationship, event feed). Open `viewer/index.html` in a browser.

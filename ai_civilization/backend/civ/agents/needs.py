@@ -2,14 +2,14 @@
 Scale 0..100 where 100 = fully satisfied."""
 from civ.core.clock import HOUR
 
-NEED_NAMES = ("hunger", "energy", "social")
+NEED_NAMES = ("hunger", "energy", "social", "fun")
 
 # per simulated hour, by activity
-DEFAULT_RATES = {"hunger": -4.0, "energy": -5.0, "social": -2.0}
+DEFAULT_RATES = {"hunger": -4.0, "energy": -5.0, "social": -2.0, "fun": -1.5}
 ACTIVITY_RATES = {
-    "sleep": {"hunger": -2.0, "energy": +12.5, "social": -1.0},
-    "work": {"hunger": -4.5, "energy": -6.0, "social": -2.0},
-    "travel": {"hunger": -4.0, "energy": -5.5, "social": -2.0},
+    "sleep": {"hunger": -2.0, "energy": +12.5, "social": -1.0, "fun": -0.5},
+    "work": {"hunger": -4.5, "energy": -6.0, "social": -2.0, "fun": -2.0},
+    "travel": {"hunger": -4.0, "energy": -5.5, "social": -2.0, "fun": -1.0},
 }
 
 

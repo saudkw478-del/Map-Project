@@ -6,53 +6,65 @@ from civ.core.events import EventLog
 from civ.core.ledger import Ledger
 from civ.core.rng import RNG
 from civ.core.scheduler import Scheduler
-from civ.decision.utility import EAT_RESTORE, FOOD_PRICE, decide
+from civ.decision.utility import CHATTY, COFFEE_PRICE, EAT_RESTORE, FOOD_PRICE, GIFT_PRICE, PASTRY_PRICE, decide
 from civ.world.world import default_world
 
 WAGE = 40
-TREASURY_START = 10_000
+TREASURY_START = 20_000
+BILLS = 10                 # daily household cost paid to the town treasury
+SHOP_ACCOUNTS = ("market", "bakery", "cafe", "shop")
 START_MONEY = 120
 START_TIME = 6 * HOUR  # 06:00 on day 0
 
-MALE_NAMES = ["محمد", "أحمد", "خالد", "عبدالله", "سلمان", "يوسف"]
-FEMALE_NAMES = ["سارة", "نورة", "مريم", "هند", "ليلى", "فاطمة"]
-TOPICS = ["work", "food", "weather", "plans", "each_other", "health"]
+MALE_NAMES = ["خالد", "أحمد", "سلمان", "يوسف", "عبدالله", "فهد", "ناصر", "ماجد"]
+FEMALE_NAMES = ["ليلى", "سارة", "نورة", "مريم", "هند", "فاطمة", "دانة", "ريم"]
+TOPICS = ["work", "food", "weather", "plans", "each_other", "health", "books", "coffee", "town"]
+# (workplace location id, title, possible shift start hours)
+JOBS = [("market", "shopkeeper", (8, 9)), ("cafe", "barista", (7, 8)), ("library", "librarian", (9, 10)), ("farm", "farmer", (7, 8)),
+        ("bakery", "baker", (6, 7)), ("gift", "clerk", (9, 10)), ("farm", "farmer", (8, 9)), ("farm", "farmer", (7, 8))]
+SHOP_OF = {"buy": "market", "pastry": "bakery", "coffee": "cafe", "browse": "shop"}
 
 
 class Engine:
-    def __init__(self, seed: int = 1, db: str = ":memory:"):
+    def __init__(self, seed: int = 1, db: str = ":memory:", n_agents: int = 8):
         self.seed = seed
         self.rng = RNG(seed)
         self.clock = SimClock(START_TIME)
         self.log = EventLog(db)
-        self.world = default_world()
+        self.n_agents = n_agents
+        self.world = default_world(n_agents)
         self.ledger = Ledger()
         self.sched = Scheduler()
         self.agents: dict[int, Agent] = {}
         self.relations: dict[tuple[int, int], dict] = {}
         self.last_talk: dict[tuple[int, int], float] = {}
         self.ledger.open("treasury", TREASURY_START)
-        self.ledger.open("market", 0)
+        for acc in SHOP_ACCOUNTS:
+            self.ledger.open(acc, 0)
         self._bootstrap()
 
     # ---------- setup ----------
     def _bootstrap(self) -> None:
         r = self.rng.child("bootstrap")
-        for aid, (sex, names, home) in enumerate(
-            [("M", MALE_NAMES, "home_1"), ("F", FEMALE_NAMES, "home_2")], start=1
-        ):
+        males, females = list(MALE_NAMES), list(FEMALE_NAMES)
+        for aid in range(1, self.n_agents + 1):
+            sex = "M" if aid % 2 == 1 else "F"
+            pool = males if sex == "M" else females
+            name = pool.pop(int(r.random() * len(pool)))
             ar = self.rng.child(f"agent{aid}")
-            traits = {k: round(min(0.95, max(0.15, r.gauss(0.55, 0.22))), 3) for k in ("diligence", "sociability", "thrift")}
+            traits = {k: round(min(0.95, max(0.15, r.gauss(0.55, 0.22))), 3) for k in ("diligence", "sociability", "thrift", "curiosity", "sweet")}
+            place, title, shifts = JOBS[(aid - 1) % len(JOBS)]
+            home = f"home_{aid}"
             a = Agent(
-                id=aid, name=r.choice(names), sex=sex, birth_time=-25 * 365 * DAY, home=home, workplace="farm",
-                traits=traits, needs=Needs({"hunger": 80.0, "energy": 90.0, "social": 70.0}, START_TIME),
-                rng=ar, location=home, shift_start=r.choice([8, 9, 10]), wake_hour=r.choice([5, 6, 7]), pantry=3,
+                id=aid, name=name, sex=sex, birth_time=-int(r.uniform(22, 50)) * 365 * DAY, home=home, workplace=place, job_title=title,
+                traits=traits, needs=Needs({"hunger": r.uniform(60, 90), "energy": r.uniform(75, 100), "social": r.uniform(40, 80), "fun": r.uniform(40, 80)}, START_TIME),
+                rng=ar, location=home, shift_start=r.choice(list(shifts)), wake_hour=r.choice([5, 6, 7]), pantry=3,
             )
             self.agents[aid] = a
             self.ledger.open(a.account, 0)
             self.ledger.transfer("treasury", a.account, START_MONEY)
-            self.log.append(START_TIME, "agent_created", (aid,), home, {"name": a.name, "sex": sex, "traits": traits})
-            self.sched.push(START_TIME, "decide", {"id": aid})
+            self.log.append(START_TIME, "agent_created", (aid,), home, {"name": a.name, "sex": sex, "job": title, "traits": traits})
+            self.sched.push(START_TIME + aid * 60, "decide", {"id": aid})
         self.sched.push((day_index(START_TIME) + 1) * DAY, "daily", {})
 
     # ---------- helpers ----------
@@ -98,7 +110,7 @@ class Engine:
             a.location = "transit"
         else:
             a.location = step.location
-            if step.kind == "socialize":
+            if step.kind in CHATTY:
                 self._try_meet(a)
         self.sched.push(t + step.duration, "step_end", {"id": a.id, "token": a.token})
 
@@ -115,32 +127,58 @@ class Engine:
             self._finish_activity(a, step, t)
         self._next_step(a)
 
+    def _pay(self, a: Agent, shop_kind: str, price: int, item: str, qty: int, loc) -> bool:
+        if self.ledger.transfer(a.account, SHOP_OF[shop_kind], price):
+            self._emit("purchase", (a.id,), loc, {"item": item, "qty": qty, "cost": price})
+            return True
+        return False
+
     def _finish_activity(self, a: Agent, step: Step, t: float) -> None:
-        payload = {"kind": step.kind, "start": round(a.step_started, 3)}
-        if step.kind == "eat":
+        k = step.kind
+        payload = {"kind": k, "start": round(a.step_started, 3)}
+        if k == "eat":
             a.pantry -= 1
             a.needs.add("hunger", EAT_RESTORE)
-        elif step.kind == "buy":
+        elif k == "buy":
             qty = min(3, self.ledger.balance(a.account) // FOOD_PRICE)
-            if qty and self.ledger.transfer(a.account, "market", qty * FOOD_PRICE):
+            if qty and self._pay(a, "buy", qty * FOOD_PRICE, "food", qty, step.location):
                 a.pantry += qty
-                self._emit("purchase", (a.id,), step.location, {"item": "food", "qty": qty, "cost": qty * FOOD_PRICE})
-        elif step.kind == "forage":
+        elif k == "pastry":
+            if self._pay(a, "pastry", PASTRY_PRICE, "pastry", 1, step.location):
+                a.needs.add("hunger", 35.0)
+                a.needs.add("fun", 5.0)
+        elif k == "coffee":
+            if self._pay(a, "coffee", COFFEE_PRICE, "coffee", 1, step.location):
+                a.needs.add("hunger", 8.0)
+                a.needs.add("fun", 12.0)
+            if not a.talked_this_step:
+                a.needs.add("social", 6.0)
+        elif k == "browse":
+            if self._pay(a, "browse", GIFT_PRICE, "gift", 1, step.location):
+                a.needs.add("fun", 22.0)
+            else:
+                a.needs.add("fun", 6.0)
+        elif k == "read":
+            a.needs.add("fun", 30.0)
+        elif k == "stroll":
+            a.needs.add("fun", 10.0)
+            a.needs.add("social", 3.0)
+        elif k == "forage":
             if a.rng.chance(0.7):
                 a.pantry += 1
                 payload["found"] = 1
-        elif step.kind == "work":
+        elif k == "work":
             a.last_work_day = day_index(a.step_started)
             paid = WAGE if self.ledger.transfer("treasury", a.account, WAGE) else 0
-            self._emit("wage", (a.id,), step.location, {"amount": paid})
-        elif step.kind == "socialize" and not a.talked_this_step:
+            self._emit("wage", (a.id,), step.location, {"amount": paid, "job": a.job_title})
+        elif k == "socialize" and not a.talked_this_step:
             a.needs.add("social", 5.0)
         self._emit("activity", (a.id,), step.location, payload)
 
     def _try_meet(self, a: Agent) -> None:
         t = self.clock.now
         for o in self.agents.values():
-            if o.id == a.id or not o.alive or o.state != "socialize" or o.location != a.location:
+            if o.id == a.id or not o.alive or o.state not in CHATTY or o.location != a.location:
                 continue
             key = (min(a.id, o.id), max(a.id, o.id))
             if t - self.last_talk.get(key, -1e18) < 2 * HOUR:
@@ -160,13 +198,15 @@ class Engine:
 
     def _on_daily(self, data: dict) -> None:
         t = self.clock.now
-        bal = self.ledger.balance("market")
-        if bal > 0:
-            self.ledger.transfer("market", "treasury", bal)
-            self._emit("market_remit", (), "market", {"amount": bal})
+        for acc in SHOP_ACCOUNTS:
+            bal = self.ledger.balance(acc)
+            if bal > 0:
+                self.ledger.transfer(acc, "treasury", bal)
+                self._emit("market_remit", (), acc, {"amount": bal})
         for a in sorted(self.agents.values(), key=lambda x: x.id):
             if not a.alive:
                 continue
+            self.ledger.transfer(a.account, "treasury", min(BILLS, self.ledger.balance(a.account)))
             a.needs.settle(t)
             n = a.needs.values
             if n["hunger"] <= 5:
@@ -188,7 +228,7 @@ class Engine:
         for a in self.agents.values():
             out["agents"][a.id] = {
                 "name": a.name, "alive": a.alive, "health": round(a.health, 1), "money": self.ledger.balance(a.account),
-                "pantry": a.pantry, "needs": {n: round(a.needs.value(n, t), 1) for n in a.needs.values},
+                "pantry": a.pantry, "job": a.job_title, "needs": {n: round(a.needs.value(n, t), 1) for n in a.needs.values},
             }
         out["relations"] = {f"{k[0]}-{k[1]}": v for k, v in self.relations.items()}
         return out

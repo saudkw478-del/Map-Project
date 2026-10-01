@@ -1,35 +1,43 @@
 <title>مدينة الذكاء الاصطناعي الحية</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+Arabic:wght@400;500;600&family=Reem+Kufi:wght@500;700&display=swap">
 <style>
-/* Layout: a pixel-art town in a cut-away top-down view (map left, life cards right), time controls and event feed below. */
+/* Layout: pixel-art town (left) with residents roster, followed resident and dialogue (right); time controls and event feed below. */
 :root {
   --bg: #e6eee8; --panel: #f5faf6; --ink: #12231b; --muted: #4d6558; --line: #c3d3c8;
-  --amber: #a8620f; --a1: #17717f; --a2: #b83a58; --warn: #b3321e; --night: 12, 20, 48;
+  --amber: #a8620f; --warn: #b3321e; --accent: #17717f; --night: 12, 20, 48;
   --f-display: "Reem Kufi", "Noto Kufi Arabic", system-ui, sans-serif;
   --f-body: "IBM Plex Sans Arabic", "Segoe UI", Tahoma, system-ui, sans-serif;
   --f-mono: "IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
 }
 @media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) { --bg: #0b1317; --panel: #131e24; --ink: #dce9e3; --muted: #8ea79b; --line: #26373e; --amber: #e3a640; --a1: #5cc9db; --a2: #ff7f98; --warn: #ff8a73; --night: 4, 8, 24; color-scheme: dark; }
+  :root:not([data-theme="light"]) { --bg: #0b1317; --panel: #131e24; --ink: #dce9e3; --muted: #8ea79b; --line: #26373e; --amber: #e3a640; --warn: #ff8a73; --accent: #5cc9db; --night: 4, 8, 24; color-scheme: dark; }
 }
-:root[data-theme="dark"] { --bg: #0b1317; --panel: #131e24; --ink: #dce9e3; --muted: #8ea79b; --line: #26373e; --amber: #e3a640; --a1: #5cc9db; --a2: #ff7f98; --warn: #ff8a73; --night: 4, 8, 24; color-scheme: dark; }
+:root[data-theme="dark"] { --bg: #0b1317; --panel: #131e24; --ink: #dce9e3; --muted: #8ea79b; --line: #26373e; --amber: #e3a640; --warn: #ff8a73; --accent: #5cc9db; --night: 4, 8, 24; color-scheme: dark; }
 body { background: var(--bg); color: var(--ink); }
-.app { font-family: var(--f-body); max-width: 1180px; margin-inline: auto; padding-inline: 16px; padding-block: 20px 32px; display: grid; gap: 16px; }
+.app { font-family: var(--f-body); max-width: 1240px; margin-inline: auto; padding-inline: 16px; padding-block: 20px 32px; display: grid; gap: 16px; }
 .top { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: 12px 24px; }
 h1 { font: 700 clamp(1.5rem, 4vw, 2.1rem)/1.15 var(--f-display); margin: 0; text-wrap: balance; }
-.sub { margin: 6px 0 0; color: var(--muted); font-size: .95rem; max-width: 56ch; }
+.sub { margin: 6px 0 0; color: var(--muted); font-size: .95rem; max-width: 60ch; }
 .clock { text-align: end; }
 .clock .day { font-size: .9rem; color: var(--muted); }
 .clock .time { font: 500 2.1rem/1.1 var(--f-mono); color: var(--amber); font-variant-numeric: tabular-nums; direction: ltr; display: inline-block; }
-.stage { display: grid; grid-template-columns: minmax(0, 1fr) 320px; gap: 16px; align-items: start; }
-@media (max-width: 880px) { .stage { grid-template-columns: minmax(0, 1fr); } }
+.stage { display: grid; grid-template-columns: minmax(0, 1fr) 340px; gap: 16px; align-items: start; }
+@media (max-width: 920px) { .stage { grid-template-columns: minmax(0, 1fr); } }
 .map { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 6px; }
-canvas { display: block; width: 100%; aspect-ratio: 3 / 2; max-width: 100%; border-radius: 6px; }
+canvas { display: block; width: 100%; aspect-ratio: 8 / 5; max-width: 100%; border-radius: 6px; cursor: pointer; }
 .side { display: grid; gap: 12px; min-width: 0; }
 .card { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; min-width: 0; }
+.card h3 { font: 600 .95rem var(--f-body); margin: 0 0 8px; }
+.roster { display: grid; gap: 2px; }
+.roster button { display: grid; grid-template-columns: 12px 4.4rem 1fr; gap: 8px; align-items: center; text-align: start; border: 0; border-radius: 6px; padding: 5px 6px; font-size: .85rem; background: transparent; color: var(--ink); cursor: pointer; }
+.roster button:hover { background: var(--line); }
+.roster button[aria-pressed="true"] { background: var(--ink); color: var(--bg); }
+.roster .d { width: 12px; height: 12px; border-radius: 50%; background: var(--c); }
+.roster .a { color: var(--muted); font-size: .8rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.roster button[aria-pressed="true"] .a { color: inherit; opacity: .8; }
 .who h2 { font: 700 1.2rem var(--f-display); margin: 0; display: flex; align-items: center; gap: 8px; }
-.dot { width: 12px; height: 12px; border-radius: 50%; background: var(--c); display: inline-block; }
-.what { color: var(--muted); font-size: .9rem; margin: 2px 0 10px; min-height: 1.4em; }
+.who .job { color: var(--muted); font-size: .85rem; margin: 2px 0 2px; }
+.who .what { font-size: .92rem; margin: 0 0 10px; min-height: 1.4em; }
 .bars { display: grid; gap: 7px; }
 .bar { display: grid; grid-template-columns: 4.6rem 1fr 2.6rem; gap: 8px; align-items: center; font-size: .85rem; }
 .bar .tr { height: 7px; border-radius: 4px; background: var(--line); overflow: hidden; }
@@ -38,19 +46,16 @@ canvas { display: block; width: 100%; aspect-ratio: 3 / 2; max-width: 100%; bord
 .bar .n { font-family: var(--f-mono); font-variant-numeric: tabular-nums; text-align: end; direction: ltr; }
 .stats { display: flex; gap: 16px; margin-top: 10px; font-size: .85rem; color: var(--muted); flex-wrap: wrap; }
 .stats b { color: var(--ink); font-family: var(--f-mono); font-weight: 500; }
-.talk h3, .rel h3 { font: 600 .95rem var(--f-body); margin: 0 0 8px; }
-.talk .lines { display: grid; gap: 6px; font-size: .92rem; min-height: 4.2em; }
-.talk .lines b { color: var(--c); }
-.talk small, .rel small { color: var(--muted); font-size: .78rem; display: block; margin-top: 8px; }
-.relrow { display: flex; justify-content: space-between; font-size: .85rem; color: var(--muted); }
-.relrow span:last-child { font-family: var(--f-mono); color: var(--ink); direction: ltr; }
-.relbar { height: 8px; border-radius: 4px; background: var(--line); margin-block: 6px 4px; overflow: hidden; }
-.relbar i { display: block; height: 100%; width: 0; background: linear-gradient(90deg, var(--a1), var(--a2)); }
+.friends { margin-top: 10px; font-size: .85rem; color: var(--muted); }
+.friends b { color: var(--ink); font-weight: 600; }
+.lines { display: grid; gap: 6px; font-size: .92rem; min-height: 3.2em; }
+.lines b { color: var(--c); }
+.talk small { color: var(--muted); font-size: .78rem; display: block; margin-top: 8px; }
 .controls { display: flex; flex-wrap: wrap; gap: 10px 14px; align-items: center; background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 10px 14px; }
-button { font: 500 .9rem var(--f-body); color: var(--ink); background: transparent; border: 1px solid var(--line); border-radius: 8px; padding: 7px 14px; cursor: pointer; }
+.controls button, .seg button { font: 500 .9rem var(--f-body); color: var(--ink); background: transparent; border: 1px solid var(--line); border-radius: 8px; padding: 7px 14px; cursor: pointer; }
 button:hover { border-color: var(--amber); }
 button:focus-visible, input[type=range]:focus-visible { outline: 2px solid var(--amber); outline-offset: 2px; }
-button[aria-pressed="true"] { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+.controls button[aria-pressed="true"] { background: var(--ink); color: var(--bg); border-color: var(--ink); }
 .seg { display: flex; gap: 6px; }
 .scrub { flex: 1 1 220px; min-width: 0; display: flex; align-items: center; gap: 10px; }
 .scrub input { flex: 1; min-width: 0; accent-color: var(--amber); }
@@ -60,32 +65,25 @@ ol.feed { list-style: none; margin: 0; padding: 0; }
 ol.feed li { display: grid; grid-template-columns: 7.2rem 1fr; gap: 12px; padding: 6px 0; border-top: 1px solid var(--line); font-size: .92rem; }
 ol.feed li:first-child { border-top: 0; }
 ol.feed time { font: .8rem var(--f-mono); color: var(--muted); direction: ltr; text-align: end; padding-top: 2px; }
-.note { color: var(--muted); font-size: .82rem; max-width: 72ch; line-height: 1.6; }
-@media (max-width: 480px) { ol.feed li { grid-template-columns: 1fr; gap: 0; } ol.feed time { text-align: start; } }
+.note { color: var(--muted); font-size: .82rem; max-width: 74ch; line-height: 1.6; }
+@media (max-width: 480px) { ol.feed li { grid-template-columns: 1fr; gap: 0; } ol.feed time { text-align: start; } .roster button { grid-template-columns: 12px 3.6rem 1fr; } }
 </style>
 
 <div class="app" dir="rtl" lang="ar">
   <header class="top">
     <div>
       <h1>مدينة الذكاء الاصطناعي الحية</h1>
-      <p class="sub">شخصان في بلدة صغيرة. تراقبهم ولا تأمرهم: ينامون في بيوتهم ويأكلون ويشتغلون في المزرعة ويتقابلون في الحديقة بحسب احتياجاتهم وطباعهم.</p>
+      <p class="sub">بلدة صغيرة فيها بيوت ومقهى ومكتبة ومتاجر وحديقة ومزرعة. ثمانية سكان لكل واحد بيت ووظيفة وطباع، يتنقلون ويدخلون المباني ويجلسون ويتحدثون. تراقب ولا تأمر.</p>
     </div>
     <div class="clock"><div class="day" id="day">اليوم 1</div><span class="time" id="time">06:00</span></div>
   </header>
 
   <section class="stage">
-    <div class="map"><canvas id="cv" role="img" aria-label="بلدة بكسل من الأعلى: بيتان وسوق ومزرعة وحديقة ومرعى، وشخصان يمشون بينها"></canvas></div>
+    <div class="map"><canvas id="cv" role="img" aria-label="بلدة بكسل من الأعلى: ثمانية بيوت ومكتبة ومقهى وسوق ومخبز ومتجر هدايا وحديقة ومزرعة وشارعان، وسكان يتنقلون بينها"></canvas></div>
     <aside class="side">
-      <article class="card who" id="c0"></article>
-      <article class="card who" id="c1"></article>
-      <article class="card talk" id="talk"><h3>الحوار الحالي</h3><div class="lines" id="lines"></div><small>نص مؤقت من قوالب. الحوار الحقيقي يكتبه الذكاء الاصطناعي في المرحلة التالية، والذي يحدث فعلاً هو توقيت اللقاء والموضوع.</small></article>
-      <article class="card rel">
-        <h3 id="reltitle">العلاقة</h3>
-        <div class="relrow"><span>اللقاءات</span><span id="relmeet">0</span></div>
-        <div class="relrow"><span>الود بينهما</span><span id="relaff">0</span></div>
-        <div class="relbar"><i id="relbar"></i></div>
-        <small>تتغير بحسب توافق الطباع، وما فيها نص مكتوب مسبقاً.</small>
-      </article>
+      <article class="card"><h3>السكان (اضغط على أحدهم لتتابعه)</h3><div class="roster" id="roster"></div></article>
+      <article class="card who" id="who"></article>
+      <article class="card talk"><h3>الحوارات الآن</h3><div class="lines" id="lines"></div><small>نص مؤقت من قوالب. الحوار الحقيقي يكتبه الذكاء الاصطناعي في المرحلة التالية. المحاكاة تحدد فعلاً متى يلتقون وأين وعن ماذا.</small></article>
     </aside>
   </section>
 
@@ -99,9 +97,9 @@ ol.feed time { font: .8rem var(--f-mono); color: var(--muted); direction: ltr; t
     <label class="scrub"><span style="color:var(--muted);font-size:.85rem">الزمن</span><input id="scrub" type="range" min="0" value="0" step="1"></label>
   </section>
 
-  <section class="feedwrap"><h3>آخر ما حدث</h3><ol class="feed" id="feed"></ol></section>
+  <section class="feedwrap"><h3>آخر ما حدث في البلدة</h3><ol class="feed" id="feed"></ol></section>
 
-  <p class="note">هذا عرض لمحاكاة مسجلة مدتها <span id="ndays"></span> يوماً (seed <span id="seed"></span>). القرارات كلها بقواعد الكود وطباع كل شخص، والذكاء الاصطناعي ما دخل بعد. نفس الـ seed يعطي الأحداث نفسها بالضبط. الرسوم مرسومة بالكود (بكسل أصلي) وليست من أي لعبة.</p>
+  <p class="note">عرض لمحاكاة مسجلة مدتها <span id="ndays"></span> أيام (seed <span id="seed"></span>) لمدينة فيها <span id="nres"></span> سكان. القرارات كلها بقواعد الكود وطباع كل شخص، والذكاء الاصطناعي ما دخل بعد. نفس الـ seed يعطي الأحداث نفسها بالضبط. الرسوم مرسومة بالكود (بكسل أصلي) وليست من أي لعبة.</p>
 </div>
 
 <script>
@@ -110,95 +108,113 @@ const D = /*__DATA__*/;
   const $ = id => document.getElementById(id);
   const root = document.documentElement;
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const TS = 16, GW = 48, GH = 32, PW = GW * TS, PH = GH * TS;
-  const N = D.agents.length, STEP = D.step, K = D.kinds;
+  const L = D.layout, TS = 16, GW = L.width, GH = L.height, PW = GW * TS, PH = GH * TS;
+  const N = D.agents.length, STEP = D.step, K = D.kinds, NS = 6;
   const maxT = D.needs[D.needs.length - 1][0];
-  const topicAr = { work: 'العمل', food: 'الأكل', weather: 'الجو', plans: 'الخطط', each_other: 'بعضهما', health: 'الصحة' };
-  const kindAr = { sleep: 'نائم في سريره', eat: 'يتناول وجبة في البيت', buy: 'يشتري أكل من السوق', work: 'يشتغل في المزرعة', socialize: 'في الحديقة', forage: 'يجمع طعاماً من المرعى', idle: 'يرتاح' };
-  const locAr = { market: 'السوق', farm: 'المزرعة', park: 'الحديقة', meadow: 'المرعى', home_1: 'بيت ' + D.agents[0].name, home_2: 'بيت ' + D.agents[1].name };
   const g = (a, m, f) => (a.sex === 'F' ? f : m);
-  const lid = i => D.locations[i];
-  $('ndays').textContent = D.days; $('seed').textContent = D.seed;
-  $('reltitle').textContent = 'العلاقة بين ' + D.agents.map(a => a.name).join(' و');
+  const fem = (a, s) => (a.sex === 'F' ? (s.startsWith('ي') ? 'ت' + s.slice(1) : s + 'ة') : s);
+  $('ndays').textContent = D.days; $('seed').textContent = D.seed; $('nres').textContent = N;
 
-  // ================= town layout (tile coordinates) =================
+  const jobAr = { shopkeeper: ['صاحب السوق', 'صاحبة السوق'], barista: ['باريستا المقهى', 'باريستا المقهى'], librarian: ['أمين المكتبة', 'أمينة المكتبة'], farmer: ['مزارع', 'مزارعة'], baker: ['خباز', 'خبازة'], clerk: ['موظف متجر الهدايا', 'موظفة متجر الهدايا'] };
+  const workAr = { shopkeeper: 'يدير السوق', barista: 'يعد القهوة في المقهى', librarian: 'يرتب المكتبة', farmer: 'يشتغل في المزرعة', baker: 'يخبز في المخبز', clerk: 'يخدم الزبائن في متجر الهدايا' };
+  const kindAr = { sleep: 'نائم في سريره', eat: 'يتناول وجبة في البيت', buy: 'يتسوق من السوق', pastry: 'يشتري معجنات من المخبز', socialize: 'يجلس في الحديقة', coffee: 'يشرب قهوة في المقهى', read: 'يقرأ في المكتبة', browse: 'يتفرج في متجر الهدايا', stroll: 'يتمشى في الحديقة', forage: 'يقطف ثماراً من أشجار الحديقة', idle: 'يرتاح' };
+  const topicAr = { work: 'الشغل', food: 'الأكل', weather: 'الجو', plans: 'الخطط', each_other: 'بعضهما', health: 'الصحة', books: 'الكتب', coffee: 'القهوة', town: 'أخبار البلدة' };
+  const placeAr = id => ({ library: 'المكتبة', cafe: 'المقهى', market: 'السوق', bakery: 'المخبز', gift: 'متجر الهدايا', park: 'الحديقة', farm: 'المزرعة' }[id] || (id.startsWith('home_') ? 'بيت ' + D.agents[+id.slice(5) - 1].name : id));
+  const lid = i => D.locations[i];
+  const actionText = (a, kind, dest) => kind === 'travel' ? 'في الطريق إلى ' + placeAr(lid(dest)) : kind === 'work' ? fem(a, workAr[a.job]) : fem(a, kindAr[kind]);
+
+  // ================= tiles, furniture, blocking =================
   const T = { GRASS: 0, ROAD: 1, FLOOR: 2, WALL: 3, WATER: 4, TREE: 5, FENCE: 6, FURN: 7, FIELD: 8, DOOR: 9, FLOWER: 10 };
   const tile = new Uint8Array(GW * GH), block = new Uint8Array(GW * GH);
-  const at = (x, y) => y * GW + x;
-  const inb = (x, y) => x >= 0 && y >= 0 && x < GW && y < GH;
+  const at = (x, y) => y * GW + x, inb = (x, y) => x >= 0 && y >= 0 && x < GW && y < GH;
   const setT = (x, y, t, b) => { if (inb(x, y)) { tile[at(x, y)] = t; if (b !== undefined) block[at(x, y)] = b ? 1 : 0; } };
   const hash = (x, y, s = 0) => { let h = (x * 374761393 + y * 668265263 + s * 2147483647) >>> 0; h = ((h ^ (h >>> 13)) * 1274126177) >>> 0; return ((h ^ (h >>> 16)) >>> 0) / 4294967296; };
   const rect = (x, y, w, h, fn) => { for (let j = y; j < y + h; j++) for (let i = x; i < x + w; i++) fn(i, j); };
+  const B = id => L.buildings.find(b => b.id === id);
 
-  // roads
-  rect(2, 11, 45, 2, (x, y) => setT(x, y, T.ROAD, 0));
-  [[7, 10], [25, 10], [41, 10]].forEach(([x, y]) => setT(x, y, T.ROAD, 0));
-  rect(22, 13, 2, 8, (x, y) => setT(x, y, T.ROAD, 0));
-  rect(31, 13, 2, 10, (x, y) => setT(x, y, T.ROAD, 0));
-  rect(8, 13, 2, 9, (x, y) => setT(x, y, T.ROAD, 0));
-  rect(17, 19, 12, 1, (x, y) => setT(x, y, T.ROAD, 0));
-
-  // buildings (cut-away: no roof, so interiors are visible)
-  const homes = [{ id: 'home_1', bx: 3, by: 3, w: 8, h: 7, owner: 0 }, { id: 'home_2', bx: 37, by: 3, w: 8, h: 7, owner: 1 }];
-  const mkt = { id: 'market', bx: 19, by: 3, w: 12, h: 7 };
-  function building(b) {
-    rect(b.bx, b.by, b.w, b.h, (x, y) => setT(x, y, T.FLOOR, 0));
-    for (let x = b.bx; x < b.bx + b.w; x++) { setT(x, b.by, T.WALL, 1); setT(x, b.by + b.h - 1, T.WALL, 1); }
-    for (let y = b.by; y < b.by + b.h; y++) { setT(b.bx, y, T.WALL, 1); setT(b.bx + b.w - 1, y, T.WALL, 1); }
-    setT(b.bx + b.w / 2, b.by + b.h - 1, T.DOOR, 0);
-  }
-  homes.forEach(building); building(mkt);
-  homes.forEach(h => { rect(h.bx + 1, h.by + 1, 2, 3, (x, y) => setT(x, y, T.FURN, 1)); rect(h.bx + 5, h.by + 2, 2, 2, (x, y) => setT(x, y, T.FURN, 1)); setT(h.bx + w0(h) - 2, h.by + 1, T.FURN, 1); setT(h.bx + 1, h.by + 5, T.FURN, 1); });
-  function w0(h) { return h.w; }
-  rect(mkt.bx + 3, mkt.by + 3, 6, 1, (x, y) => setT(x, y, T.FURN, 1));
-  rect(mkt.bx + 1, mkt.by + 1, 10, 1, (x, y) => setT(x, y, T.FURN, 1));
-  rect(mkt.bx + 1, mkt.by + 5, 2, 1, (x, y) => setT(x, y, T.FURN, 1));
-
-  // farm: fenced field with a west gate
-  const farm = { x: 33, y: 18, w: 14, h: 12 };
-  rect(farm.x, farm.y, farm.w, farm.h, (x, y) => setT(x, y, T.FIELD, 0));
-  for (let x = farm.x; x < farm.x + farm.w; x++) { setT(x, farm.y, T.FENCE, 1); setT(x, farm.y + farm.h - 1, T.FENCE, 1); }
-  for (let y = farm.y; y < farm.y + farm.h; y++) { setT(farm.x, y, T.FENCE, 1); setT(farm.x + farm.w - 1, y, T.FENCE, 1); }
-  setT(33, 22, T.DOOR, 0); setT(33, 23, T.DOOR, 0);
-
-  // park: pond, benches, trees
-  rect(26, 21, 4, 4, (x, y) => setT(x, y, T.WATER, 1));
-  rect(19, 22, 3, 1, (x, y) => setT(x, y, T.FURN, 1));
-  const parkBox = { x: 14, y: 14, w: 17, h: 15 }, meadowBox = { x: 2, y: 14, w: 11, h: 16 };
-  const keep = new Set(['22,17', '21,21', '22,21', '9,21', '5,25', '6,24']);
-  function scatter(box, kind, density, seed) {
-    rect(box.x, box.y, box.w, box.h, (x, y) => {
-      const i = at(x, y); if (tile[i] !== T.GRASS || keep.has(x + ',' + y)) return;
-      if (kind === 'tree' && hash(x, y, seed) < density && y > box.y + 1) setT(x, y, T.TREE, 1);
-      if (kind === 'flower' && hash(x, y, seed) < density) setT(x, y, T.FLOWER, 0);
-    });
-  }
-  scatter(parkBox, 'tree', 0.09, 3); scatter(parkBox, 'flower', 0.06, 4); scatter(meadowBox, 'flower', 0.22, 5); scatter(meadowBox, 'tree', 0.04, 6);
-  [[1, 14], [1, 24], [46, 14], [47, 15], [14, 31], [34, 31], [2, 31]].forEach(([x, y]) => setT(x, y, T.TREE, 1));
-
-  // spots where each activity happens (pixel coordinates)
-  const px = (x, y) => [x * TS, y * TS];
-  function spotFor(locId, kind, i) {
-    const h = homes.find(o => o.id === locId);
-    if (h) {
-      if (kind === 'sleep') return { p: px(h.bx + 2, h.by + 2.4), face: 'down', lie: true };
-      if (kind === 'eat') return { p: px(h.bx + 5.9, h.by + 4.6), face: 'up' };
-      return { p: px(h.bx + 4.5, h.by + 5.2), face: 'down' };
+  L.roads.forEach(([x, y, w, h]) => rect(x, y, w, h, (i, j) => setT(i, j, T.ROAD, 0)));
+  // furniture per building kind (absolute tile rects). t=type, blocking unless nb
+  function furn(b) {
+    const X = b.x, Y = b.y;
+    switch (b.kind) {
+      case 'home': return [{ t: 'bed', x: X + 1, y: Y + 1, w: 2, h: 3, c: b.owner - 1 }, { t: 'table', x: X + 4, y: Y + 2, w: 2, h: 2 }, { t: 'shelf', x: X + 5, y: Y + 1, w: 1, h: 1 }, { t: 'plant', x: X + 1, y: Y + 5, w: 1, h: 1 }, { t: 'rug', x: X + 3, y: Y + 5, w: 2, h: 1, nb: 1 }, { t: 'chair', x: X + 4, y: Y + 4, w: 1, h: 1, nb: 1 }];
+      case 'cafe': return [{ t: 'shelfwall', x: X + 2, y: Y + 1, w: 5, h: 1 }, { t: 'counter', x: X + 2, y: Y + 3, w: 5, h: 1 }, { t: 'rtable', x: X + 8, y: Y + 2, w: 1, h: 1 }, { t: 'rtable', x: X + 8, y: Y + 4, w: 1, h: 1 }, { t: 'stool', x: X + 3, y: Y + 4, w: 1, h: 1, nb: 1 }, { t: 'stool', x: X + 5, y: Y + 4, w: 1, h: 1, nb: 1 }, { t: 'chair', x: X + 7, y: Y + 2, w: 1, h: 1, nb: 1 }, { t: 'chair', x: X + 9, y: Y + 2, w: 1, h: 1, nb: 1 }, { t: 'chair', x: X + 7, y: Y + 4, w: 1, h: 1, nb: 1 }, { t: 'chair', x: X + 9, y: Y + 4, w: 1, h: 1, nb: 1 }, { t: 'plant', x: X + 9, y: Y + 1, w: 1, h: 1 }];
+      case 'library': return [{ t: 'books', x: X + 1, y: Y + 1, w: 9, h: 1 }, { t: 'books', x: X + 2, y: Y + 3, w: 3, h: 1 }, { t: 'books', x: X + 6, y: Y + 3, w: 3, h: 1 }, { t: 'rtable', x: X + 2, y: Y + 5, w: 2, h: 1 }, { t: 'rtable', x: X + 6, y: Y + 5, w: 2, h: 1 }, { t: 'desk', x: X + 8, y: Y + 5, w: 2, h: 1 }, { t: 'chair', x: X + 2, y: Y + 6, w: 1, h: 1, nb: 1 }, { t: 'chair', x: X + 3, y: Y + 6, w: 1, h: 1, nb: 1 }, { t: 'chair', x: X + 6, y: Y + 6, w: 1, h: 1, nb: 1 }, { t: 'chair', x: X + 7, y: Y + 6, w: 1, h: 1, nb: 1 }, { t: 'rug', x: X + 4, y: Y + 4, w: 3, h: 1, nb: 1 }];
+      case 'market': return [{ t: 'goods', x: X + 1, y: Y + 1, w: 7, h: 1 }, { t: 'counter', x: X + 4, y: Y + 3, w: 3, h: 1 }, { t: 'crates', x: X + 1, y: Y + 3, w: 2, h: 1 }];
+      case 'bakery': return [{ t: 'bread', x: X + 1, y: Y + 1, w: 5, h: 1 }, { t: 'counter', x: X + 2, y: Y + 3, w: 3, h: 1 }];
+      default: return [{ t: 'gifts', x: X + 1, y: Y + 1, w: 6, h: 1 }, { t: 'counter', x: X + 3, y: Y + 3, w: 2, h: 1 }, { t: 'rtable', x: X + 1, y: Y + 3, w: 1, h: 1 }, { t: 'rtable', x: X + 6, y: Y + 3, w: 1, h: 1 }];
     }
-    if (locId === 'market') return { p: px(mkt.bx + 6.5, mkt.by + 4.7), face: 'up' };
-    if (locId === 'farm') return { p: px(39.5 + i * 2.4, 23.9), face: i ? 'left' : 'right', work: true };
-    if (locId === 'park') return i === 0 ? { p: px(21.2, 20.6), face: 'right' } : { p: px(23.1, 20.6), face: 'left' };
-    return { p: px(5.5 + i * 1.6, 25.4 - i * 1.2), face: 'down' };   // meadow
   }
+  L.buildings.forEach(b => {
+    rect(b.x, b.y, b.w, b.h, (i, j) => setT(i, j, T.FLOOR, 0));
+    for (let i = b.x; i < b.x + b.w; i++) { setT(i, b.y, T.WALL, 1); setT(i, b.y + b.h - 1, T.WALL, 1); }
+    for (let j = b.y; j < b.y + b.h; j++) { setT(b.x, j, T.WALL, 1); setT(b.x + b.w - 1, j, T.WALL, 1); }
+    setT(b.x + (b.w >> 1), b.y + b.h - 1, T.DOOR, 0);
+    b.furn = furn(b); b.furn.forEach(f => { if (!f.nb) rect(f.x, f.y, f.w, f.h, (i, j) => setT(i, j, T.FURN, 1)); });
+  });
+  // farm and park
+  const [fx, fy, fw, fh] = L.areas.farm, [pkx, pky, pkw, pkh] = L.areas.park;
+  rect(fx, fy, fw, fh, (i, j) => setT(i, j, T.FIELD, 0));
+  for (let i = fx; i < fx + fw; i++) { setT(i, fy, T.FENCE, 1); setT(i, fy + fh - 1, T.FENCE, 1); }
+  for (let j = fy; j < fy + fh; j++) { setT(fx, j, T.FENCE, 1); setT(fx + fw - 1, j, T.FENCE, 1); }
+  setT(fx, 20, T.DOOR, 0); setT(fx, 21, T.DOOR, 0);
+  const pond = { x: 11, y: 21, w: 5, h: 4 }; rect(pond.x, pond.y, pond.w, pond.h, (i, j) => setT(i, j, T.WATER, 1));
+  const benches = [{ x: 6, y: 18, w: 3, face: 'down' }, { x: 22, y: 18, w: 3, face: 'down' }, { x: 6, y: 20, w: 3, face: 'up' }, { x: 22, y: 20, w: 3, face: 'up' }];
+  benches.forEach(bn => rect(bn.x, bn.y, bn.w, 1, (i, j) => setT(i, j, T.FURN, 1)));
+  const nearRoad = (x, y) => { for (let j = -1; j <= 1; j++) for (let i = -1; i <= 1; i++) if (inb(x + i, y + j) && [T.ROAD, T.DOOR].includes(tile[at(x + i, y + j)])) return true; return false; };
+  for (let y = 0; y < GH; y++) for (let x = 0; x < GW; x++) {
+    if (tile[at(x, y)] !== T.GRASS || nearRoad(x, y)) continue;
+    const inPark = x >= pkx && x < pkx + pkw && y >= pky && y < pky + pkh, r = hash(x, y, 3);
+    if (inPark ? r < 0.07 : r < 0.045) setT(x, y, T.TREE, 1); else if (inPark && hash(x, y, 4) < 0.07) setT(x, y, T.FLOWER, 0);
+  }
+  [[9, 16], [26, 16], [20, 24], [4, 24], [28, 23]].forEach(([x, y]) => { if (tile[at(x, y)] === T.GRASS) setT(x, y, T.TREE, 1); });
+
+  // ================= spots (where each activity happens) =================
+  const P = (x, y, extra = {}) => ({ p: [x * TS, y * TS], face: 'down', ...extra });
+  function spotFor(locId, kind, i) {
+    if (locId === 'park') {
+      const seats = []; benches.forEach(bn => { for (let k = 0; k < bn.w; k++) seats.push({ x: bn.x + k + 0.5, y: bn.y + 0.55, face: bn.face }); });
+      if (kind === 'socialize') { const s = seats[(i * 5) % seats.length]; return P(s.x, s.y, { face: s.face, sit: true }); }
+      if (kind === 'forage') { const t = [[5.5, 16.5], [27.5, 24.5], [18.5, 16.5], [4.5, 22.5]][i % 4]; return P(t[0], t[1]); }
+      const st = [[9.5, 19.5], [18.5, 19.5], [26.5, 19.5], [15.5, 16.5], [15.5, 21.5], [12.5, 19.5], [20.5, 19.5], [4.5, 19.5]];
+      return P(st[(i * 3) % st.length][0], st[(i * 3) % st.length][1], { face: i % 2 ? 'left' : 'right' });
+    }
+    if (locId === 'farm') return P(fx + 4.5 + ((i * 3) % 16), 18.5 + 2 * (i % 4), { face: i % 2 ? 'left' : 'right', work: true });
+    const b = B(locId), X = b.x, Y = b.y, w = b.w >> 1;
+    if (b.kind === 'home') {
+      if (kind === 'sleep') return P(X + 2, Y + 2.5, { lie: true, face: 'down' });
+      if (kind === 'eat') return P(X + 4.5, Y + 4.5, { sit: true, face: 'up' });
+      return P(X + 2.5, Y + 5.5);
+    }
+    if (b.kind === 'cafe') {
+      if (kind === 'work') return P(X + 4.5, Y + 2.5, { work: true });
+      const seats = [[3.5, 4.5, 'up'], [5.5, 4.5, 'up'], [7.5, 2.5, 'right'], [9.5, 2.5, 'left'], [7.5, 4.5, 'right'], [9.5, 4.5, 'left']], s = seats[(i * 5) % 6];
+      if (kind === 'coffee' || kind === 'socialize') return P(X + s[0], Y + s[1], { sit: true, face: s[2] });
+      return P(X + 5.5, Y + 5.5);
+    }
+    if (b.kind === 'library') {
+      if (kind === 'work') return P(X + 8.5, Y + 4.5, { work: true });
+      const seats = [[2.5, 6.5, 'up'], [3.5, 6.5, 'up'], [6.5, 6.5, 'up'], [7.5, 6.5, 'up'], [2.5, 4.5, 'down'], [3.5, 4.5, 'down'], [6.5, 4.5, 'down'], [7.5, 4.5, 'down']], s = seats[(i * 3) % 8];
+      if (kind === 'read') return P(X + s[0], Y + s[1], { sit: true, face: s[2] });
+      return P(X + 5.5, Y + 5.5);
+    }
+    // shops
+    const work = { market: [5.5, 2.5], bakery: [3.5, 2.5], gift: [4.0, 2.5] }[b.kind];
+    if (kind === 'work') return P(X + work[0], Y + work[1], { work: true });
+    const cust = { market: [[5.5, 4.5], [3.5, 4.5], [2.5, 2.5]], bakery: [[3.5, 4.5], [2.5, 4.5], [4.5, 4.5]], gift: [[3.5, 4.5], [2.5, 4.5], [5.5, 4.5]] }[b.kind];
+    const c = cust[i % cust.length]; return P(X + c[0], Y + c[1], { face: 'up' });
+  }
+  const homeSpot = id => spotFor(id, 'idle', 0);
 
   // ================= pathfinding =================
   const cost = i => { if (block[i]) return 0; const t = tile[i]; return t === T.ROAD || t === T.FLOOR || t === T.DOOR ? 1 : t === T.FIELD ? 1.25 : 1.8; };
   const memo = new Map();
   function nearestFree(tx, ty) { for (let r = 0; r < 6; r++) for (let dy = -r; dy <= r; dy++) for (let dx = -r; dx <= r; dx++) { const x = tx + dx, y = ty + dy; if (inb(x, y) && cost(at(x, y))) return [x, y]; } return [tx, ty]; }
   function astar(a, b) {
-    const [sx, sy] = nearestFree(a[0], a[1]), [gx, gy] = nearestFree(b[0], b[1]);
+    const [sx, sy] = nearestFree(a[0], a[1]), [gx, gy] = nearestFree(b[0], b[1]), goal = at(gx, gy);
     const dist = new Float32Array(GW * GH).fill(1e9), prev = new Int32Array(GW * GH).fill(-1), open = [at(sx, sy)];
-    dist[open[0]] = 0; const goal = at(gx, gy);
+    dist[open[0]] = 0;
+    const hd = i => (Math.abs((i % GW) - gx) + Math.abs(((i / GW) | 0) - gy)) * 0.9;
     while (open.length) {
       let bi = 0; for (let k = 1; k < open.length; k++) if (dist[open[k]] + hd(open[k]) < dist[open[bi]] + hd(open[bi])) bi = k;
       const cur = open.splice(bi, 1)[0]; if (cur === goal) break;
@@ -208,7 +224,6 @@ const D = /*__DATA__*/;
         const nd = dist[cur] + c; if (nd < dist[ni]) { if (dist[ni] === 1e9) open.push(ni); dist[ni] = nd; prev[ni] = cur; }
       }
     }
-    function hd(i) { return (Math.abs((i % GW) - gx) + Math.abs(((i / GW) | 0) - gy)) * 0.9; }
     const pts = []; for (let c = goal; c !== -1; c = prev[c]) pts.push([(c % GW) * TS + TS / 2, ((c / GW) | 0) * TS + TS / 2]);
     return pts.reverse();
   }
@@ -221,106 +236,91 @@ const D = /*__DATA__*/;
   }
   function along(path, d) {
     d = Math.max(0, Math.min(path.len, d)); let i = 1; while (i < path.cum.length - 1 && path.cum[i] < d) i++;
-    const a = path.pts[i - 1], b = path.pts[i], k = (d - path.cum[i - 1]) / ((path.cum[i] - path.cum[i - 1]) || 1);
-    const dx = b[0] - a[0], dy = b[1] - a[1];
+    const a = path.pts[i - 1], b = path.pts[i], k = (d - path.cum[i - 1]) / ((path.cum[i] - path.cum[i - 1]) || 1), dx = b[0] - a[0], dy = b[1] - a[1];
     return { x: a[0] + dx * k, y: a[1] + dy * k, dir: Math.abs(dx) > Math.abs(dy) ? (dx > 0 ? 'right' : 'left') : dy > 0 ? 'down' : 'up' };
   }
 
-  // ================= static background (drawn once, pixel art) =================
+  // ================= static background =================
   const bg = document.createElement('canvas'); bg.width = PW; bg.height = PH; const bx = bg.getContext('2d');
   const R = (c, x, y, w, h) => { bx.fillStyle = c; bx.fillRect(Math.round(x), Math.round(y), w, h); };
-  const GRASS = ['#6bb35a', '#63aa52', '#74bd62'], BEDC = ['#3d8fa0', '#cf5a77'];
+  const GRASS = ['#6bb35a', '#63aa52', '#74bd62'];
+  const SHIRT = ['#2b8aa0', '#d9506f', '#e8b83c', '#6aa84f', '#8e63c9', '#e07b39', '#3d6fb6', '#c94c7c'];
+  const KC = { home: ['#5b3f2e', '#8a634a', '#b34a3a'], cafe: ['#44684a', '#6f9a6a', '#7aa57a'], library: ['#3b5a8a', '#5f86bd', '#f0f0f0'], market: ['#8a3a30', '#c8453b', '#e8e4d8'], bakery: ['#a05a75', '#e08aa6', '#fff1f5'], gift: ['#5e4090', '#8a63c9', '#f4d35e'] };
+  const isIndoor = (x, y) => L.buildings.some(b => x > b.x && x < b.x + b.w - 1 && y > b.y && y < b.y + b.h - 1);
+  function drawFurn(b, f) {
+    const X = f.x * TS, Y = f.y * TS, W = f.w * TS, H = f.h * TS;
+    switch (f.t) {
+      case 'bed': R('#7a4f2d', X, Y, W, H); R('#f5f2ea', X + 3, Y + 3, 11, 7); R('#f5f2ea', X + 18, Y + 3, 11, 7); R(SHIRT[f.c], X + 2, Y + 14, W - 4, H - 15); R('#ffffff44', X + 5, Y + 22, W - 10, 2); break;
+      case 'table': R('#8a5a34', X, Y, W, H); R('#a0693c', X + 1, Y + 1, W - 2, 14); R('#f2f2ea', X + 6, Y + 5, 6, 4); R('#f2f2ea', X + 19, Y + 5, 6, 4); R('#d9534f', X + 12, Y + 3, 5, 5); break;
+      case 'shelf': R('#6b4a35', X, Y, W, H); ['#d9534f', '#4aa3d8', '#e8b83c'].forEach((c, k) => R(c, X + 2 + k * 4, Y + 2, 3, 12)); break;
+      case 'plant': R('#6e4325', X + 4, Y + 9, 8, 6); R('#2f8a4a', X + 3, Y + 2, 10, 8); R('#4aa857', X + 5, Y + 1, 5, 5); break;
+      case 'rug': R('#b33c4a', X, Y + 2, W, H - 4); R('#e7c36a', X + 3, Y + 5, W - 6, H - 10); break;
+      case 'chair': R('#7a4f2d', X + 3, Y + 4, 10, 9); R('#9a6a3d', X + 3, Y + 3, 10, 3); break;
+      case 'stool': R('#7a4f2d', X + 4, Y + 6, 8, 8); R('#c8453b', X + 3, Y + 4, 10, 4); break;
+      case 'counter': R('#8a5a34', X, Y + 2, W, 14); R('#a0693c', X, Y + 2, W, 5); R('#e8e4d8', X + W - 14, Y + 3, 10, 3); if (b.kind === 'cafe') { R('#444', X + 4, Y - 2, 8, 6); R('#d9534f', X + 6, Y - 1, 2, 2); } break;
+      case 'shelfwall': R('#6b4a35', X, Y, W, H); for (let i = 0; i < f.w; i++) { R('#e8e4d8', X + i * TS + 2, Y + 3, 5, 5); R('#c8453b', X + i * TS + 9, Y + 3, 4, 5); R('#e8e4d8', X + i * TS + 3, Y + 10, 9, 3); } break;
+      case 'rtable': R('#8a5a34', X + 1, Y + 3, W - 2, 11); R('#a0693c', X + 1, Y + 3, W - 2, 4); R('#f2f2ea', X + 5, Y + 6, 5, 4); break;
+      case 'books': R('#5b3f2e', X, Y, W, H); for (let i = 0; i < f.w * 4; i++) R(['#d9534f', '#4aa3d8', '#e8b83c', '#6aa84f', '#8e63c9'][(i * 7 + f.x) % 5], X + 1 + i * 4, Y + 2 + (i % 3), 3, 11 - (i % 3)); break;
+      case 'desk': R('#6b4a35', X, Y + 2, W, 13); R('#a0693c', X, Y + 2, W, 4); R('#f2f2ea', X + 6, Y + 5, 8, 6); R('#444', X + 20, Y + 4, 8, 6); break;
+      case 'goods': R('#6b4a35', X, Y, W, H); for (let i = 0; i < f.w; i++) ['#d9534f', '#e8b83c', '#6cc356', '#4aa3d8'].forEach((c, k) => R(c, X + i * TS + 2 + (k % 2) * 6, Y + 2 + Math.floor(k / 2) * 6, 5, 5)); break;
+      case 'crates': R('#a0693c', X + 1, Y + 3, W - 2, 12); R('#d9534f', X + 4, Y, 7, 6); R('#6cc356', X + 18, Y, 7, 6); break;
+      case 'bread': R('#7a4f2d', X, Y, W, H); for (let i = 0; i < f.w; i++) { R('#e0a860', X + i * TS + 2, Y + 3, 11, 5); R('#c88a45', X + i * TS + 3, Y + 4, 9, 2); R('#e8c89a', X + i * TS + 3, Y + 10, 9, 4); } break;
+      case 'gifts': R('#5e4090', X, Y, W, H); for (let i = 0; i < f.w; i++) { R(['#f4d35e', '#ee6c4d', '#4aa3d8'][i % 3], X + i * TS + 3, Y + 3, 9, 7); R('#fff', X + i * TS + 7, Y + 3, 1, 7); } break;
+    }
+  }
   function drawBackground() {
     for (let y = 0; y < GH; y++) for (let x = 0; x < GW; x++) {
       const t = tile[at(x, y)], X = x * TS, Y = y * TS, r = hash(x, y);
       if (t === T.ROAD) {
-        R(r < .5 ? '#e2d29d' : '#dac993', X, Y, TS, TS);
-        for (let k = 0; k < 5; k++) R('#c9b57c', X + hash(x, y, k + 9) * 14, Y + hash(x, y, k + 20) * 14, 2, 1);
+        R(r < .5 ? '#e2d29d' : '#dac993', X, Y, TS, TS); for (let k = 0; k < 4; k++) R('#c9b57c', X + hash(x, y, k + 9) * 14, Y + hash(x, y, k + 20) * 14, 2, 1);
         [[0, -1], [0, 1], [-1, 0], [1, 0]].forEach(([dx, dy]) => { const nx = x + dx, ny = y + dy; if (inb(nx, ny) && ![T.ROAD, T.DOOR].includes(tile[at(nx, ny)])) { if (dy) R('#c2ae74', X, dy < 0 ? Y : Y + 14, TS, 2); else R('#c2ae74', dx < 0 ? X : X + 14, Y, 2, TS); } });
-      } else if (t === T.FLOOR || t === T.DOOR || t === T.FURN && block[at(x, y)] && isIndoor(x, y)) {
-        R((x + y) % 2 ? '#cf9c62' : '#c4915a', X, Y, TS, TS); R('#b58450', X, Y + 15, TS, 1);
-      } else if (t === T.FIELD) {
-        R('#8f6240', X, Y, TS, TS); if (y % 2 === 0 && x > farm.x && x < farm.x + farm.w - 1 && y > farm.y && y < farm.y + farm.h - 1) { R('#7a5233', X, Y + 6, TS, 5); for (let k = 0; k < 4; k++) { R('#4f9a3f', X + 1 + k * 4, Y + 1, 3, 6); R('#6cc356', X + 2 + k * 4, Y, 1, 3); } }
-      } else if (t === T.WATER) {
-        R('#4aa3d8', X, Y, TS, TS); R('#7cc6ee', X + 3 + (x * 5) % 6, Y + 4, 5, 1); R('#7cc6ee', X + 6, Y + 11, 4, 1);
-      } else {
-        R(GRASS[(r * 3) | 0], X, Y, TS, TS); if (r > .8) R('#559c45', X + 5, Y + 5, 1, 3); if (r < .1) R('#85cb71', X + 9, Y + 8, 2, 1);
-      }
+      } else if (t === T.FLOOR || t === T.DOOR || (t === T.FURN && isIndoor(x, y))) { R((x + y) % 2 ? '#cf9c62' : '#c4915a', X, Y, TS, TS); R('#b58450', X, Y + 15, TS, 1);
+      } else if (t === T.FIELD) { R('#8f6240', X, Y, TS, TS); const row = (y - fy) % 2 === 1 && x > fx && x < fx + fw - 1 && y > fy && y < fy + fh - 1; if (row) { R('#7a5233', X, Y + 6, TS, 5); for (let k = 0; k < 4; k++) { R('#4f9a3f', X + 1 + k * 4, Y + 1, 3, 6); R('#6cc356', X + 2 + k * 4, Y, 1, 3); } }
+      } else if (t === T.WATER) { R('#4aa3d8', X, Y, TS, TS); R('#7cc6ee', X + 3 + (x * 5) % 6, Y + 4, 5, 1); R('#7cc6ee', X + 6, Y + 11, 4, 1);
+      } else { R(GRASS[(r * 3) | 0], X, Y, TS, TS); if (r > .8) R('#559c45', X + 5, Y + 5, 1, 3); if (r < .1) R('#85cb71', X + 9, Y + 8, 2, 1); }
     }
-    // walls (cut-away, with thick top face)
-    const wallRun = b => {
-      R('#4a3326', b.bx * TS, b.by * TS, b.w * TS, TS); R('#8a634a', b.bx * TS, b.by * TS + 12, b.w * TS, 4);
-      R('#4a3326', b.bx * TS, (b.by + b.h - 1) * TS + 10, b.w * TS, 6); R('#8a634a', b.bx * TS, (b.by + b.h - 1) * TS + 8, b.w * TS, 2);
-      R('#5b3f2e', b.bx * TS, b.by * TS, TS, b.h * TS); R('#5b3f2e', (b.bx + b.w - 1) * TS, b.by * TS, TS, b.h * TS);
-      R('#8a634a', b.bx * TS + 12, b.by * TS + TS, 4, (b.h - 2) * TS); R('#8a634a', (b.bx + b.w - 1) * TS, b.by * TS + TS, 4, (b.h - 2) * TS);
-      const dx = (b.bx + b.w / 2) * TS; R('#cf9c62', dx, (b.by + b.h - 1) * TS, TS, TS); R('#b34a3a', dx + 1, (b.by + b.h) * TS - 2, 14, 4);
-    };
-    homes.forEach(wallRun); wallRun(mkt);
-    // windows on the top wall
-    homes.forEach(h => { [2, 5].forEach(o => { R('#9fd6f0', (h.bx + o) * TS + 2, h.by * TS + 3, 12, 8); R('#fff', (h.bx + o) * TS + 3, h.by * TS + 4, 4, 2); R('#4a3326', (h.bx + o) * TS + 8, h.by * TS + 3, 1, 8); }); });
-    // home furniture
-    homes.forEach(h => {
-      const X = (h.bx + 1) * TS, Y = (h.by + 1) * TS;
-      R('#7a4f2d', X, Y, 32, 48); R('#f5f2ea', X + 3, Y + 3, 11, 7); R('#f5f2ea', X + 18, Y + 3, 11, 7); R(BEDC[h.owner], X + 2, Y + 14, 28, 33); R('#00000022', X + 2, Y + 14, 28, 2); R('#ffffff44', X + 5, Y + 22, 22, 2);
-      const tx = (h.bx + 5) * TS, ty = (h.by + 2) * TS; R('#8a5a34', tx, ty, 32, 32); R('#a0693c', tx + 1, ty + 1, 30, 14); R('#f2f2ea', tx + 6, ty + 5, 6, 4); R('#f2f2ea', tx + 19, ty + 5, 6, 4); R('#d9534f', tx + 12, ty + 3, 5, 5);
-      R('#6e4325', tx + 3, ty + 33, 8, 7); R('#6e4325', tx + 21, ty + 33, 8, 7);
-      const sx = (h.bx + h.w - 2) * TS, sy = (h.by + 1) * TS; R('#6b4a35', sx, sy, TS, TS); ['#d9534f', '#4aa3d8', '#e8b83c'].forEach((c, k) => R(c, sx + 2 + k * 4, sy + 2, 3, 12));
-      const rx = (h.bx + 1) * TS, ry = (h.by + 5) * TS; R('#4b6f8a', rx, ry, TS, TS); R('#2f8a4a', rx + 4, ry + 3, 8, 6); R('#6e4325', rx + 5, ry + 9, 6, 6);
-      R('#b33c4a', (h.bx + 3) * TS, (h.by + 4) * TS + 4, 40, 28); R('#e7c36a', (h.bx + 3) * TS + 3, (h.by + 4) * TS + 7, 34, 22);
+    L.buildings.forEach(b => {
+      const [dk, md, ac] = KC[b.kind], X = b.x * TS, Y = b.y * TS, W = b.w * TS, H = b.h * TS, hv = b.kind === 'home' ? ['#b34a3a', '#3d7a8a', '#c9892f', '#6a8f4a'][(b.owner - 1) % 4] : ac;
+      R(dk, X, Y, W, TS); R(md, X, Y + 12, W, 4); R(dk, X, Y + H - 6, W, 6); R(md, X, Y + H - 8, W, 2); R(dk, X, Y, TS, H); R(dk, X + W - TS, Y, TS, H); R(md, X + 12, Y + TS, 4, H - 2 * TS); R(md, X + W - TS, Y + TS, 4, H - 2 * TS);
+      if (b.kind !== 'home') for (let i = 0; i < b.w; i++) R(i % 2 ? '#f0ede2' : hv, X + i * TS, Y + 3, TS, 7); else { [2, 5].forEach(o => { R('#9fd6f0', X + o * TS + 2, Y + 3, 12, 8); R('#fff', X + o * TS + 3, Y + 4, 4, 2); R(dk, X + o * TS + 8, Y + 3, 1, 8); }); }
+      const dx = (b.x + (b.w >> 1)) * TS; R('#cf9c62', dx, Y + H - TS, TS, TS); R(hv, dx + 1, Y + H - 2, 14, 4);
+      b.furn.forEach(f => drawFurn(b, f));
     });
-    // market interior
-    { const X = mkt.bx * TS, Y = mkt.by * TS;
-      for (let i = 0; i < 12; i++) R(i % 2 ? '#e8e4d8' : '#c8453b', X + i * TS, Y + 16, TS, 6);
-      R('#6b4a35', X + TS, Y + 2 * TS - 10, 10 * TS, 10); R('#8a634a', X + TS, Y + 2 * TS - 10, 10 * TS, 3);
-      for (let i = 0; i < 10; i++) { ['#d9534f', '#e8b83c', '#6cc356', '#4aa3d8'].forEach((c, k) => R(c, X + TS + i * TS + 2 + (k % 2) * 6, Y + 26 + Math.floor(k / 2) * 6, 5, 5)); }
-      R('#8a5a34', X + 3 * TS, Y + 3 * TS, 6 * TS, TS); R('#a0693c', X + 3 * TS, Y + 3 * TS, 6 * TS, 6); R('#e8e4d8', X + 7 * TS, Y + 3 * TS + 1, 10, 4);
-      for (let i = 0; i < 2; i++) { R('#a0693c', X + TS + i * 0, Y + 5 * TS + 2, 2 * TS, 12); R('#d9534f', X + TS + 3, Y + 5 * TS - 2, 6, 6); R('#6cc356', X + TS + 17, Y + 5 * TS - 2, 6, 6); }
+    // farm decor + pond + benches + trees
+    for (let i = fx; i < fx + fw; i++) [fy, fy + fh - 1].forEach(j => { R('#8a5a34', i * TS, j * TS + 5, TS, 3); R('#8a5a34', i * TS + 6, j * TS + 1, 3, 13); });
+    for (let j = fy; j < fy + fh; j++) [fx, fx + fw - 1].forEach(i => { if (!(i === fx && (j === 20 || j === 21))) { R('#8a5a34', i * TS + 6, j * TS, 3, TS); R('#8a5a34', i * TS + 2, j * TS + 5, 11, 3); } });
+    R('#6a4a2a', 57 * TS + 7, 22 * TS, 2, 16); R('#6a4a2a', 57 * TS + 1, 22 * TS + 4, 14, 2); R('#e8c36a', 57 * TS + 4, 22 * TS - 6, 8, 7); R('#b33c4a', 57 * TS + 3, 22 * TS - 8, 10, 3);
+    benches.forEach(bn => { for (let k = 0; k < bn.w; k++) { const X = (bn.x + k) * TS, Y = bn.y * TS; R('#8a5a34', X, Y + 6, TS, 6); R('#a0693c', X, Y + 2, TS, 5); R('#5b3f2e', X + 1, Y + 12, 3, 4); R('#5b3f2e', X + 12, Y + 12, 3, 4); } });
+    for (let y = 0; y < GH; y++) for (let x = 0; x < GW; x++) {
+      const X = x * TS, Y = y * TS;
+      if (tile[at(x, y)] === T.TREE) { const v = hash(x, y, 7); R('#00000026', X + 1, Y + 11, 14, 4); R('#6a4a2a', X + 6, Y + 8, 4, 8); R(v < .5 ? '#2f7d3b' : '#296c33', X, Y - 2, TS, 11); R('#3b9347', X + 2, Y - 4, 12, 9); R('#4aa857', X + 4, Y - 3, 5, 3); if (v > .8) { R('#d9534f', X + 4, Y + 2, 2, 2); R('#d9534f', X + 10, Y + 4, 2, 2); } }
+      else if (tile[at(x, y)] === T.FLOWER) { const c = ['#f4d35e', '#ee6c4d', '#ffffff', '#c77dff'][(hash(x, y, 11) * 4) | 0]; R('#4f9a3f', X + 7, Y + 8, 1, 5); R(c, X + 6, Y + 6, 3, 3); R('#f4d35e', X + 7, Y + 7, 1, 1); }
     }
-    // farm: fence + scarecrow
-    for (let x = farm.x; x < farm.x + farm.w; x++) [farm.y, farm.y + farm.h - 1].forEach(y => { R('#8a5a34', x * TS, y * TS + 5, TS, 3); R('#8a5a34', x * TS + 6, y * TS + 1, 3, 13); });
-    for (let y = farm.y; y < farm.y + farm.h; y++) [farm.x, farm.x + farm.w - 1].forEach(x => { if (!(x === 33 && (y === 22 || y === 23))) { R('#8a5a34', x * TS + 6, y * TS, 3, TS); R('#8a5a34', x * TS + 2, y * TS + 5, 11, 3); } });
-    R('#6a4a2a', 44 * TS + 7, 26 * TS, 2, 16); R('#6a4a2a', 44 * TS + 1, 26 * TS + 4, 14, 2); R('#e8c36a', 44 * TS + 4, 26 * TS - 6, 8, 7); R('#b33c4a', 44 * TS + 3, 26 * TS - 8, 10, 3);
-    // park: benches + lamps
-    R('#8a5a34', 19 * TS, 22 * TS + 4, 3 * TS, 6); R('#a0693c', 19 * TS, 22 * TS + 1, 3 * TS, 4); R('#5b3f2e', 19 * TS + 2, 22 * TS + 10, 3, 5); R('#5b3f2e', 22 * TS + 11, 22 * TS + 10, 3, 5);
-    // trees
-    for (let y = 0; y < GH; y++) for (let x = 0; x < GW; x++) if (tile[at(x, y)] === T.TREE) {
-      const X = x * TS, Y = y * TS, v = hash(x, y, 7); R('#00000026', X + 1, Y + 11, 14, 4); R('#6a4a2a', X + 6, Y + 8, 4, 8);
-      R(v < .5 ? '#2f7d3b' : '#296c33', X, Y - 2, TS, 11); R('#3b9347', X + 2, Y - 4, 12, 9); R('#4aa857', X + 4, Y - 3, 5, 3);
-    } else if (tile[at(x, y)] === T.FLOWER) {
-      const X = x * TS, Y = y * TS, c = ['#f4d35e', '#ee6c4d', '#ffffff', '#c77dff'][(hash(x, y, 11) * 4) | 0]; R('#4f9a3f', X + 7, Y + 8, 1, 5); R(c, X + 6, Y + 6, 3, 3); R('#f4d35e', X + 7, Y + 7, 1, 1);
-    }
-    lamps.forEach(([lx, ly]) => { R('#3a3a40', lx * TS + 7, ly * TS - 10, 2, 22); R('#f4e3a1', lx * TS + 4, ly * TS - 14, 8, 6); });
+    L.lamps.forEach(([lx, ly]) => { R('#3a3a40', lx * TS + 7, ly * TS - 10, 2, 22); R('#f4e3a1', lx * TS + 4, ly * TS - 14, 8, 6); });
   }
-  const lamps = [[5, 13], [15, 13], [28, 13], [38, 13], [22, 17], [30, 17], [11, 21]];
-  function isIndoor(x, y) { return [...homes, mkt].some(b => x > b.bx && x < b.bx + b.w - 1 && y > b.by && y < b.by + b.h - 1); }
   drawBackground();
 
   // ================= characters =================
-  const PAL = [
-    { skin: '#d9a47a', hair: '#2b1d14', shirt: '#2b8aa0', shirt2: '#216a7a', pants: '#34384a', shoe: '#1c1c22', long: false },
-    { skin: '#e6b88f', hair: '#16100d', shirt: '#d9506f', shirt2: '#a83a55', pants: '#4a3a5c', shoe: '#1c1c22', long: true },
-  ];
-  function drawChar(g, fx, fy, dir, frame, p) {
-    const x = Math.round(fx), y = Math.round(fy), sw = frame % 2, F = (c, dx, dy, w, h, s) => { g.fillStyle = c; g.fillRect(s < 0 ? x - dx - w : x + dx, y + dy, w, h); };
+  const SKIN = ['#d9a47a', '#e6b88f', '#c68b5e', '#f0c8a0', '#a8704a', '#e0ae85', '#cf9a6e', '#b9805a'], HAIR = ['#2b1d14', '#16100d', '#5a3a22', '#a0522d', '#1a1a1a', '#3b2a1f', '#6b4423', '#222222'], PANTS = ['#34384a', '#4a3a5c', '#3d4a3a', '#5a4632', '#2f3e52', '#4a2f3a', '#333', '#40405a'];
+  const PAL = D.agents.map((a, i) => ({ skin: SKIN[i % 8], hair: HAIR[i % 8], shirt: SHIRT[i % 8], shirt2: '#00000033', pants: PANTS[i % 8], shoe: '#1c1c22', long: a.sex === 'F' }));
+  function drawChar(g, fx0, fy0, dir, frame, p, sit) {
+    const x = Math.round(fx0), y = Math.round(fy0), sw = frame % 2, F = (c, dx, dy, w, h, s) => { g.fillStyle = c; g.fillRect(s < 0 ? x - dx - w : x + dx, y + dy, w, h); };
     g.fillStyle = 'rgba(0,0,0,.28)'; g.fillRect(x - 5, y - 1, 10, 3);
+    const o = sit ? 3 : 0;
     if (dir === 'down' || dir === 'up') {
-      F(p.pants, -3, -5 - sw, 2, 4 + sw, 1); F(p.pants, 1, -6 + sw, 2, 5 - sw, 1); F(p.shoe, -3, -1 - sw, 2, 1, 1); F(p.shoe, 1, -1, 2, 1, 1);
-      F(p.shirt, -4, -11, 8, 6, 1); F(p.shirt2, -4, -6, 8, 1, 1); F(p.skin, -5, -10 + sw, 1, 4, 1); F(p.skin, 4, -9 - sw + 1, 1, 4, 1);
-      F(p.skin, -3, -16, 6, 5, 1);
-      if (dir === 'up') { F(p.hair, -3, -17, 6, 7, 1); if (p.long) F(p.hair, -4, -16, 8, 9, 1); }
-      else { F(p.hair, -3, -17, 6, 2, 1); F(p.hair, -4, -16, 1, p.long ? 8 : 3, 1); F(p.hair, 3, -16, 1, p.long ? 8 : 3, 1); F('#1b1b22', -2, -14, 1, 1, 1); F('#1b1b22', 1, -14, 1, 1, 1); }
+      if (!sit) { F(p.pants, -3, -5 - sw, 2, 4 + sw, 1); F(p.pants, 1, -6 + sw, 2, 5 - sw, 1); F(p.shoe, -3, -1 - sw, 2, 1, 1); F(p.shoe, 1, -1, 2, 1, 1); } else { F(p.pants, -3, -5, 6, 3, 1); }
+      F(p.shirt, -4, -11 + o, 8, 6, 1); F(p.shirt2, -4, -6 + o, 8, 1, 1); F(p.skin, -5, -10 + o + (sit ? 0 : sw), 1, 4, 1); F(p.skin, 4, -10 + o + (sit ? 0 : 1 - sw), 1, 4, 1);
+      F(p.skin, -3, -16 + o, 6, 5, 1);
+      if (dir === 'up') { F(p.hair, -3, -17 + o, 6, 7, 1); if (p.long) F(p.hair, -4, -16 + o, 8, 9, 1); }
+      else { F(p.hair, -3, -17 + o, 6, 2, 1); F(p.hair, -4, -16 + o, 1, p.long ? 8 : 3, 1); F(p.hair, 3, -16 + o, 1, p.long ? 8 : 3, 1); F('#1b1b22', -2, -14 + o, 1, 1, 1); F('#1b1b22', 1, -14 + o, 1, 1, 1); }
     } else {
       const s = dir === 'left' ? -1 : 1;
-      F(p.pants, -1 + (sw ? 1 : -1), -5, 2, 4, s); F(p.pants, -1 + (sw ? -1 : 1), -5, 2, 4, s); F(p.shoe, -1 + (sw ? 1 : -1), -1, 3, 1, s); F(p.shoe, -1 + (sw ? -1 : 1), -1, 3, 1, s);
-      F(p.shirt, -3, -11, 6, 6, s); F(p.shirt2, -3, -6, 6, 1, s); F(p.skin, -1 + (sw ? 1 : -1), -10, 2, 4, s);
-      F(p.skin, -3, -16, 6, 5, s); F(p.hair, -3, -17, 6, 2, s); F(p.hair, -3, -16, 3, p.long ? 8 : 4, s); F('#1b1b22', 1, -14, 1, 1, s);
+      if (!sit) { F(p.pants, -1 + (sw ? 1 : -1), -5, 2, 4, s); F(p.pants, -1 + (sw ? -1 : 1), -5, 2, 4, s); F(p.shoe, -1 + (sw ? 1 : -1), -1, 3, 1, s); F(p.shoe, -1 + (sw ? -1 : 1), -1, 3, 1, s); } else { F(p.pants, -3, -5, 8, 3, s); }
+      F(p.shirt, -3, -11 + o, 6, 6, s); F(p.shirt2, -3, -6 + o, 6, 1, s); F(p.skin, -1 + (sit ? 1 : (sw ? 1 : -1)), -10 + o, 2, 4, s);
+      F(p.skin, -3, -16 + o, 6, 5, s); F(p.hair, -3, -17 + o, 6, 2, s); F(p.hair, -3, -16 + o, 3, p.long ? 8 : 4, s); F('#1b1b22', 1, -14 + o, 1, 1, s);
     }
   }
-  function drawSleeper(g, cx, cy, i) {
-    const p = PAL[i]; g.fillStyle = p.skin; g.fillRect(cx - 4, cy - 10, 8, 7); g.fillStyle = p.hair; g.fillRect(cx - 4, cy - 11, 8, 3);
-    g.fillStyle = '#1b1b22'; g.fillRect(cx - 2, cy - 7, 1, 1); g.fillRect(cx + 1, cy - 7, 1, 1);
-    g.fillStyle = BEDC[i]; g.fillRect(cx - 14, cy - 3, 28, 22); g.fillStyle = 'rgba(255,255,255,.28)'; g.fillRect(cx - 14, cy + 4, 28, 2);
-  }
+  function drawSleeper(g, cx, cy, i) { const p = PAL[i]; g.fillStyle = p.skin; g.fillRect(cx - 4, cy - 10, 8, 7); g.fillStyle = p.hair; g.fillRect(cx - 4, cy - 11, 8, 3); g.fillStyle = '#1b1b22'; g.fillRect(cx - 2, cy - 7, 1, 1); g.fillRect(cx + 1, cy - 7, 1, 1); g.fillStyle = SHIRT[i % 8]; g.fillRect(cx - 14, cy - 3, 28, 22); g.fillStyle = 'rgba(255,255,255,.28)'; g.fillRect(cx - 14, cy + 4, 28, 2); }
 
   // ================= timeline lookup =================
   const tl = D.timeline;
@@ -328,7 +328,7 @@ const D = /*__DATA__*/;
   function nonTravel(i, idx, dir) { const s = tl[i]; for (let k = idx + dir; k >= 0 && k < s.length; k += dir) if (K[s[k][2]] !== 'travel') return s[k]; return null; }
   function stateOf(i, t) {
     const idx = segAt(i, t), seg = tl[i][idx], kind = K[seg[2]];
-    if (kind !== 'travel') { const sp = spotFor(lid(seg[3]), kind, i); return { kind, loc: seg[3], x: sp.p[0], y: sp.p[1], dir: sp.face, lie: sp.lie, moving: false, work: sp.work }; }
+    if (kind !== 'travel') { const sp = spotFor(lid(seg[3]), kind, i); return { kind, loc: seg[3], x: sp.p[0], y: sp.p[1], dir: sp.face, lie: sp.lie, sit: sp.sit, moving: false, work: sp.work }; }
     const prev = nonTravel(i, idx, -1), next = nonTravel(i, idx, 1);
     const sa = spotFor(lid(seg[3]), prev ? K[prev[2]] : 'idle', i), sb = spotFor(lid(seg[4]), next ? K[next[2]] : 'idle', i);
     const path = pathBetween(sa, sb), k = Math.max(0, Math.min(1, (t - seg[0]) / ((seg[1] - seg[0]) || 1))), pos = along(path, path.len * k);
@@ -336,116 +336,130 @@ const D = /*__DATA__*/;
   }
   function needsAt(t) {
     const i = Math.min(Math.floor(t / STEP), D.needs.length - 2), k = (t - D.needs[i][0]) / STEP, a = D.needs[i], b = D.needs[i + 1];
-    return D.agents.map((_, n) => { const o = 1 + n * 5, L = j => a[o + j] + (b[o + j] - a[o + j]) * k; return { hunger: L(0), energy: L(1), social: L(2), money: a[o + 3], pantry: a[o + 4] }; });
+    return D.agents.map((_, n) => { const o = 1 + n * NS, L2 = j => a[o + j] + (b[o + j] - a[o + j]) * k; return { hunger: L2(0), energy: L2(1), social: L2(2), fun: L2(3), money: a[o + 4], pantry: a[o + 5] }; });
   }
 
   // ================= dialogue (placeholder templates) =================
   const BANK = {
-    work: [['{b}، كيف كان الشغل في المزرعة اليوم؟', 'تعب شوي، بس المحصول طالع زين.', 'الحمد لله، لا تغلب نفسك.'], ['شفت المزرعة اليوم؟ الشغل واجد.', 'أي والله، بس الأجر يستاهل.', 'صح، لازم نرتاح بعد.'], ['{b}، تفكر تغيّر شغلك يوم؟', 'ما أدري، لسه أدخّر شوي.', 'الصبر طيب، ما فيه عجلة.']],
-    food: [['اشتريت أكل من السوق اليوم.', 'زين، أنا باقي عندي شوي بالبيت.', 'خذ من عندي لو احتجت.'], ['جوعان من الصبح!', 'كل شي بالبيت، عندك أكل؟', 'أي، تعال ناكل مع بعض.'], ['أسعار السوق مضبوطة اليوم.', 'فعلاً، بس لا تشتري واجد.', 'معك حق.']],
-    weather: [['الجو حلو اليوم.', 'صح، الهواء خفيف.', 'نستمتع به قبل الليل.'], ['شكلها بتبرد الليلة.', 'أي، جيب لك شي دافي.', 'إن شاء الله.'], ['الشمس قوية اليوم.', 'ما قدرت أقعد برا.', 'الحديقة أخف شوي.']],
-    plans: [['وش خطتك لهالأسبوع؟', 'أبي أجمع شوي فلوس.', 'وأنا أفكر أشتري أغراض للبيت.'], ['تفكر بشي جديد؟', 'يمكن أغيّر روتيني شوي.', 'فكرة حلوة، قول لي إذا قررت.'], ['لازم نخطط قبل لا تخلص المؤونة.', 'معك حق، نشتري بكرة.', 'اتفقنا.']],
+    work: [['{b}، كيف كان الشغل اليوم؟', 'تعب شوي، بس الحمد لله.', 'لا تغلب نفسك.'], ['الشغل واجد هالأيام.', 'أي والله، بس الأجر يستاهل.', 'لازم نرتاح بعد.'], ['{b}، تفكر تغيّر شغلك يوم؟', 'ما أدري، لسه أدخّر شوي.', 'الصبر طيب.']],
+    food: [['اشتريت أكل من السوق اليوم.', 'زين، أنا باقي عندي شوي.', 'خذ من عندي لو احتجت.'], ['جوعان من الصبح!', 'عندك أكل بالبيت؟', 'أي، تعال ناكل مع بعض.'], ['المعجنات اليوم طازجة.', 'لازم أمر عليهم.', 'لا تتأخر، تخلص بسرعة.']],
+    weather: [['الجو حلو اليوم.', 'صح، الهواء خفيف.', 'نستمتع به قبل الليل.'], ['شكلها بتبرد الليلة.', 'أي، جيب لك شي دافي.', 'إن شاء الله.'], ['الشمس قوية اليوم.', 'ما قدرت أقعد برا.', 'الظل أحسن.']],
+    plans: [['وش خطتك لهالأسبوع؟', 'أبي أجمع شوي فلوس.', 'وأنا أفكر أشتري أغراض للبيت.'], ['تفكر بشي جديد؟', 'يمكن أغيّر روتيني شوي.', 'فكرة حلوة.'], ['لازم نخطط قبل لا تخلص المؤونة.', 'معك حق، نشتري بكرة.', 'اتفقنا.']],
     each_other: [['{b}، ما شفتك من زمان.', 'أي والله، الأيام تمشي بسرعة.', 'حلو إننا نتقابل.'], ['أحس إننا نتفاهم.', 'وأنا نفس الشي.', 'نكمل سوالفنا بكرة.'], ['شلونك اليوم؟', 'بخير، وأنت؟', 'الحمد لله، تمام.']],
     health: [['كيف صحتك اليوم؟', 'تمام، بس أحتاج نوم زيادة.', 'الراحة أهم شي.'], ['أحس بتعب شوي.', 'نام بدري الليلة.', 'إن شاء الله.'], ['لازم نهتم بأكلنا ونومنا.', 'صح، الصحة قبل كل شي.', 'كلامك صحيح.']],
+    books: [['قريت كتاب حلو في المكتبة.', 'عن شنو؟', 'عن تاريخ البلدة، أعيرك إياه.'], ['{b}، عندك كتاب تنصحني فيه؟', 'جرب الرف اللي عند الشباك.', 'تمام، بمر عليه.'], ['المكتبة هادية الصبح.', 'هذا اللي يعجبني فيها.', 'نقرأ سوا بكرة؟']],
+    coffee: [['قهوة المقهى اليوم ممتازة.', 'أي، الباريستا مبدع.', 'خلنا نشرب كوب ثاني.'], ['كم سعر القهوة؟', 'ثمانية، تستاهل.', 'عندي مزاج لواحدة.'], ['المقهى مزدحم اليوم.', 'خلنا نقعد برا.', 'فكرة حلوة.']],
+    town: [['سمعت إن أحد افتتح شي جديد بالبلدة؟', 'ما سمعت، من قال؟', 'كذا قالوا، نشوف بعدين.'], ['الشارع الرئيسي مزدحم.', 'العالم تكثر هالأيام.', 'البلدة تكبر شوي شوي.'], ['{b}، كيف جيرانك؟', 'طيبين والحمد لله.', 'هذا المهم.']],
   };
   const convos = D.events.map((e, i) => [e, i]).filter(([e]) => e[1] === 'conversation');
-  function activeConvo(t) {
-    for (let k = convos.length - 1; k >= 0; k--) { const [e] = convos[k]; if (e[0] <= t) { return t - e[0] < 3000 ? { e, i: convos[k][1] } : null; } }
-    return null;
+  function activeConvos(t) {
+    const out = []; let k = 0; while (k < convos.length && convos[k][0][0] <= t) k++;
+    for (let j = k - 1; j >= 0 && out.length < 4; j--) { const [e, i] = convos[j]; if (t - e[0] < 3000) out.push({ e, i }); else if (t - e[0] > 6000) break; }
+    return out;
   }
   function lines(c) {
-    const v = BANK[c.e[4][0]], pick = v[(c.i * 7 + 3) % v.length], A = D.agents.find(a => a.id === c.e[2][0]), B = D.agents.find(a => a.id === c.e[2][1]);
-    return pick.map((s, j) => ({ who: j % 2 === 0 ? A : B, text: s.replace('{b}', (j % 2 === 0 ? B : A).name).replace('{a}', (j % 2 === 0 ? A : B).name) }));
+    const v = BANK[c.e[4][0]], pick = v[(c.i * 7 + 3) % v.length], A = D.agents.find(a => a.id === c.e[2][0]), Bb = D.agents.find(a => a.id === c.e[2][1]);
+    return pick.map((s, j) => ({ who: j % 2 === 0 ? A : Bb, text: s.replace('{b}', (j % 2 === 0 ? Bb : A).name) }));
   }
 
   // ================= rendering =================
   const cv = $('cv'), ctx = cv.getContext('2d'), low = document.createElement('canvas'); low.width = PW; low.height = PH; const lg = low.getContext('2d');
-  let W = 0, H = 0, dpr = 1;
+  let W = 0, H = 0, dpr = 1, sel = 0;
   const resize = () => { dpr = Math.min(2, devicePixelRatio || 1); W = cv.clientWidth; H = cv.clientHeight; cv.width = Math.round(W * dpr); cv.height = Math.round(H * dpr); };
   new ResizeObserver(resize).observe(cv); resize();
   const hourOf = t => (D.start_hour + t / 3600) % 24;
   const darkness = h => (h >= 21 || h < 5 ? 1 : h >= 19 ? (h - 19) / 2 : h < 7 ? (7 - h) / 2 : 0);
   const css = n => getComputedStyle(root).getPropertyValue(n).trim();
-  function wrap(g, text, maxW) { const words = text.split(' '), out = []; let line = ''; words.forEach(w => { const t = line ? line + ' ' + w : w; if (g.measureText(t).width > maxW && line) { out.push(line); line = w; } else line = t; }); out.push(line); return out; }
+  function wrapText(text, maxW) { const words = text.split(' '), out = []; let line = ''; words.forEach(w => { const t2 = line ? line + ' ' + w : w; if (ctx.measureText(t2).width > maxW && line) { out.push(line); line = w; } else line = t2; }); out.push(line); return out; }
   function bubble(x, y, text, color) {
-    ctx.font = `500 ${Math.max(11, W / 60)}px ${css('--f-body')}`; ctx.textAlign = 'center'; ctx.direction = 'rtl';
-    const maxW = Math.min(W * 0.3, 190), ls = wrap(ctx, text, maxW), lh = Math.max(14, W / 52), bw = Math.min(maxW, Math.max(...ls.map(l => ctx.measureText(l).width))) + 16, bh = ls.length * lh + 10;
-    let bx0 = Math.max(4, Math.min(W - bw - 4, x - bw / 2)), by0 = Math.max(4, y - bh - 8);
-    ctx.fillStyle = '#fffdf6'; ctx.strokeStyle = color; ctx.lineWidth = 2; ctx.beginPath(); ctx.roundRect(bx0, by0, bw, bh, 8); ctx.fill(); ctx.stroke();
-    ctx.beginPath(); ctx.moveTo(x - 5, by0 + bh); ctx.lineTo(x, by0 + bh + 7); ctx.lineTo(x + 5, by0 + bh); ctx.fillStyle = '#fffdf6'; ctx.fill();
-    ctx.fillStyle = '#1b1b22'; ls.forEach((l, k) => ctx.fillText(l, bx0 + bw / 2, by0 + 6 + (k + 0.8) * lh));
+    ctx.font = `500 ${Math.max(10, W / 74)}px ${css('--f-body')}`; ctx.textAlign = 'center'; ctx.direction = 'rtl';
+    const maxW = Math.min(W * 0.2, 150), ls = wrapText(text, maxW), lh = Math.max(13, W / 66), bw = Math.min(maxW, Math.max(...ls.map(l => ctx.measureText(l).width))) + 14, bh = ls.length * lh + 9;
+    const bx0 = Math.max(3, Math.min(W - bw - 3, x - bw / 2)), by0 = Math.max(3, y - bh - 7);
+    ctx.fillStyle = '#fffdf6'; ctx.strokeStyle = color; ctx.lineWidth = 2; ctx.beginPath(); ctx.roundRect(bx0, by0, bw, bh, 7); ctx.fill(); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(x - 4, by0 + bh); ctx.lineTo(x, by0 + bh + 6); ctx.lineTo(x + 4, by0 + bh); ctx.fillStyle = '#fffdf6'; ctx.fill();
+    ctx.fillStyle = '#1b1b22'; ls.forEach((l, k) => ctx.fillText(l, bx0 + bw / 2, by0 + 5 + (k + 0.8) * lh));
   }
+  let lastSts = [];
   function frame(now, t) {
-    const sts = D.agents.map((_, i) => stateOf(i, t));
+    const sts = D.agents.map((_, i) => stateOf(i, t)); lastSts = sts;
     lg.drawImage(bg, 0, 0);
-    const order = sts.map((s, i) => i).sort((a, b) => sts[a].y - sts[b].y);
-    order.forEach(i => {
+    sts.map((s, i) => i).sort((a, b) => sts[a].y - sts[b].y).forEach(i => {
       const s = sts[i];
       if (s.lie) drawSleeper(lg, Math.round(s.x), Math.round(s.y), i);
-      else { const f = s.moving ? Math.floor(s.dist / 5) % 2 : (s.work || s.kind === 'socialize') ? Math.floor(now / 500) % 2 : 0; drawChar(lg, s.x, s.y + 6, s.dir, f, PAL[i]); }
+      else { const f = s.moving ? Math.floor(s.dist / 5) % 2 : (s.work || s.kind === 'socialize' || s.kind === 'coffee') ? Math.floor(now / 500) % 2 : 0; drawChar(lg, s.x, s.y + (s.sit ? 4 : 6), s.dir, f, PAL[i], s.sit); }
     });
     const d = darkness(hourOf(t));
     if (d > 0) {
       lg.fillStyle = `rgba(${css('--night')}, ${0.5 * d})`; lg.fillRect(0, 0, PW, PH);
-      lg.globalCompositeOperation = 'screen'; lamps.forEach(([lx, ly]) => { const gr = lg.createRadialGradient(lx * TS + 8, ly * TS - 10, 2, lx * TS + 8, ly * TS - 10, 46); gr.addColorStop(0, `rgba(255,214,120,${0.55 * d})`); gr.addColorStop(1, 'rgba(255,214,120,0)'); lg.fillStyle = gr; lg.fillRect(lx * TS - 40, ly * TS - 56, 96, 96); });
-      homes.forEach(h => { [2, 5].forEach(o => { lg.fillStyle = `rgba(255,200,90,${0.35 * d})`; lg.fillRect((h.bx + o) * TS + 2, h.by * TS + 3, 12, 8); }); }); lg.globalCompositeOperation = 'source-over';
+      lg.globalCompositeOperation = 'screen';
+      L.lamps.forEach(([lx, ly]) => { const gr = lg.createRadialGradient(lx * TS + 8, ly * TS - 10, 2, lx * TS + 8, ly * TS - 10, 44); gr.addColorStop(0, `rgba(255,214,120,${0.5 * d})`); gr.addColorStop(1, 'rgba(255,214,120,0)'); lg.fillStyle = gr; lg.fillRect(lx * TS - 40, ly * TS - 54, 96, 90); });
+      L.buildings.forEach(b => { lg.fillStyle = `rgba(255,196,96,${0.2 * d})`; lg.fillRect((b.x + 1) * TS, (b.y + 1) * TS, (b.w - 2) * TS, (b.h - 2) * TS); });
+      lg.globalCompositeOperation = 'source-over';
     }
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0); ctx.imageSmoothingEnabled = false; ctx.drawImage(low, 0, 0, W, H);
-    const S = W / PW;
-    ctx.font = `600 ${Math.max(11, W / 56)}px ${css('--f-body')}`; ctx.textAlign = 'center'; ctx.direction = 'rtl';
-    [[mkt.bx + 6, mkt.by - 0.4, 'السوق'], [farm.x + 7, farm.y - 0.3, 'المزرعة'], [22, 13.7, 'الحديقة'], [7, 13.7, 'المرعى'], [homes[0].bx + 4, homes[0].by - 0.4, locAr.home_1], [homes[1].bx + 4, homes[1].by - 0.4, locAr.home_2]].forEach(([x, y, label]) => {
-      ctx.lineWidth = 3; ctx.strokeStyle = 'rgba(15,25,20,.75)'; ctx.strokeText(label, x * TS * S, y * TS * S); ctx.fillStyle = '#f6f3e6'; ctx.fillText(label, x * TS * S, y * TS * S);
-    });
-    const cv0 = activeConvo(t), cl = cv0 ? lines(cv0) : null;
+    const S = W / PW, fs = Math.max(9, W / 80);
+    ctx.textAlign = 'center'; ctx.direction = 'rtl'; ctx.font = `600 ${fs * 1.1}px ${css('--f-body')}`;
+    const labels = L.buildings.map(b => [b.x + b.w / 2, b.y - 0.35, placeAr(b.id)]).concat([[pkx + 14, pky - 0.2, 'الحديقة'], [fx + fw / 2, fy - 0.3, 'المزرعة']]);
+    labels.forEach(([x, y, label]) => { ctx.lineWidth = 3; ctx.strokeStyle = 'rgba(15,25,20,.75)'; ctx.strokeText(label, x * TS * S, y * TS * S); ctx.fillStyle = '#f6f3e6'; ctx.fillText(label, x * TS * S, y * TS * S); });
+    const acs = activeConvos(t);
     sts.forEach((s, i) => {
-      const hx = s.x * S, hy = (s.y - (s.lie ? 12 : 17)) * S;
-      ctx.font = `700 ${Math.max(11, W / 58)}px ${css('--f-body')}`; ctx.lineWidth = 3; ctx.strokeStyle = 'rgba(15,25,20,.8)'; ctx.fillStyle = css(i ? '--a2' : '--a1');
-      const nm = D.agents[i].name; if (!(cl && s.kind === 'socialize')) { ctx.strokeText(nm, hx, hy - 4); ctx.fillText(nm, hx, hy - 4); }
-      if (s.lie) { ctx.fillStyle = '#fff'; ctx.font = `700 ${Math.max(12, W / 50)}px ${css('--f-mono')}`; ctx.fillText(Math.floor(now / 700) % 2 ? 'z' : 'Z', hx + 26 * S, hy - 6); }
+      const hx = s.x * S, hy = (s.y - (s.lie ? 12 : s.sit ? 14 : 17)) * S, isSel = i === sel;
+      if (isSel) { ctx.strokeStyle = SHIRT[i % 8]; ctx.lineWidth = 2.5; ctx.beginPath(); ctx.ellipse(hx, s.y * S + 2 * S, 8 * S, 3.5 * S, 0, 0, 7); ctx.stroke(); }
+      ctx.font = `700 ${isSel ? fs * 1.15 : fs}px ${css('--f-body')}`; ctx.lineWidth = 3; ctx.strokeStyle = 'rgba(15,25,20,.85)'; ctx.fillStyle = isSel ? '#fff' : '#e9efe9';
+      ctx.strokeText(D.agents[i].name, hx, hy - 3); ctx.fillText(D.agents[i].name, hx, hy - 3);
+      if (s.lie) { ctx.fillStyle = '#fff'; ctx.font = `700 ${Math.max(11, W / 60)}px ${css('--f-mono')}`; ctx.fillText(Math.floor(now / 700) % 2 ? 'z' : 'Z', hx + 24 * S, hy - 8); }
     });
-    if (cl) { const j = Math.min(2, Math.floor((t - cv0.e[0]) / 900)), who = cl[j].who, i = D.agents.indexOf(who), s = sts[i]; bubble(s.x * S, (s.y - 20) * S, cl[j].text, css(i ? '--a2' : '--a1')); }
-    return { sts, cl, cv0 };
+    acs.forEach(c => { const j = Math.min(2, Math.floor((t - c.e[0]) / 900)), ln = lines(c)[j], i = D.agents.indexOf(ln.who); if (i >= 0) bubble(sts[i].x * S, (sts[i].y - 22) * S, ln.text, SHIRT[i % 8]); });
+    return { sts, acs };
   }
+  cv.addEventListener('click', e => {
+    const r = cv.getBoundingClientRect(), mx = (e.clientX - r.left) / r.width * PW, my = (e.clientY - r.top) / r.height * PH; let best = -1, bd = 22;
+    lastSts.forEach((s, i) => { const d = Math.hypot(s.x - mx, s.y - 6 - my); if (d < bd) { bd = d; best = i; } });
+    if (best >= 0) select(best);
+  });
 
   // ================= UI =================
-  const colors = ['--a1', '--a2'];
-  const cards = D.agents.map((a, i) => {
-    const el = $('c' + i); el.style.setProperty('--c', `var(${colors[i]})`);
-    el.innerHTML = `<h2><span class="dot"></span>${a.name}</h2><div class="what"></div><div class="bars">${['الشبع', 'الطاقة', 'الاجتماعي'].map(l => `<div class="bar"><span>${l}</span><div class="tr"><div class="fl"></div></div><span class="n">0</span></div>`).join('')}</div><div class="stats"><span>المال <b class="m">0</b></span><span>مخزون الأكل <b class="p">0</b></span></div>`;
-    return { what: el.querySelector('.what'), bars: [...el.querySelectorAll('.bar')], m: el.querySelector('.m'), p: el.querySelector('.p') };
-  });
+  const roster = $('roster'), who = $('who');
+  const rows = D.agents.map((a, i) => { const b = document.createElement('button'); b.type = 'button'; b.style.setProperty('--c', SHIRT[i % 8]); b.innerHTML = `<span class="d"></span><span>${a.name}</span><span class="a"></span>`; b.addEventListener('click', () => select(i)); roster.append(b); return b; });
+  who.innerHTML = '<h2><span class="dot" id="wdot"></span><span id="wname"></span></h2><div class="job" id="wjob"></div><div class="what" id="wwhat"></div><div class="bars" id="wbars"></div><div class="stats"><span>المال <b id="wm">0</b></span><span>مخزون الأكل <b id="wp">0</b></span></div><div class="friends" id="wfr"></div>';
+  $('wbars').innerHTML = ['الشبع', 'الطاقة', 'الاجتماعي', 'الترفيه'].map(l => `<div class="bar"><span>${l}</span><div class="tr"><div class="fl"></div></div><span class="n">0</span></div>`).join('');
+  const wbars = [...$('wbars').querySelectorAll('.bar')];
+  function select(i) { sel = i; who.style.setProperty('--c', SHIRT[i % 8]); $('wdot').style.background = SHIRT[i % 8]; $('wname').textContent = D.agents[i].name; $('wjob').textContent = g(D.agents[i], ...jobAr[D.agents[i].job]) + ' · ' + placeAr(D.agents[i].home); feedKey = -1; }
   const set = (el, v) => { if (el.textContent !== v) el.textContent = v; };
   const fmtT = tt => { const a = D.start_hour * 3600 + tt, day = Math.floor(a / 86400) + 1, hh = Math.floor((a % 86400) / 3600), mm = Math.floor((a % 3600) / 60); return [day, String(hh).padStart(2, '0') + ':' + String(mm).padStart(2, '0')]; };
   const sentence = e => {
     const [, type, ids, loc, det] = e, a = D.agents.find(x => x.id === ids[0]);
-    if (type === 'conversation') return `${D.agents.find(x => x.id === ids[0]).name} و${D.agents.find(x => x.id === ids[1]).name} تحدثا عن ${topicAr[det[0]]} في ${locAr[lid(loc)]}`;
-    if (type === 'wage') return `${a.name} ${g(a, 'قبض', 'قبضت')} ${det} من المزرعة`;
-    if (type === 'purchase') return `${a.name} ${g(a, 'اشترى', 'اشترت')} ${det} من الأكل في السوق`;
-    const act = { eat: g(a, 'تناول وجبة', 'تناولت وجبة'), sleep: g(a, 'استيقظ', 'استيقظت'), work: g(a, 'أنهى دوام المزرعة', 'أنهت دوام المزرعة'), forage: g(a, 'جمع طعاماً من المرعى', 'جمعت طعاماً من المرعى') };
+    if (type === 'conversation') return `${a.name} و${D.agents.find(x => x.id === ids[1]).name} تحدثا عن ${topicAr[det[0]]} في ${placeAr(lid(loc))}`;
+    if (type === 'wage') return `${a.name} ${g(a, 'قبض', 'قبضت')} ${det} من ${placeAr(lid(loc))}`;
+    if (type === 'purchase') { const [item, q] = det; return { food: `${a.name} ${g(a, 'اشترى', 'اشترت')} ${q} من الأكل في السوق`, pastry: `${a.name} ${g(a, 'اشترى', 'اشترت')} معجنات من المخبز`, coffee: `${a.name} ${g(a, 'شرب', 'شربت')} قهوة في المقهى`, gift: `${a.name} ${g(a, 'اشترى', 'اشترت')} هدية من المتجر` }[item]; }
+    const act = { eat: g(a, 'تناول وجبة', 'تناولت وجبة'), sleep: g(a, 'استيقظ', 'استيقظت'), work: g(a, 'أنهى دوامه', 'أنهت دوامها'), read: g(a, 'قرأ في المكتبة', 'قرأت في المكتبة'), forage: g(a, 'قطف ثماراً', 'قطفت ثماراً') };
     return act[det] ? `${a.name} ${act[det]}` : '';
   };
-  let feedKey = -1, lineKey = '';
+  let feedKey = -1, lineKey = null;
+  function friendsOf(i, n) {
+    const id = D.agents[i].id, best = {};
+    for (let k = 0; k < n; k++) { const e = D.events[k]; if (e[1] === 'conversation' && e[2].includes(id)) { const o = e[2].find(x => x !== id); best[o] = [e[4][1], e[4][2]]; } }
+    return Object.entries(best).sort((x, y) => y[1][0] - x[1][0]).slice(0, 2).map(([o, v]) => `${D.agents.find(a => a.id === +o).name} (${v[1]} لقاء)`).join('، ');
+  }
   function ui(t, r) {
     const [day, hm] = fmtT(t); set($('day'), 'اليوم ' + day); set($('time'), hm);
     const nd = needsAt(t);
-    r.sts.forEach((s, i) => {
-      const cd = cards[i], n = nd[i];
-      set(cd.what, s.kind === 'travel' ? 'في الطريق إلى ' + locAr[lid(s.dest)] : kindAr[s.kind]);
-      [n.hunger, n.energy, n.social].forEach((v, j) => { const b = cd.bars[j]; b.classList.toggle('low', v < 25); b.querySelector('.fl').style.width = v.toFixed(0) + '%'; set(b.querySelector('.n'), v.toFixed(0)); });
-      set(cd.m, String(n.money)); set(cd.p, String(n.pantry));
-    });
-    const lk = r.cl ? r.cv0.i + ':' + Math.min(2, Math.floor((t - r.cv0.e[0]) / 900)) : '';
+    r.sts.forEach((s, i) => { const b = rows[i]; b.setAttribute('aria-pressed', String(i === sel)); set(b.lastChild, actionText(D.agents[i], s.kind, s.dest)); });
+    const s = r.sts[sel], n = nd[sel];
+    set($('wwhat'), actionText(D.agents[sel], s.kind, s.dest));
+    [n.hunger, n.energy, n.social, n.fun].forEach((v, j) => { const b = wbars[j]; b.classList.toggle('low', v < 25); b.querySelector('.fl').style.width = v.toFixed(0) + '%'; set(b.querySelector('.n'), v.toFixed(0)); });
+    set($('wm'), String(n.money)); set($('wp'), String(n.pantry));
+    let nEv = 0; while (nEv < D.events.length && D.events[nEv][0] <= t) nEv++;
+    const lk = r.acs.map(c => c.i + ':' + Math.min(2, Math.floor((t - c.e[0]) / 900))).join('|');
     if (lk !== lineKey) {
       lineKey = lk; const box = $('lines'); box.innerHTML = '';
-      if (r.cl) { const upto = Math.min(2, Math.floor((t - r.cv0.e[0]) / 900)); r.cl.slice(0, upto + 1).forEach(l => { const p = document.createElement('div'), b = document.createElement('b'), i = D.agents.indexOf(l.who); b.textContent = l.who.name + ': '; b.style.color = `var(${colors[i]})`; p.append(b, l.text); box.append(p); }); }
+      if (r.acs.length) r.acs.slice(0, 2).forEach(c => { const upto = Math.min(2, Math.floor((t - c.e[0]) / 900)); lines(c).slice(0, upto + 1).forEach(l => { const p = document.createElement('div'), b = document.createElement('b'), i = D.agents.indexOf(l.who); b.textContent = l.who.name + ': '; b.style.setProperty('--c', SHIRT[i % 8]); p.append(b, l.text); box.append(p); }); box.append(document.createElement('hr')); box.lastChild.style.cssText = 'border:0;border-top:1px dashed var(--line);width:100%;margin:2px 0'; });
       else { const p = document.createElement('div'); p.style.color = 'var(--muted)'; p.textContent = 'ما فيه حوار الحين.'; box.append(p); }
     }
-    let n = 0; while (n < D.events.length && D.events[n][0] <= t) n++;
-    if (n !== feedKey) {
-      feedKey = n; const items = D.events.slice(Math.max(0, n - 12), n).reverse();
+    if (nEv !== feedKey) {
+      feedKey = nEv; const items = D.events.slice(Math.max(0, nEv - 14), nEv).reverse();
       $('feed').innerHTML = items.map(e => { const [dd, hh] = fmtT(e[0]); return `<li><time>اليوم ${dd} · ${hh}</time><span>${sentence(e)}</span></li>`; }).join('') || '<li><time></time><span>ما صار شي بعد، شغّل الزمن.</span></li>';
-      let meet = 0, aff = 0; for (let i = 0; i < n; i++) if (D.events[i][1] === 'conversation') { meet++; aff = D.events[i][4][1]; }
-      set($('relmeet'), String(meet)); set($('relaff'), aff.toFixed(1)); $('relbar').style.width = Math.max(2, Math.min(100, aff / 40 * 100)) + '%';
+      const fr = friendsOf(sel, nEv); $('wfr').innerHTML = fr ? 'أقرب الناس إليه: <b>' + fr + '</b>' : 'ما تعرّف على أحد بعد.';
     }
     $('scrub').value = Math.round(t / STEP);
   }
@@ -461,7 +475,7 @@ const D = /*__DATA__*/;
   $('play').addEventListener('click', () => { if (t >= maxT - 1) t = 0; setPlaying(!playing); });
   document.querySelectorAll('[data-speed]').forEach(b => b.addEventListener('click', () => { speed = +b.dataset.speed; document.querySelectorAll('[data-speed]').forEach(x => x.setAttribute('aria-pressed', String(x === b))); }));
   $('scrub').addEventListener('input', e => { t = +e.target.value * STEP; });
-  setPlaying(playing);
+  select(0); setPlaying(playing);
   requestAnimationFrame(loop);
 })();
 </script>

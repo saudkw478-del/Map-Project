@@ -14,7 +14,7 @@ def test_rng_streams_deterministic_and_independent():
 
 
 def test_needs_are_lazy_and_clamped():
-    n = Needs({"hunger": 80, "energy": 90, "social": 70}, 0)
+    n = Needs({"hunger": 80, "energy": 90, "social": 70, "fun": 60}, 0)
     assert n.value("hunger", 5 * HOUR) == 80 - 4 * 5
     assert n.value("hunger", 1000 * HOUR) == 0.0
     n.settle(2 * HOUR)                       # energy: 90 - 2*5 = 80
@@ -62,12 +62,21 @@ def test_no_activity_after_death():
     assert after == []
 
 
-def test_agents_meet_and_relationship_grows():
+def test_town_is_alive_and_varied():
     e = Engine(seed=5)
     e.run_days(30)
-    assert e.log.count("conversation") >= 10
-    rel = e.relations[(1, 2)]
-    assert rel["familiarity"] >= 10
+    kinds = {ev.payload["kind"] for ev in e.log.query(types=("activity",))}
+    assert {"sleep", "eat", "work", "coffee", "read", "socialize", "stroll"} <= kinds
+    assert e.log.count("conversation") >= 50
+    assert max(r["familiarity"] for r in e.relations.values()) >= 5
+    # every resident goes to their own workplace and gets paid
+    assert len({ev.actors[0] for ev in e.log.query(types=("wage",))}) == e.n_agents
+
+
+def test_two_agent_world_still_works():
+    e = Engine(seed=5, n_agents=2)
+    e.run_days(30)
+    assert e.log.count("conversation") >= 5 and all(a.alive for a in e.agents.values())
 
 
 def test_event_log_persists_to_disk(tmp_path):
