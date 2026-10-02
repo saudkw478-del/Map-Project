@@ -1,0 +1,13 @@
+{
+  "name": "مدينة الذكاء الاصطناعي الحية",
+  "time": {
+    "minutesPerRealSecond": 1,
+    "startHour": 6,
+    "presets": { "paused": 0, "normal": 1, "fast": 5 },
+    "maxCatchUpDays": 30
+  },
+  "llm": {
+    "limits": { "requestsPerMinute": 10, "requestsPerDay": 600, "maxRetries": 3, "retryBaseMs": 1500 },
+    "maxTokensPerRequest": 600
+  }
+}

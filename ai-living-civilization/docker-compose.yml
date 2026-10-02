@@ -1,0 +1,22 @@
+# يشتغل على جهازك وعلى Oracle ARM64 بنفس الأمر:  docker compose up --build
+# القيم تنقرا من ملف .env (لو ما كان موجود تُستخدم الافتراضيات تحت، والموديل الوهمي).
+services:
+  civ:
+    build: .
+    image: ai-living-civilization:latest
+    container_name: ai-living-civilization
+    restart: unless-stopped
+    ports:
+      - "${PORT:-3000}:${PORT:-3000}"
+    environment:
+      PORT: ${PORT:-3000}
+      LOG_LEVEL: ${LOG_LEVEL:-info}
+      DATA_DIR: /app/data
+      LLM_PROVIDER: ${LLM_PROVIDER:-fake}
+      LLM_BASE_URL: ${LLM_BASE_URL:-https://generativelanguage.googleapis.com/v1beta/openai/}
+      LLM_API_KEY: ${LLM_API_KEY:-}
+      LLM_MODEL: ${LLM_MODEL:-gemini-2.5-flash}
+      ADMIN_TOKEN: ${ADMIN_TOKEN:-}
+    volumes:
+      - ./data:/app/data     # قاعدة البيانات تنحفظ برا الحاوية
+      - ./config:/app/config:ro   # تعدّل الإعدادات بدون إعادة بناء

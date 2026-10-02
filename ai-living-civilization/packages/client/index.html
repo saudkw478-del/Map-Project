@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>مدينة الذكاء الاصطناعي الحية</title>
+  <style>
+    :root { --bg:#0b1317; --panel:#131e24; --ink:#dce9e3; --muted:#8ea79b; --line:#26373e; --ok:#6cc356; --bad:#ff8a73; --amber:#e3a640; color-scheme: dark; }
+    @media (prefers-color-scheme: light) { :root { --bg:#e6eee8; --panel:#f5faf6; --ink:#12231b; --muted:#4d6558; --line:#c3d3c8; --ok:#2e7d32; --bad:#b3321e; --amber:#a8620f; color-scheme: light; } }
+    body { margin:0; background:var(--bg); color:var(--ink); font-family:"IBM Plex Sans Arabic","Segoe UI",Tahoma,system-ui,sans-serif; }
+    main { max-width:640px; margin:0 auto; padding:32px 16px; display:grid; gap:16px; }
+    h1 { margin:0; font-size:1.7rem; }
+    .card { background:var(--panel); border:1px solid var(--line); border-radius:10px; padding:14px 16px; display:grid; gap:8px; }
+    .row { display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap; }
+    .row span:first-child { color:var(--muted); }
+    .ok { color:var(--ok); } .bad { color:var(--bad); }
+    small { color:var(--muted); }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>مدينة الذكاء الاصطناعي الحية</h1>
+    <section class="card" aria-live="polite">
+      <div class="row"><span>السيرفر</span><b id="server">يتصل...</b></div>
+      <div class="row"><span>الاتصال المباشر (Socket.io)</span><b id="socket">يتصل...</b></div>
+      <div class="row"><span>الذكاء الاصطناعي</span><b id="llm">...</b></div>
+      <div class="row"><span>سرعات الوقت</span><b id="speeds">...</b></div>
+    </section>
+    <small>هذي صفحة الخطوة 0 للتأكد أن كل شي موصل. الخريطة والشخصيات تجي في الخطوات الجاية.</small>
+  </main>
+  <script type="module" src="/src/main.ts"></script>
+</body>
+</html>

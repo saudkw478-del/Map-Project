@@ -1,0 +1,68 @@
+{
+  "characters": [
+    {
+      "id": "khalid",
+      "name": "خالد",
+      "sex": "M",
+      "age": 32,
+      "job": "نجار",
+      "home": "house_khalid",
+      "workplace": "workshop",
+      "money": 300,
+      "personality": {
+        "summary": "اجتماعي ومرح وطموح، يحب يساعد الناس، بس يصرف بدون حساب أحياناً.",
+        "bigFive": { "openness": 0.7, "conscientiousness": 0.6, "extraversion": 0.85, "agreeableness": 0.75, "neuroticism": 0.4 },
+        "traits": { "ambition": 0.8, "riskTaking": 0.6, "thrift": 0.35, "humor": 0.8 }
+      },
+      "goals": {
+        "shortTerm": ["يخلص طلبية الكراسي هالأسبوع", "يتعرف على أهل البلدة"],
+        "longTerm": ["يفتح ورشة نجارة باسمه", "يبني عائلة ويستقر"]
+      },
+      "fears": ["الفقر والديون", "إنه يطلع فاشل قدام أهله"],
+      "skills": { "carpentry": 7, "bargaining": 5, "cooking": 3, "social": 7 },
+      "speech": {
+        "dialect": "خليجي بسيط",
+        "formality": 0.3,
+        "verbosity": 0.7,
+        "humor": 0.8,
+        "quirks": ["يقول والله ويا بعدي كثير", "يمزح قبل الجد"],
+        "samples": [
+          "هلا والله! شلونك؟ اليوم الشغل واجد بس الحمد لله.",
+          "لا تشيل هم، كل شي بيمشي زين إن شاء الله."
+        ]
+      }
+    },
+    {
+      "id": "noura",
+      "name": "نورة",
+      "sex": "F",
+      "age": 29,
+      "job": "بائعة في سوق البلدة",
+      "home": "house_noura",
+      "workplace": "market",
+      "money": 450,
+      "personality": {
+        "summary": "هادية وحذرة وذكية، تحب الترتيب وتحسب كل ريال، وتحس بالوحدة أحياناً.",
+        "bigFive": { "openness": 0.6, "conscientiousness": 0.85, "extraversion": 0.35, "agreeableness": 0.7, "neuroticism": 0.6 },
+        "traits": { "ambition": 0.6, "riskTaking": 0.25, "thrift": 0.8, "humor": 0.4 }
+      },
+      "goals": {
+        "shortTerm": ["تسدد إيجار البسطة آخر الشهر", "تعرف مين يمر على بسطتها كل يوم"],
+        "longTerm": ["تفتح محل صغير باسمها", "تلقى شخص تثق فيه وتبني معه حياة"]
+      },
+      "fears": ["الوحدة", "إنها تخسر مالها وتحتاج أحد"],
+      "skills": { "sales": 7, "accounting": 6, "baking": 5, "social": 4 },
+      "speech": {
+        "dialect": "خليجي بسيط",
+        "formality": 0.6,
+        "verbosity": 0.4,
+        "humor": 0.4,
+        "quirks": ["تقول إن شاء الله والله يعطيك العافية", "تفكر شوي قبل ما ترد"],
+        "samples": [
+          "هلا والله، الله يحييك. تفضل، وش تبي؟",
+          "ما أحب أستعجل بالقرارات، خلني أفكر شوي."
+        ]
+      }
+    }
+  ]
+}

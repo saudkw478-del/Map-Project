@@ -1,0 +1,24 @@
+{
+  "name": "ai-living-civilization",
+  "version": "0.1.0",
+  "private": true,
+  "description": "AI Living Civilization — مدينة الذكاء الاصطناعي الحية",
+  "type": "module",
+  "workspaces": [
+    "packages/*"
+  ],
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "build": "npm run build -w @civ/shared && npm run build -w @civ/server && npm run build -w @civ/client",
+    "dev": "npm run build -w @civ/shared && concurrently -k -n server,client -c cyan,magenta \"npm run dev -w @civ/server\" \"npm run dev -w @civ/client\"",
+    "start": "node packages/server/dist/index.js",
+    "test": "npm run build -w @civ/shared && npm run test -w @civ/server && node scripts/check-secrets.mjs",
+    "check:secrets": "node scripts/check-secrets.mjs"
+  },
+  "devDependencies": {
+    "concurrently": "^10.0.5",
+    "typescript": "^7.0.2"
+  }
+}
